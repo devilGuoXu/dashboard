@@ -17,19 +17,15 @@
         .page{display:none;padding:32px 48px}
         .page.active{display:block}
         .container{max-width:1100px;margin:0 auto}
-        
         .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
         .sc{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03)}
         .sc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:10px}
         .sc-icon svg{width:16px;height:16px}
         .sc-label{font-size:12px;color:#999;margin-bottom:4px}
         .sc-value{font-size:26px;font-weight:600;color:#2d3436}
-        
         .bottom-row{display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:start}
-        
         .panel{background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid #f2f2f2}
-        
         .progress-list{padding:0}
         .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
         .prog-table th{padding:10px 12px;font-size:11px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
@@ -41,7 +37,6 @@
         .prog-fill{height:100%;border-radius:4px;transition:width .4s}
         .prog-num{color:#999;font-size:11px}
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
-        
         .rank-table{width:100%;border-collapse:collapse}
         .rank-table th{padding:8px 10px;font-size:10px;color:#bbb;font-weight:500;border-bottom:1px solid #f2f2f2;white-space:nowrap}
         .rank-table th:first-child{text-align:center;width:36px}
@@ -52,7 +47,6 @@
         .rank-table td:nth-child(2){text-align:left}
         .rank-table td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;font-weight:500}
         .rank-table tr:hover{background:#fafbfc}
-        
         .split-layout{display:flex;gap:18px;min-height:500px}
         .sidebar{width:220px;min-width:220px;background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
         .sidebar-title{padding:12px 16px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:13px;position:sticky;top:0;background:#fff}
@@ -74,35 +68,13 @@
         .section-title{font-size:15px;font-weight:600;margin-bottom:14px;color:#2d3436}
         .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:14px}
         .footer{text-align:center;color:#ddd;font-size:11px;padding:16px}
-        
         @media(max-width:430px){
-            body{padding:0}
-            .navbar{padding:0 12px;height:44px}
-            .nav-brand{font-size:13px;margin-right:12px}
-            .nav-tabs{gap:10px}
-            .nav-tab{font-size:11px;padding:0 2px}
-            .nav-update{font-size:9px}
-            .page{padding:12px 8px}
-            .stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
-            .sc{padding:12px 10px}
-            .sc-value{font-size:18px}
-            .sc-icon{width:28px;height:28px;margin-bottom:6px}
-            .sc-icon svg{width:13px;height:13px}
-            .sc-label{font-size:10px}
-            .bottom-row{grid-template-columns:1fr;gap:10px}
-            .panel{margin-bottom:8px}
-            .panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}
-            .prog-td-name{max-width:80px;font-size:11px}
-            .prog-th-avg,.prog-td-avg,.prog-th-avg10,.prog-td-avg10{width:55px;min-width:55px;max-width:55px;font-size:11px}
-            .prog-bar{max-width:60px;height:6px}
-            .prog-num{font-size:9px}
-            .split-layout{flex-direction:column}
-            .sidebar{width:100%;max-height:180px}
-            .sidebar-item{padding:8px 12px;font-size:11px}
-            .rank-table th,.rank-table td{padding:6px 8px;font-size:11px}
-            .data-table th,.data-table td{padding:6px 8px;font-size:11px}
-            .section-title{font-size:13px}
+            body{padding:0}.navbar{padding:0 12px;height:44px}.nav-brand{font-size:13px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:11px;padding:0 2px}.nav-update{font-size:9px}
+            .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:18px}.sc-icon{width:28px;height:28px;margin-bottom:6px}.sc-icon svg{width:13px;height:13px}.sc-label{font-size:10px}
+            .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}.prog-td-name{max-width:80px;font-size:11px}.prog-th-avg,.prog-td-avg,.prog-th-avg10,.prog-td-avg10{width:55px;min-width:55px;max-width:55px;font-size:11px}.prog-bar{max-width:60px;height:6px}.prog-num{font-size:9px}
+            .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}.sidebar-item{padding:8px 12px;font-size:11px}
+            .rank-table th,.rank-table td{padding:6px 8px;font-size:11px}.data-table th,.data-table td{padding:6px 8px;font-size:11px}.section-title{font-size:13px}
         }
     </style>
 <script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 1000};</script>
@@ -146,233 +118,210 @@
     <div class="footer">广告数据大屏 · 自动刷新</div>
 
     <script>
-        var _allData=[];
-        var _offerList=[];
-        var _pr=false,_sr=false;
-        var OFFER_TARGETS = {};  // 需要从程序传入
+        var _allData = [];
+        var _offerList = [];
+        var _pr = false, _sr = false;
+        var MAPPED_OFFERS = [];
+        var OFFER_TARGETS = {};
         
-        function switchTab(p,t){document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active')});document.querySelectorAll('.nav-tab').forEach(function(e){e.classList.remove('active')});document.getElementById(p).classList.add('active');t.classList.add('active');if(p==='page2'&&!_pr){_pr=true;renderPersonOfferList()}if(p==='page3'&&!_sr){_sr=true;renderStateOfferList()}}
-        
-        function loadData(){
-            fetch('data.json?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
-                _allData=(d.data||d).filter(function(r){
-                    var offer=String(r.offer||'').trim();
-                    return MAPPED_OFFERS.indexOf(offer)>=0;
-                });
-                if(!_allData.length)return;
-                
-                var stats={},totalAmount=0,totalCount=0;
-                _allData.forEach(function(r){
-                    var o=String(r.offer||'未知').trim();
-                    var p=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
-                    var ip=String(r['ip']||r['IP']||'').trim();
-                    var price=String(r['价格']||'').trim();
-                    var time=String(r['时间']||'');
-                    if(!stats[o])stats[o]={total:0,count:0,entries:[]};
-                    stats[o].total+=p;stats[o].count+=1;
-                    stats[o].entries.push({price:p,time:time});
-                    totalAmount+=p;
-                    if(ip&&price&&ip!=='-'&&price!=='-')totalCount+=1;
-                });
-                _offerList=Object.keys(stats).sort(function(a,b){return stats[b].total-stats[a].total});
-                
-                document.getElementById('totalOffers').textContent=_offerList.length;
-                document.getElementById('totalAmount').textContent='$'+totalAmount.toLocaleString('en-US',{maximumFractionDigits:0});
-                document.getElementById('totalCount').textContent=totalCount;
-                document.getElementById('totalOps').textContent=Math.round(totalCount*2.3).toLocaleString();
-                document.getElementById('updateTime').textContent='更新: '+new Date().toLocaleTimeString('zh-CN');
-                
-                // Offer进度表（按进度降序）
-                var progressList=[];
-                _offerList.slice(0,15).forEach(function(o){
-                    var s=stats[o];
-                    var target=OFFER_TARGETS[o]||0;
-                    var done=s.count;
-                    var pct=target>0?Math.min(done/target*100,100):0;
-                    var avg=s.total/s.count;
-                    var entries=s.entries.slice().sort(function(a,b){return (b.time||'').localeCompare(a.time||'')});
-                    var last10=entries.slice(0,10);
-                    var last10Total=last10.reduce(function(a,b){return a+b.price},0);
-                    var last10Avg=last10.length>0?last10Total/last10.length:0;
-                    progressList.push({name:o,target:target,done:done,pct:pct,avg:avg,last10Avg:last10Avg})
-                });
-                progressList.sort(function(a,b){return b.pct-a.pct});
-                var colors=['#4f6ef7','#00b894','#e8905c','#6c5ce7','#fd79a8','#0984e3','#fdcb6e','#a29bfe'];
-                var ph='';
-                progressList.forEach(function(d,i){
-                    if(d.target>0){
-                        ph+='<tr><td class="prog-td-name">'+d.name+'</td><td class="prog-td-bar"><div class="prog-info"><span class="prog-num">'+d.done+'/'+d.target+'</span></div><div class="prog-bar"><div class="prog-fill" style="width:'+d.pct.toFixed(0)+'%;background:'+colors[i%colors.length]+'"></div></div></td><td class="prog-td-avg">$'+d.avg.toFixed(2)+'</td><td class="prog-td-avg10">$'+d.last10Avg.toFixed(2)+'</td></tr>'
-                    }else{
-                        ph+='<tr><td class="prog-td-name">'+d.name+'</td><td class="prog-td-bar">'+d.done+'</td><td class="prog-td-avg">$'+d.avg.toFixed(2)+'</td><td class="prog-td-avg10">$'+d.last10Avg.toFixed(2)+'</td></tr>'
-                    }
-                });
-                document.getElementById('progressBody').innerHTML=ph;
-                
-                // 人员排名
-                var ps={};
-                _allData.forEach(function(r){
-                    var p=String(r['人员']||'-').trim();
-                    var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
-                    if(!ps[p])ps[p]=0;ps[p]+=pr
-                });
-                var persons=Object.keys(ps).sort(function(a,b){return ps[b]-ps[a]});
-                var prh='';
-                persons.slice(0,15).forEach(function(p,i){
-                    var badge=i<3?['🥇','🥈','🥉'][i]:String(i+1).padStart(2,'0');
-                    prh+='<tr><td>'+badge+'</td><td>'+p+'</td><td>$'+ps[p].toLocaleString('en-US',{maximumFractionDigits:0})+'</td></tr>'
-                });
-                document.getElementById('personBody').innerHTML=prh;
-                
-                if(_pr)renderPersonOfferList();
-                if(_sr)renderStateOfferList();
-            })
+        function switchTab(p, t) {
+            document.querySelectorAll('.page').forEach(function(e) { e.classList.remove('active'); });
+            document.querySelectorAll('.nav-tab').forEach(function(e) { e.classList.remove('active'); });
+            document.getElementById(p).classList.add('active');
+            t.classList.add('active');
+            if (p === 'page2' && !_pr) { _pr = true; renderPersonOfferList(); }
+            if (p === 'page3' && !_sr) { _sr = true; renderStateOfferList(); }
         }
         
-        function renderPersonOfferList(){
-            _pr=true;
-            var list=document.getElementById('pl');
-            if(!list)return;
-            list.innerHTML='';
-            _offerList.forEach(function(o,i){
-                var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');
-                d.textContent=o;d.onclick=function(){showPersonDetail(o,d)};list.appendChild(d)
+        function loadData() {
+            fetch('data.json?t=' + Date.now())
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    var rawData = d.data || d;
+                    _allData = rawData.filter(function(r) {
+                        var offer = String(r.offer || '').trim();
+                        return MAPPED_OFFERS.indexOf(offer) >= 0;
+                    });
+                    if (!_allData.length) return;
+                    
+                    var stats = {}, totalAmount = 0, totalCount = 0;
+                    _allData.forEach(function(r) {
+                        var o = String(r.offer || '未知').trim();
+                        var p = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                        var ip = String(r['ip'] || r['IP'] || '').trim();
+                        var price = String(r['价格'] || '').trim();
+                        var time = String(r['时间'] || '');
+                        if (!stats[o]) stats[o] = { total: 0, count: 0, entries: [] };
+                        stats[o].total += p;
+                        stats[o].count += 1;
+                        stats[o].entries.push({ price: p, time: time });
+                        totalAmount += p;
+                        if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
+                    });
+                    
+                    _offerList = Object.keys(stats).sort(function(a, b) { return stats[b].total - stats[a].total; });
+                    
+                    document.getElementById('totalOffers').textContent = _offerList.length;
+                    document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                    document.getElementById('totalCount').textContent = totalCount;
+                    document.getElementById('totalOps').textContent = Math.round(totalCount * 2.3).toLocaleString();
+                    document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
+                    
+                    var progressList = [];
+                    _offerList.slice(0, 15).forEach(function(o) {
+                        var s = stats[o];
+                        var target = OFFER_TARGETS[o] || 0;
+                        var done = s.count;
+                        var pct = target > 0 ? Math.min(done / target * 100, 100) : 0;
+                        var avg = s.total / s.count;
+                        var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
+                        var last10 = entries.slice(0, 10);
+                        var last10Total = last10.reduce(function(a, b) { return a + b.price; }, 0);
+                        var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
+                        progressList.push({ name: o, target: target, done: done, pct: pct, avg: avg, last10Avg: last10Avg });
+                    });
+                    progressList.sort(function(a, b) { return b.pct - a.pct; });
+                    
+                    var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
+                    var ph = '';
+                    progressList.forEach(function(d, i) {
+                        if (d.target > 0) {
+                            ph += '<tr>' +
+                                '<td class="prog-td-name">' + d.name + '</td>' +
+                                '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + colors[i % colors.length] + '"></div></div></td>' +
+                                '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>' +
+                                '<td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td>' +
+                                '</tr>';
+                        } else {
+                            ph += '<tr>' +
+                                '<td class="prog-td-name">' + d.name + '</td>' +
+                                '<td class="prog-td-bar">' + d.done + '</td>' +
+                                '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>' +
+                                '<td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td>' +
+                                '</tr>';
+                        }
+                    });
+                    document.getElementById('progressBody').innerHTML = ph;
+                    
+                    var ps = {};
+                    _allData.forEach(function(r) {
+                        var p = String(r['人员'] || '-').trim();
+                        var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                        if (!ps[p]) ps[p] = 0;
+                        ps[p] += pr;
+                    });
+                    var persons = Object.keys(ps).sort(function(a, b) { return ps[b] - ps[a]; });
+                    var prh = '';
+                    persons.slice(0, 15).forEach(function(p, i) {
+                        var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
+                        prh += '<tr><td>' + badge + '</td><td>' + p + '</td><td>$' + ps[p].toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td></tr>';
+                    });
+                    document.getElementById('personBody').innerHTML = prh;
+                    
+                    if (_pr) renderPersonOfferList();
+                    if (_sr) renderStateOfferList();
+                });
+        }
+        
+        function renderPersonOfferList() {
+            _pr = true;
+            var list = document.getElementById('pl');
+            if (!list) return;
+            list.innerHTML = '';
+            _offerList.forEach(function(o, i) {
+                var d = document.createElement('div');
+                d.className = 'sidebar-item' + (i === 0 ? ' active' : '');
+                d.textContent = o;
+                d.onclick = function() { showPersonDetail(o, d); };
+                list.appendChild(d);
             });
-            if(_offerList.length>0)showPersonDetail(_offerList[0],list.firstChild)
-        }
-        function showPersonDetail(o,e){
-            document.querySelectorAll('#pl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
-            var st={};
-            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var p=String(r['人员']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[p])st[p]={prices:[],count:0};st[p].prices.push(pr);st[p].count++}});
-            var rows=[];
-            for(var p in st){var s=st[p],t=s.prices.reduce(function(a,b){return a+b},0);rows.push({person:p,total:t,avg:t/s.prices.length,max:Math.max.apply(null,s.prices),min:Math.min.apply(null,s.prices),conv:s.count,ops:s.count,rate:'-'})}
-            var h='<div class="section-title">'+o+'</div>';
-            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
-            else{rows.sort(function(a,b){return b.total-a.total});h+='<table class="data-table"><thead><tr><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
-            rows.forEach(function(x){h+='<tr><td><b>'+x.person+'</b></td><td class="num">$'+x.total.toLocaleString('en-US',{minimumFractionDigits:0})+'</td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="num">'+x.conv+'</td><td class="num">'+x.ops+'</td><td class="num">'+x.rate+'</td></tr>'});h+='</tbody></table>'}
-            document.getElementById('pc').innerHTML=h
-        }
-        function renderStateOfferList(){
-            _sr=true;
-            var list=document.getElementById('sl');if(!list)return;list.innerHTML='';
-            _offerList.forEach(function(o,i){var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');d.textContent=o;d.onclick=function(){showStateDetail(o,d)};list.appendChild(d)});
-            if(_offerList.length>0)showStateDetail(_offerList[0],list.firstChild)
-        }
-        function showStateDetail(o,e){
-            document.querySelectorAll('#sl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
-            var st={};
-            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var s=String(r['州']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[s])st[s]={prices:[],count:0};st[s].prices.push(pr);st[s].count++}});
-            var rows=[],ap=[];
-            for(var s in st){ap=ap.concat(st[s].prices)}var ga=ap.reduce(function(a,b){return a+b},0)/ap.length,ht=ga*1.1,lt=ga*0.9;
-            for(var s in st){var ss=st[s],a=ss.prices.reduce(function(a,b){return a+b},0)/ss.prices.length;var rating=a>ht?'<span class="badge high">高</span>':(a<lt?'<span class="badge low">低</span>':'<span class="badge mid">中</span>');rows.push({state:s,avg:a,count:ss.count,max:Math.max.apply(null,ss.prices),min:Math.min.apply(null,ss.prices),rating:rating})}
-            var h='<div class="section-title">'+o+'</div>';
-            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
-            else{rows.sort(function(a,b){return b.avg-a.avg});h+='<table class="data-table"><thead><tr><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
-            rows.forEach(function(x){h+='<tr><td><b>'+x.state+'</b></td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">'+x.count+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="ctr">'+x.rating+'</td></tr>'});h+='</tbody></table>'}
-            document.getElementById('sc').innerHTML=h
+            if (_offerList.length > 0) showPersonDetail(_offerList[0], list.firstChild);
         }
         
-        loadData();setInterval(loadData,30000);
-    </script>
-        var _allData=[];
-        var _offerList=[];
-        var _pr=false,_sr=false;
-        
-        function switchTab(p,t){document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active')});document.querySelectorAll('.nav-tab').forEach(function(e){e.classList.remove('active')});document.getElementById(p).classList.add('active');t.classList.add('active');if(p==='page2'&&!_pr){_pr=true;renderPersonOfferList()}if(p==='page3'&&!_sr){_sr=true;renderStateOfferList()}}
-        
-        function loadData(){
-            fetch('data.json?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
-                _allData=d.data||d;
-                if(!_allData.length)return;
-                
-                var stats={},totalAmount=0,totalCount=0;
-                _allData.forEach(function(r){
-                    var o=String(r.offer||'未知').trim();
-                    var p=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
-                    var ip=String(r['ip']||r['IP']||'').trim();
-                    var price=String(r['价格']||'').trim();
-                    if(!stats[o])stats[o]={total:0,count:0};
-                    stats[o].total+=p;stats[o].count+=1;
-                    totalAmount+=p;
-                    if(ip&&price&&ip!=='-'&&price!=='-')totalCount+=1;
-                });
-                _offerList=Object.keys(stats).sort(function(a,b){return stats[b].total-stats[a].total});
-                
-                document.getElementById('totalOffers').textContent=_offerList.length;
-                document.getElementById('totalAmount').textContent='$'+totalAmount.toLocaleString('en-US',{maximumFractionDigits:0});
-                document.getElementById('totalCount').textContent=totalCount;
-                document.getElementById('totalOps').textContent=Math.round(totalCount*2.3).toLocaleString();
-                document.getElementById('updateTime').textContent='更新: '+new Date().toLocaleTimeString('zh-CN');
-                
-                var ph='';
-                _offerList.slice(0,15).forEach(function(o){
-                    var s=stats[o],avg=s.total/s.count;
-                    ph+='<tr><td class="prog-td-name">'+o+'</td><td class="prog-td-bar">'+s.count+'</td><td class="prog-td-avg">$'+avg.toFixed(2)+'</td><td class="prog-td-avg10">$'+avg.toFixed(2)+'</td></tr>'
-                });
-                document.getElementById('progressBody').innerHTML=ph;
-                
-                var ps={};
-                _allData.forEach(function(r){
-                    var p=String(r['人员']||'-').trim();
-                    var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
-                    if(!ps[p])ps[p]=0;ps[p]+=pr
-                });
-                var persons=Object.keys(ps).sort(function(a,b){return ps[b]-ps[a]});
-                var prh='';
-                persons.slice(0,15).forEach(function(p,i){
-                    var badge=i<3?['🥇','🥈','🥉'][i]:String(i+1).padStart(2,'0');
-                    prh+='<tr><td>'+badge+'</td><td>'+p+'</td><td>$'+ps[p].toLocaleString('en-US',{maximumFractionDigits:0})+'</td></tr>'
-                });
-                document.getElementById('personBody').innerHTML=prh;
-                
-                if(_pr)renderPersonOfferList();
-                if(_sr)renderStateOfferList();
-            })
-        }
-        
-        function renderPersonOfferList(){
-            _pr=true;
-            var list=document.getElementById('pl');
-            if(!list)return;
-            list.innerHTML='';
-            _offerList.forEach(function(o,i){
-                var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');
-                d.textContent=o;d.onclick=function(){showPersonDetail(o,d)};list.appendChild(d)
+        function showPersonDetail(o, e) {
+            document.querySelectorAll('#pl .sidebar-item').forEach(function(i) { i.classList.remove('active'); });
+            if (e) e.classList.add('active');
+            var st = {};
+            _allData.forEach(function(r) {
+                if (String(r.offer || '').trim() === o) {
+                    var p = String(r['人员'] || '-').trim();
+                    var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                    if (!st[p]) st[p] = { prices: [], count: 0 };
+                    st[p].prices.push(pr);
+                    st[p].count++;
+                }
             });
-            if(_offerList.length>0)showPersonDetail(_offerList[0],list.firstChild)
-        }
-        function showPersonDetail(o,e){
-            document.querySelectorAll('#pl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
-            var st={};
-            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var p=String(r['人员']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[p])st[p]={prices:[],count:0};st[p].prices.push(pr);st[p].count++}});
-            var rows=[];
-            for(var p in st){var s=st[p],t=s.prices.reduce(function(a,b){return a+b},0);rows.push({person:p,total:t,avg:t/s.prices.length,max:Math.max.apply(null,s.prices),min:Math.min.apply(null,s.prices),conv:s.count,ops:s.count,rate:'-'})}
-            var h='<div class="section-title">'+o+'</div>';
-            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
-            else{rows.sort(function(a,b){return b.total-a.total});h+='<table class="data-table"><thead><tr><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
-            rows.forEach(function(x){h+='<tr><td><b>'+x.person+'</b></td><td class="num">$'+x.total.toLocaleString('en-US',{minimumFractionDigits:0})+'</td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="num">'+x.conv+'</td><td class="num">'+x.ops+'</td><td class="num">'+x.rate+'</td></tr>'});h+='</tbody></table>'}
-            document.getElementById('pc').innerHTML=h
-        }
-        function renderStateOfferList(){
-            _sr=true;
-            var list=document.getElementById('sl');if(!list)return;list.innerHTML='';
-            _offerList.forEach(function(o,i){var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');d.textContent=o;d.onclick=function(){showStateDetail(o,d)};list.appendChild(d)});
-            if(_offerList.length>0)showStateDetail(_offerList[0],list.firstChild)
-        }
-        function showStateDetail(o,e){
-            document.querySelectorAll('#sl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
-            var st={};
-            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var s=String(r['州']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[s])st[s]={prices:[],count:0};st[s].prices.push(pr);st[s].count++}});
-            var rows=[],ap=[];
-            for(var s in st){ap=ap.concat(st[s].prices)}var ga=ap.reduce(function(a,b){return a+b},0)/ap.length,ht=ga*1.1,lt=ga*0.9;
-            for(var s in st){var ss=st[s],a=ss.prices.reduce(function(a,b){return a+b},0)/ss.prices.length;var rating=a>ht?'<span class="badge high">高</span>':(a<lt?'<span class="badge low">低</span>':'<span class="badge mid">中</span>');rows.push({state:s,avg:a,count:ss.count,max:Math.max.apply(null,ss.prices),min:Math.min.apply(null,ss.prices),rating:rating})}
-            var h='<div class="section-title">'+o+'</div>';
-            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
-            else{rows.sort(function(a,b){return b.avg-a.avg});h+='<table class="data-table"><thead><tr><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
-            rows.forEach(function(x){h+='<tr><td><b>'+x.state+'</b></td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">'+x.count+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="ctr">'+x.rating+'</td></tr>'});h+='</tbody></table>'}
-            document.getElementById('sc').innerHTML=h
+            var rows = [];
+            for (var p in st) {
+                var s = st[p], t = s.prices.reduce(function(a, b) { return a + b; }, 0);
+                rows.push({ person: p, total: t, avg: t / s.prices.length, max: Math.max.apply(null, s.prices), min: Math.min.apply(null, s.prices), conv: s.count, ops: s.count, rate: '-' });
+            }
+            var h = '<div class="section-title">' + o + '</div>';
+            if (rows.length === 0) {
+                h += '<div class="no-data">暂无数据</div>';
+            } else {
+                rows.sort(function(a, b) { return b.total - a.total; });
+                h += '<table class="data-table"><thead><tr><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+                rows.forEach(function(x) {
+                    h += '<tr><td><b>' + x.person + '</b></td><td class="num">$' + x.total.toLocaleString('en-US', { minimumFractionDigits: 0 }) + '</td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
+                });
+                h += '</tbody></table>';
+            }
+            document.getElementById('pc').innerHTML = h;
         }
         
-        loadData();setInterval(loadData,30000);
+        function renderStateOfferList() {
+            _sr = true;
+            var list = document.getElementById('sl');
+            if (!list) return;
+            list.innerHTML = '';
+            _offerList.forEach(function(o, i) {
+                var d = document.createElement('div');
+                d.className = 'sidebar-item' + (i === 0 ? ' active' : '');
+                d.textContent = o;
+                d.onclick = function() { showStateDetail(o, d); };
+                list.appendChild(d);
+            });
+            if (_offerList.length > 0) showStateDetail(_offerList[0], list.firstChild);
+        }
+        
+        function showStateDetail(o, e) {
+            document.querySelectorAll('#sl .sidebar-item').forEach(function(i) { i.classList.remove('active'); });
+            if (e) e.classList.add('active');
+            var st = {};
+            _allData.forEach(function(r) {
+                if (String(r.offer || '').trim() === o) {
+                    var s = String(r['州'] || '-').trim();
+                    var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                    if (!st[s]) st[s] = { prices: [], count: 0 };
+                    st[s].prices.push(pr);
+                    st[s].count++;
+                }
+            });
+            var rows = [], ap = [];
+            for (var s in st) { ap = ap.concat(st[s].prices); }
+            var ga = ap.reduce(function(a, b) { return a + b; }, 0) / ap.length, ht = ga * 1.1, lt = ga * 0.9;
+            for (var s in st) {
+                var ss = st[s], a = ss.prices.reduce(function(a, b) { return a + b; }, 0) / ss.prices.length;
+                var rating = a > ht ? '<span class="badge high">高</span>' : (a < lt ? '<span class="badge low">低</span>' : '<span class="badge mid">中</span>');
+                rows.push({ state: s, avg: a, count: ss.count, max: Math.max.apply(null, ss.prices), min: Math.min.apply(null, ss.prices), rating: rating });
+            }
+            var h = '<div class="section-title">' + o + '</div>';
+            if (rows.length === 0) {
+                h += '<div class="no-data">暂无数据</div>';
+            } else {
+                rows.sort(function(a, b) { return b.avg - a.avg; });
+                h += '<table class="data-table"><thead><tr><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
+                rows.forEach(function(x) {
+                    h += '<tr><td><b>' + x.state + '</b></td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">' + x.count + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="ctr">' + x.rating + '</td></tr>';
+                });
+                h += '</tbody></table>';
+            }
+            document.getElementById('sc').innerHTML = h;
+        }
+        
+        loadData();
+        setInterval(loadData, 30000);
     </script>
 </body>
 </html>
