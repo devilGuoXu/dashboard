@@ -32,15 +32,14 @@
         .panel-header{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid #f2f2f2}
         
         .progress-list{padding:0}
-        .prog-table{width:100%;border-collapse:collapse}
+        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
         .prog-table th{padding:10px 12px;font-size:11px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
         .prog-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f8f8f8}
-        .prog-th-name{text-align:left}
-        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:200px}
+        .prog-th-name,.prog-td-name{text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .prog-th-bar,.prog-td-bar{width:auto}
-        .prog-th-avg,.prog-td-avg{text-align:right;width:80px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;font-weight:600;font-size:13px}
-        .prog-th-avg10,.prog-td-avg10{text-align:right;width:85px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;color:#888;font-size:13px}
-        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;min-width:80px;max-width:200px}
+        .prog-th-avg,.prog-td-avg{text-align:right;width:85px;min-width:85px;max-width:85px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;font-weight:600;font-size:13px}
+        .prog-th-avg10,.prog-td-avg10{text-align:right;width:85px;min-width:85px;max-width:85px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;color:#888;font-size:13px}
+        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden}
         .prog-fill{height:100%;border-radius:4px;transition:width .4s}
         .prog-num{color:#999;font-size:11px}
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
@@ -96,9 +95,9 @@
             .panel{margin-bottom:8px}
             .panel-header{padding:10px 12px;font-size:12px}
             .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}
-            .prog-td-name{max-width:100px;font-size:11px}
-            .prog-th-avg,.prog-td-avg,.prog-th-avg10,.prog-td-avg10{width:55px;font-size:11px}
-            .prog-bar{max-width:80px;min-width:40px;height:6px}
+            .prog-td-name{max-width:80px;font-size:11px}
+            .prog-th-avg,.prog-td-avg,.prog-th-avg10,.prog-td-avg10{width:55px;min-width:55px;max-width:55px;font-size:11px}
+            .prog-bar{max-width:60px;height:6px}
             .prog-num{font-size:9px}
             .split-layout{flex-direction:column}
             .sidebar{width:100%;max-height:180px}
@@ -117,7 +116,7 @@
             <div class="nav-tab" onclick="switchTab('page2',this)">人员</div>
             <div class="nav-tab" onclick="switchTab('page3',this)">州</div>
         </div>
-        <span class="nav-update">更新时间: 2026-05-01 05:22:52</span>
+        <span class="nav-update">更新时间: 2026-05-01 05:39:16</span>
     </nav>
 
     <div class="page active" id="page1">
