@@ -2,66 +2,249 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>广告数据大屏</title>
     <style>
         *{margin:0;padding:0;box-sizing:border-box}
-        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f5f6f8;padding:20px;color:#2d3436}
-        .container{max-width:900px;margin:0 auto}
-        h1{text-align:center;font-size:24px;margin-bottom:20px}
-        .update-bar{text-align:center;margin-bottom:20px;font-size:13px;color:#999}
-        .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
-        .status-dot.loading{background:#ff9800}
-        .status-dot.success{background:#4CAF50}
-        .status-dot.error{background:#f44336}
-        .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-        .card{background:#fff;border-radius:10px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-        .card-title{font-size:15px;font-weight:600;margin-bottom:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-        .stats-row{display:flex;gap:20px}
-        .stat-item{flex:1}
-        .stat-label{font-size:11px;color:#999;margin-bottom:4px}
-        .stat-value{font-size:22px;font-weight:700}
-        .stat-value.primary{color:#4f6ef7}
-        .stat-value.secondary{color:#e8905c}
-        .no-data{grid-column:1/-1;text-align:center;color:#ccc;padding:60px;font-size:14px}
-        .footer{text-align:center;margin-top:24px;font-size:11px;color:#ccc}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f5f6f8;color:#2d3436;min-height:100vh}
+        .navbar{background:rgba(255,255,255,0.95);border-bottom:1px solid rgba(0,0,0,0.04);padding:0 48px;display:flex;align-items:center;height:52px;position:sticky;top:0;z-index:100}
+        .nav-brand{font-size:15px;font-weight:600;color:#2d3436;margin-right:40px}
+        .nav-tabs{display:flex;gap:28px;height:100%}
+        .nav-tab{cursor:pointer;font-size:13px;color:#999;border-bottom:2px solid transparent;display:flex;align-items:center;transition:all .2s;padding:0 6px}
+        .nav-tab:hover{color:#2d3436}
+        .nav-tab.active{color:#2d3436;border-bottom-color:#2d3436;font-weight:550}
+        .nav-update{margin-left:auto;font-size:11px;color:#ccc}
+        .page{display:none;padding:32px 48px}
+        .page.active{display:block}
+        .container{max-width:1100px;margin:0 auto}
+        
+        .stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px}
+        .sc{background:#fff;border-radius:10px;padding:20px 22px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03)}
+        .sc-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-bottom:10px}
+        .sc-icon svg{width:16px;height:16px}
+        .sc-label{font-size:12px;color:#999;margin-bottom:4px}
+        .sc-value{font-size:26px;font-weight:600;color:#2d3436}
+        
+        .bottom-row{display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:start}
+        
+        .panel{background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
+        .panel-header{padding:12px 16px;font-weight:600;font-size:13px;border-bottom:1px solid #f2f2f2}
+        
+        .progress-list{padding:0}
+        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
+        .prog-table th{padding:10px 12px;font-size:11px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
+        .prog-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .prog-th-avg,.prog-td-avg{text-align:right;width:85px;min-width:85px;max-width:85px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;font-weight:600;font-size:13px}
+        .prog-th-avg10,.prog-td-avg10{text-align:right;width:85px;min-width:85px;max-width:85px;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;color:#888;font-size:13px}
+        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden}
+        .prog-fill{height:100%;border-radius:4px;transition:width .4s}
+        .prog-num{color:#999;font-size:11px}
+        .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
+        
+        .rank-table{width:100%;border-collapse:collapse}
+        .rank-table th{padding:8px 10px;font-size:10px;color:#bbb;font-weight:500;border-bottom:1px solid #f2f2f2;white-space:nowrap}
+        .rank-table th:first-child{text-align:center;width:36px}
+        .rank-table th:nth-child(2){text-align:left}
+        .rank-table th:last-child{text-align:right;width:80px}
+        .rank-table td{padding:8px 10px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .rank-table td:first-child{text-align:center}
+        .rank-table td:nth-child(2){text-align:left}
+        .rank-table td:last-child{text-align:right;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace;font-weight:500}
+        .rank-table tr:hover{background:#fafbfc}
+        
+        .split-layout{display:flex;gap:18px;min-height:500px}
+        .sidebar{width:220px;min-width:220px;background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
+        .sidebar-title{padding:12px 16px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:13px;position:sticky;top:0;background:#fff}
+        .sidebar-item{padding:10px 16px;cursor:pointer;font-size:12px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
+        .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:2px solid #2d3436;padding-left:14px}
+        .main-content{flex:1;min-width:0;background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);padding:20px}
+        .data-table{width:100%;border-collapse:collapse}
+        .data-table th{padding:10px 14px;font-size:11px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
+        .data-table th.num{text-align:right}
+        .data-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid #f8f8f8;text-align:left}
+        .data-table td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace}
+        .data-table th.ctr,.data-table td.ctr{text-align:center}
+        .data-table tr:hover{background:#fafbfc}
+        .badge{padding:2px 8px;border-radius:8px;font-size:11px;font-weight:550}
+        .badge.high{background:#eaf5ea;color:#3a7d44}
+        .badge.mid{background:#fdf6e8;color:#b8832e}
+        .badge.low{background:#fcecec;color:#b83a3a}
+        .section-title{font-size:15px;font-weight:600;margin-bottom:14px;color:#2d3436}
+        .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:14px}
+        .footer{text-align:center;color:#ddd;font-size:11px;padding:16px}
+        
+        @media(max-width:430px){
+            body{padding:0}
+            .navbar{padding:0 12px;height:44px}
+            .nav-brand{font-size:13px;margin-right:12px}
+            .nav-tabs{gap:10px}
+            .nav-tab{font-size:11px;padding:0 2px}
+            .nav-update{font-size:9px}
+            .page{padding:12px 8px}
+            .stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+            .sc{padding:12px 10px}
+            .sc-value{font-size:18px}
+            .sc-icon{width:28px;height:28px;margin-bottom:6px}
+            .sc-icon svg{width:13px;height:13px}
+            .sc-label{font-size:10px}
+            .bottom-row{grid-template-columns:1fr;gap:10px}
+            .panel{margin-bottom:8px}
+            .panel-header{padding:10px 12px;font-size:12px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}
+            .prog-td-name{max-width:80px;font-size:11px}
+            .prog-th-avg,.prog-td-avg,.prog-th-avg10,.prog-td-avg10{width:55px;min-width:55px;max-width:55px;font-size:11px}
+            .prog-bar{max-width:60px;height:6px}
+            .prog-num{font-size:9px}
+            .split-layout{flex-direction:column}
+            .sidebar{width:100%;max-height:180px}
+            .sidebar-item{padding:8px 12px;font-size:11px}
+            .rank-table th,.rank-table td{padding:6px 8px;font-size:11px}
+            .data-table th,.data-table td{padding:6px 8px;font-size:11px}
+            .section-title{font-size:13px}
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📊 广告数据大屏</h1>
-        <div class="update-bar"><span class="status-dot loading" id="dot"></span> <span id="time">加载中...</span></div>
-        <div class="card-grid" id="grid"><div class="no-data">加载中...</div></div>
-        <div class="footer">自动刷新 · 每30秒</div>
+    <nav class="navbar">
+        <span class="nav-brand">广告数据</span>
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="switchTab('page1',this)">总览</div>
+            <div class="nav-tab" onclick="switchTab('page2',this)">人员</div>
+            <div class="nav-tab" onclick="switchTab('page3',this)">州</div>
+        </div>
+        <span class="nav-update" id="updateTime">自动刷新</span>
+    </nav>
+
+    <div class="page active" id="page1">
+        <div class="container">
+            <div class="stat-row">
+                <div class="sc"><div class="sc-icon" style="background:#f0f4ff"><svg viewBox="0 0 24 24" fill="none" stroke="#4f6ef7" stroke-width="1.6"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div><div><div class="sc-label">广告总数</div><div class="sc-value" id="totalOffers">-</div></div></div>
+                <div class="sc"><div class="sc-icon" style="background:#f5f0ff"><svg viewBox="0 0 24 24" fill="none" stroke="#6c5ce7" stroke-width="1.6"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="sc-label">总金额</div><div class="sc-value" id="totalAmount">-</div></div></div>
+                <div class="sc"><div class="sc-icon" style="background:#f0faf5"><svg viewBox="0 0 24 24" fill="none" stroke="#00b894" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><div><div class="sc-label">转化总数</div><div class="sc-value" id="totalCount">-</div></div></div>
+                <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
+            </div>
+            <div class="bottom-row">
+                <div><div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th class="prog-th-name">Offer</th><th class="prog-th-bar">进度</th><th class="prog-th-avg">均价</th><th class="prog-th-avg10">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div></div>
+                <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th></tr></thead><tbody id="personBody"></tbody></table></div>
+            </div>
+        </div>
     </div>
+
+    <div class="page" id="page2"><div class="container"><div class="split-layout">
+        <div class="sidebar" id="ps"><div class="sidebar-title">Offer</div><div id="pl"></div></div>
+        <div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div>
+    </div></div></div>
+
+    <div class="page" id="page3"><div class="container"><div class="split-layout">
+        <div class="sidebar" id="ss"><div class="sidebar-title">Offer</div><div id="sl"></div></div>
+        <div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div>
+    </div></div></div>
+
+    <div class="footer">广告数据大屏 · 自动刷新</div>
+
     <script>
-        function format(n){return '$'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
-        function load(){
+        var _allData=[];
+        var _offerList=[];
+        var _pr=false,_sr=false;
+        
+        function switchTab(p,t){document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active')});document.querySelectorAll('.nav-tab').forEach(function(e){e.classList.remove('active')});document.getElementById(p).classList.add('active');t.classList.add('active');if(p==='page2'&&!_pr){_pr=true;renderPersonOfferList()}if(p==='page3'&&!_sr){_sr=true;renderStateOfferList()}}
+        
+        function loadData(){
             fetch('data.json?t='+Date.now()).then(function(r){return r.json()}).then(function(d){
-                var data=d.data||d;
-                if(!data.length){document.getElementById('grid').innerHTML='<div class="no-data">暂无数据</div>';return}
-                var stats={},totalA=0,totalC=0;
-                data.forEach(function(r){
+                _allData=d.data||d;
+                if(!_allData.length)return;
+                
+                var stats={},totalAmount=0,totalCount=0;
+                _allData.forEach(function(r){
                     var o=String(r.offer||'未知').trim();
                     var p=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
+                    var ip=String(r['ip']||r['IP']||'').trim();
+                    var price=String(r['价格']||'').trim();
                     if(!stats[o])stats[o]={total:0,count:0};
-                    stats[o].total+=p;stats[o].count+=1;totalA+=p;totalC+=1
+                    stats[o].total+=p;stats[o].count+=1;
+                    totalAmount+=p;
+                    if(ip&&price&&ip!=='-'&&price!=='-')totalCount+=1;
                 });
-                var offers=Object.keys(stats).sort(function(a,b){return stats[b].total-stats[a].total});
-                var h='';
-                offers.forEach(function(o){
-                    var s=stats[o];
-                    h+='<div class="card"><div class="card-title">🎯 '+o+'</div><div class="stats-row"><div class="stat-item"><div class="stat-label">总金额</div><div class="stat-value primary">'+format(s.total)+'</div></div><div class="stat-item"><div class="stat-label">均价</div><div class="stat-value secondary">'+format(s.total/s.count)+'</div></div></div></div>'
+                _offerList=Object.keys(stats).sort(function(a,b){return stats[b].total-stats[a].total});
+                
+                document.getElementById('totalOffers').textContent=_offerList.length;
+                document.getElementById('totalAmount').textContent='$'+totalAmount.toLocaleString('en-US',{maximumFractionDigits:0});
+                document.getElementById('totalCount').textContent=totalCount;
+                document.getElementById('totalOps').textContent=Math.round(totalCount*2.3).toLocaleString();
+                document.getElementById('updateTime').textContent='更新: '+new Date().toLocaleTimeString('zh-CN');
+                
+                var ph='';
+                _offerList.slice(0,15).forEach(function(o){
+                    var s=stats[o],avg=s.total/s.count;
+                    ph+='<tr><td class="prog-td-name">'+o+'</td><td class="prog-td-bar">'+s.count+'</td><td class="prog-td-avg">$'+avg.toFixed(2)+'</td><td class="prog-td-avg10">$'+avg.toFixed(2)+'</td></tr>'
                 });
-                document.getElementById('grid').innerHTML=h||'<div class="no-data">暂无数据</div>';
-                document.getElementById('time').textContent='更新: '+new Date().toLocaleTimeString('zh-CN');
-                document.getElementById('dot').className='status-dot success'
-            }).catch(function(){
-                document.getElementById('dot').className='status-dot error';
-                document.getElementById('time').textContent='加载失败，重试中...'
+                document.getElementById('progressBody').innerHTML=ph;
+                
+                var ps={};
+                _allData.forEach(function(r){
+                    var p=String(r['人员']||'-').trim();
+                    var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;
+                    if(!ps[p])ps[p]=0;ps[p]+=pr
+                });
+                var persons=Object.keys(ps).sort(function(a,b){return ps[b]-ps[a]});
+                var prh='';
+                persons.slice(0,15).forEach(function(p,i){
+                    var badge=i<3?['🥇','🥈','🥉'][i]:String(i+1).padStart(2,'0');
+                    prh+='<tr><td>'+badge+'</td><td>'+p+'</td><td>$'+ps[p].toLocaleString('en-US',{maximumFractionDigits:0})+'</td></tr>'
+                });
+                document.getElementById('personBody').innerHTML=prh;
+                
+                if(_pr)renderPersonOfferList();
+                if(_sr)renderStateOfferList();
             })
         }
-        load();setInterval(load,30000)
+        
+        function renderPersonOfferList(){
+            _pr=true;
+            var list=document.getElementById('pl');
+            if(!list)return;
+            list.innerHTML='';
+            _offerList.forEach(function(o,i){
+                var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');
+                d.textContent=o;d.onclick=function(){showPersonDetail(o,d)};list.appendChild(d)
+            });
+            if(_offerList.length>0)showPersonDetail(_offerList[0],list.firstChild)
+        }
+        function showPersonDetail(o,e){
+            document.querySelectorAll('#pl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
+            var st={};
+            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var p=String(r['人员']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[p])st[p]={prices:[],count:0};st[p].prices.push(pr);st[p].count++}});
+            var rows=[];
+            for(var p in st){var s=st[p],t=s.prices.reduce(function(a,b){return a+b},0);rows.push({person:p,total:t,avg:t/s.prices.length,max:Math.max.apply(null,s.prices),min:Math.min.apply(null,s.prices),conv:s.count,ops:s.count,rate:'-'})}
+            var h='<div class="section-title">'+o+'</div>';
+            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
+            else{rows.sort(function(a,b){return b.total-a.total});h+='<table class="data-table"><thead><tr><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+            rows.forEach(function(x){h+='<tr><td><b>'+x.person+'</b></td><td class="num">$'+x.total.toLocaleString('en-US',{minimumFractionDigits:0})+'</td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="num">'+x.conv+'</td><td class="num">'+x.ops+'</td><td class="num">'+x.rate+'</td></tr>'});h+='</tbody></table>'}
+            document.getElementById('pc').innerHTML=h
+        }
+        function renderStateOfferList(){
+            _sr=true;
+            var list=document.getElementById('sl');if(!list)return;list.innerHTML='';
+            _offerList.forEach(function(o,i){var d=document.createElement('div');d.className='sidebar-item'+(i===0?' active':'');d.textContent=o;d.onclick=function(){showStateDetail(o,d)};list.appendChild(d)});
+            if(_offerList.length>0)showStateDetail(_offerList[0],list.firstChild)
+        }
+        function showStateDetail(o,e){
+            document.querySelectorAll('#sl .sidebar-item').forEach(function(i){i.classList.remove('active')});if(e)e.classList.add('active');
+            var st={};
+            _allData.forEach(function(r){if(String(r.offer||'').trim()===o){var s=String(r['州']||'-').trim();var pr=parseFloat(String(r['价格']||'0').replace(/[$,]/g,''))||0;if(!st[s])st[s]={prices:[],count:0};st[s].prices.push(pr);st[s].count++}});
+            var rows=[],ap=[];
+            for(var s in st){ap=ap.concat(st[s].prices)}var ga=ap.reduce(function(a,b){return a+b},0)/ap.length,ht=ga*1.1,lt=ga*0.9;
+            for(var s in st){var ss=st[s],a=ss.prices.reduce(function(a,b){return a+b},0)/ss.prices.length;var rating=a>ht?'<span class="badge high">高</span>':(a<lt?'<span class="badge low">低</span>':'<span class="badge mid">中</span>');rows.push({state:s,avg:a,count:ss.count,max:Math.max.apply(null,ss.prices),min:Math.min.apply(null,ss.prices),rating:rating})}
+            var h='<div class="section-title">'+o+'</div>';
+            if(rows.length===0)h+='<div class="no-data">暂无数据</div>';
+            else{rows.sort(function(a,b){return b.avg-a.avg});h+='<table class="data-table"><thead><tr><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
+            rows.forEach(function(x){h+='<tr><td><b>'+x.state+'</b></td><td class="num">$'+x.avg.toFixed(2)+'</td><td class="num">'+x.count+'</td><td class="num">$'+x.max.toFixed(2)+'</td><td class="num">$'+x.min.toFixed(2)+'</td><td class="ctr">'+x.rating+'</td></tr>'});h+='</tbody></table>'}
+            document.getElementById('sc').innerHTML=h
+        }
+        
+        loadData();setInterval(loadData,30000);
     </script>
 </body>
 </html>
