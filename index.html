@@ -128,6 +128,8 @@
         var _offerList = [];
         var _pr = false, _sr = false;
         var _totalOps = 0;
+        var _currentPersonOffer = null;
+        var _currentStateOffer = null;
         
         function switchTab(p, t) {
             document.querySelectorAll('.page').forEach(function(e) { e.classList.remove('active'); });
@@ -217,27 +219,57 @@
                     });
                     document.getElementById('personBody').innerHTML = prh;
                     
-                    if (_pr) renderPersonOfferList();
-                    if (_sr) renderStateOfferList();
+                    if (_pr) {
+                        var prevPerson = _currentPersonOffer;
+                        renderPersonOfferList();
+                        if (prevPerson && _offerList.indexOf(prevPerson) >= 0) {
+                            _currentPersonOffer = prevPerson;
+                            var items = document.querySelectorAll('#pl .sidebar-item');
+                            var idx = _offerList.indexOf(prevPerson);
+                            if (idx >= 0 && items[idx]) {
+                                items[idx].classList.add('active');
+                                showPersonDetail(prevPerson, items[idx]);
+                            }
+                        }
+                    }
+                    if (_sr) {
+                        var prevState = _currentStateOffer;
+                        renderStateOfferList();
+                        if (prevState && _offerList.indexOf(prevState) >= 0) {
+                            _currentStateOffer = prevState;
+                            var items = document.querySelectorAll('#sl .sidebar-item');
+                            var idx = _offerList.indexOf(prevState);
+                            if (idx >= 0 && items[idx]) {
+                                items[idx].classList.add('active');
+                                showStateDetail(prevState, items[idx]);
+                            }
+                        }
+                    }
                 });
         }
         
         function renderPersonOfferList() {
-            _pr = true;
             var list = document.getElementById('pl');
             if (!list) return;
             list.innerHTML = '';
             _offerList.forEach(function(o, i) {
                 var d = document.createElement('div');
-                d.className = 'sidebar-item' + (i === 0 ? ' active' : '');
+                d.className = 'sidebar-item';
                 d.textContent = o;
                 d.onclick = function() { showPersonDetail(o, d); };
                 list.appendChild(d);
             });
-            if (_offerList.length > 0) showPersonDetail(_offerList[0], list.firstChild);
+            if (!_currentPersonOffer && _offerList.length > 0) {
+                var firstItem = list.firstChild;
+                if (firstItem) {
+                    firstItem.classList.add('active');
+                    showPersonDetail(_offerList[0], firstItem);
+                }
+            }
         }
         
         function showPersonDetail(o, e) {
+            _currentPersonOffer = o;
             document.querySelectorAll('#pl .sidebar-item').forEach(function(i) { i.classList.remove('active'); });
             if (e) e.classList.add('active');
             var st = {};
@@ -272,21 +304,27 @@
         }
         
         function renderStateOfferList() {
-            _sr = true;
             var list = document.getElementById('sl');
             if (!list) return;
             list.innerHTML = '';
             _offerList.forEach(function(o, i) {
                 var d = document.createElement('div');
-                d.className = 'sidebar-item' + (i === 0 ? ' active' : '');
+                d.className = 'sidebar-item';
                 d.textContent = o;
                 d.onclick = function() { showStateDetail(o, d); };
                 list.appendChild(d);
             });
-            if (_offerList.length > 0) showStateDetail(_offerList[0], list.firstChild);
+            if (!_currentStateOffer && _offerList.length > 0) {
+                var firstItem = list.firstChild;
+                if (firstItem) {
+                    firstItem.classList.add('active');
+                    showStateDetail(_offerList[0], firstItem);
+                }
+            }
         }
         
         function showStateDetail(o, e) {
+            _currentStateOffer = o;
             document.querySelectorAll('#sl .sidebar-item').forEach(function(i) { i.classList.remove('active'); });
             if (e) e.classList.add('active');
             var st = {};
