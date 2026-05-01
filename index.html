@@ -50,22 +50,28 @@
         .split-layout{display:flex;gap:18px;min-height:500px}
         .sidebar{width:220px;min-width:220px;background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
         .sidebar-title{padding:12px 16px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:13px;position:sticky;top:0;background:#fff}
-        .sidebar-item{padding:10px 16px;cursor:pointer;font-size:12px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .sidebar-item{padding:10px 16px;cursor:pointer;font-size:13px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
         .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:2px solid #2d3436;padding-left:14px}
         .main-content{flex:1;min-width:0;background:#fff;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,0.02);border:1px solid rgba(0,0,0,0.03);padding:20px}
         .data-table{width:100%;border-collapse:collapse}
-        .data-table th{padding:10px 14px;font-size:11px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
+        .data-table th{padding:12px 16px;font-size:12px;color:#888;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:left}
         .data-table th.num{text-align:right}
-        .data-table td{padding:10px 14px;font-size:13px;border-bottom:1px solid #f8f8f8;text-align:left}
+        .data-table td{padding:12px 16px;font-size:14px;border-bottom:1px solid #f8f8f8;text-align:left}
         .data-table td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:'SF Mono','Consolas',monospace}
         .data-table th.ctr,.data-table td.ctr{text-align:center}
         .data-table tr:hover{background:#fafbfc}
+        .data-table tr.row-high{background:#eaf5ea}
+        .data-table tr.row-mid{background:#fdf6e8}
+        .data-table tr.row-low{background:#fcecec}
+        .data-table tr.row-high:hover{background:#dceddc}
+        .data-table tr.row-mid:hover{background:#faf0e0}
+        .data-table tr.row-low:hover{background:#fae0e0}
         .badge{padding:2px 8px;border-radius:8px;font-size:11px;font-weight:550}
         .badge.high{background:#eaf5ea;color:#3a7d44}
         .badge.mid{background:#fdf6e8;color:#b8832e}
         .badge.low{background:#fcecec;color:#b83a3a}
-        .section-title{font-size:15px;font-weight:600;margin-bottom:14px;color:#2d3436}
+        .section-title{font-size:17px;font-weight:600;margin-bottom:16px;color:#2d3436}
         .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:14px}
         .footer{text-align:center;color:#ddd;font-size:11px;padding:16px}
         @media(max-width:430px){
@@ -253,7 +259,7 @@
             if (rows.length === 0) {
                 h += '<div class="no-data">暂无数据</div>';
             } else {
-                rows.sort(function(a, b) { return b.total - a.total; });
+                rows.sort(function(a, b) { return b.avg - a.avg; });
                 h += '<table class="data-table"><thead><tr><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
                 rows.forEach(function(x) {
                     h += '<tr><td><b>' + x.person + '</b></td><td class="num">$' + x.total.toLocaleString('en-US', { minimumFractionDigits: 0 }) + '</td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
@@ -297,8 +303,9 @@
             var ga = ap.reduce(function(a, b) { return a + b; }, 0) / ap.length, ht = ga * 1.1, lt = ga * 0.9;
             for (var s in st) {
                 var ss = st[s], a = ss.prices.reduce(function(a, b) { return a + b; }, 0) / ss.prices.length;
+                var rowClass = 'row-' + (a > ht ? 'high' : (a < lt ? 'low' : 'mid'));
                 var rating = a > ht ? '<span class="badge high">高</span>' : (a < lt ? '<span class="badge low">低</span>' : '<span class="badge mid">中</span>');
-                rows.push({ state: s, avg: a, count: ss.count, max: Math.max.apply(null, ss.prices), min: Math.min.apply(null, ss.prices), rating: rating });
+                rows.push({ state: s, avg: a, count: ss.count, max: Math.max.apply(null, ss.prices), min: Math.min.apply(null, ss.prices), rating: rating, rowClass: rowClass });
             }
             var h = '<div class="section-title">' + o + '</div>';
             if (rows.length === 0) {
@@ -307,7 +314,7 @@
                 rows.sort(function(a, b) { return b.avg - a.avg; });
                 h += '<table class="data-table"><thead><tr><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
                 rows.forEach(function(x) {
-                    h += '<tr><td><b>' + x.state + '</b></td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">' + x.count + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="ctr">' + x.rating + '</td></tr>';
+                    h += '<tr class="' + x.rowClass + '"><td><b>' + x.state + '</b></td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">' + x.count + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="ctr">' + x.rating + '</td></tr>';
                 });
                 h += '</tbody></table>';
             }
