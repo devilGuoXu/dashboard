@@ -127,6 +127,7 @@
         var _allData = [];
         var _offerList = [];
         var _pr = false, _sr = false;
+        var _totalOps = 0;
         
         function switchTab(p, t) {
             document.querySelectorAll('.page').forEach(function(e) { e.classList.remove('active'); });
@@ -141,6 +142,7 @@
             fetch('data.json?t=' + Date.now())
                 .then(function(r) { return r.json(); })
                 .then(function(d) {
+                    _totalOps = d.total_ops || 0;
                     var rawData = d.data || d;
                     _allData = rawData.filter(function(r) {
                         var offer = String(r.offer || '').trim();
@@ -165,16 +167,16 @@
                         if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
                     });
                     
-                    _offerList = Object.keys(stats).sort(function(a, b) { return stats[b].total - stats[a].total; });
+                    _offerList = Object.keys(stats).sort();
                     
                     document.getElementById('totalOffers').textContent = _offerList.length;
                     document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
                     document.getElementById('totalCount').textContent = totalCount;
-                    document.getElementById('totalOps').textContent = (PERSON_OPS._total || Math.round(totalCount * 2.3)).toLocaleString();
+                    document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
                     var progressList = [];
-                    _offerList.slice(0, 15).forEach(function(o) {
+                    _offerList.forEach(function(o) {
                         var s = stats[o];
                         var target = OFFER_TARGETS[o] || 0;
                         var done = s.count;
