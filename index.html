@@ -77,7 +77,7 @@
             .rank-table th,.rank-table td{padding:6px 8px;font-size:11px}.data-table th,.data-table td{padding:6px 8px;font-size:11px}.section-title{font-size:13px}
         }
     </style>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 1000};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 1000};var PERSON_OPS={"B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 150}, "B452-4 1973 GPR - AutoQuote Center": {"史天欢": 80, "李铜": 69, "陈帅": 200, "陈虹佑": 16, "郑义程": 32, "周港": 40, "张波": 17, "钟奕": 41, "温馨": 31, "陈朋": 27, "杨松柏": 36, "成昭旭": 48, "高峰": 28, "钟进": 18}, "Datewave-2 729268 Kisterra CarQuotesBox": {"李铜": 87, "陈虹佑": 114, "史天欢": 80, "郑义程": 10, "成昭旭": 10, "杨松柏": 9, "钟奕": 8}, "Datewave-2 710647  Quotes for all": {"张波": 11, "陈朋": 20, "郑义程": 80, "杨松柏": 81, "周港": 20, "高峰": 20, "钟奕": 82, "成昭旭": 80}, "Adscent-52 (15587)223-AutoQuoteMarket": {"温馨": 146, "陈虹佑": 39, "成昭旭": 105, "高峰": 80, "钟奕": 61, "郑义程": 62, "张波": 106, "杨松柏": 23, "陈朋": 60}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"张波": 21, "陈朋": 53, "高峰": 45}, "CRM-6 (1920) Quote Wizard -Home Insurance": {"张波": 27, "周港": 54}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"钟进": 91, "郭旭": 69}, "NexRidg-7 42-AutoQuoteZone": {"钟奕": 11, "周港": 70, "高峰": 42}, "B452-4 1678-BH - Auto Quote Market": {"成昭旭": 8, "钟奕": 66, "郑义程": 14, "陈朋": 51, "杨松柏": 42}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 20}, "BW-165 (2518) Qualityautoquote": {"陈朋": 21, "钟进": 15}, "Datewave-2 710641 NetAutoQuotes": {"郭旭": 8}};</script>
 </head>
 <body>
     <nav class="navbar">
@@ -121,6 +121,9 @@
         var _allData = [];
         var _offerList = [];
         var _pr = false, _sr = false;
+        var MAPPED_OFFERS = [];
+        var OFFER_TARGETS = {};
+        var PERSON_OPS = {};
         
         function switchTab(p, t) {
             document.querySelectorAll('.page').forEach(function(e) { e.classList.remove('active'); });
@@ -149,10 +152,12 @@
                         var ip = String(r['ip'] || r['IP'] || '').trim();
                         var price = String(r['价格'] || '').trim();
                         var time = String(r['时间'] || '');
+                        var person = String(r['人员'] || '-').trim();
+                        var state = String(r['州'] || '-').trim();
                         if (!stats[o]) stats[o] = { total: 0, count: 0, entries: [] };
                         stats[o].total += p;
                         stats[o].count += 1;
-                        stats[o].entries.push({ price: p, time: time });
+                        stats[o].entries.push({ price: p, time: time, person: person, state: state });
                         totalAmount += p;
                         if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
                     });
@@ -162,7 +167,7 @@
                     document.getElementById('totalOffers').textContent = _offerList.length;
                     document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
                     document.getElementById('totalCount').textContent = totalCount;
-                    document.getElementById('totalOps').textContent = Math.round(totalCount * 2.3).toLocaleString();
+                    document.getElementById('totalOps').textContent = (PERSON_OPS._total || Math.round(totalCount * 2.3)).toLocaleString();
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
                     var progressList = [];
@@ -184,19 +189,9 @@
                     var ph = '';
                     progressList.forEach(function(d, i) {
                         if (d.target > 0) {
-                            ph += '<tr>' +
-                                '<td class="prog-td-name">' + d.name + '</td>' +
-                                '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + colors[i % colors.length] + '"></div></div></td>' +
-                                '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>' +
-                                '<td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td>' +
-                                '</tr>';
+                            ph += '<tr><td class="prog-td-name">' + d.name + '</td><td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + colors[i % colors.length] + '"></div></div></td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td></tr>';
                         } else {
-                            ph += '<tr>' +
-                                '<td class="prog-td-name">' + d.name + '</td>' +
-                                '<td class="prog-td-bar">' + d.done + '</td>' +
-                                '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>' +
-                                '<td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td>' +
-                                '</tr>';
+                            ph += '<tr><td class="prog-td-name">' + d.name + '</td><td class="prog-td-bar">' + d.done + '</td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10">$' + d.last10Avg.toFixed(2) + '</td></tr>';
                         }
                     });
                     document.getElementById('progressBody').innerHTML = ph;
@@ -204,6 +199,7 @@
                     var ps = {};
                     _allData.forEach(function(r) {
                         var p = String(r['人员'] || '-').trim();
+                        if (p === '-') return;
                         var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
                         if (!ps[p]) ps[p] = 0;
                         ps[p] += pr;
@@ -243,6 +239,7 @@
             _allData.forEach(function(r) {
                 if (String(r.offer || '').trim() === o) {
                     var p = String(r['人员'] || '-').trim();
+                    if (p === '-') return;
                     var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
                     if (!st[p]) st[p] = { prices: [], count: 0 };
                     st[p].prices.push(pr);
@@ -252,7 +249,8 @@
             var rows = [];
             for (var p in st) {
                 var s = st[p], t = s.prices.reduce(function(a, b) { return a + b; }, 0);
-                rows.push({ person: p, total: t, avg: t / s.prices.length, max: Math.max.apply(null, s.prices), min: Math.min.apply(null, s.prices), conv: s.count, ops: s.count, rate: '-' });
+                var ops = PERSON_OPS[o] && PERSON_OPS[o][p] ? PERSON_OPS[o][p] : 0;
+                rows.push({ person: p, total: t, avg: t / s.prices.length, max: Math.max.apply(null, s.prices), min: Math.min.apply(null, s.prices), conv: s.count, ops: ops, rate: ops > 0 ? (s.count / ops * 100).toFixed(0) + '%' : '-' });
             }
             var h = '<div class="section-title">' + o + '</div>';
             if (rows.length === 0) {
@@ -290,6 +288,7 @@
             _allData.forEach(function(r) {
                 if (String(r.offer || '').trim() === o) {
                     var s = String(r['州'] || '-').trim();
+                    if (s === '-') return;
                     var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
                     if (!st[s]) st[s] = { prices: [], count: 0 };
                     st[s].prices.push(pr);
