@@ -23,7 +23,6 @@
         .sc-icon svg{width:20px;height:20px}
         .sc-label{font-size:13px;color:#999;margin-bottom:6px}
         .sc-value{font-size:30px;font-weight:600;color:#2d3436}
-        /* 比例改为7:3 */
         .bottom-row{display:grid;grid-template-columns:2.3fr 1fr;gap:24px;align-items:start}
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
@@ -42,7 +41,6 @@
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:14px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
         
-        /* 人员排名表格 - 字体调大 */
         .rank-table{width:100%;border-collapse:collapse}
         .rank-table th{padding:10px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
         .rank-table th:first-child{text-align:center;width:38px}
@@ -62,20 +60,16 @@
         .rank-table tbody tr:nth-child(odd){background:#fff}
         .rank-table tbody tr:hover{background:#eef0f5}
         
-        /* 颜色样式 */
         .price-high{color:#e53935 !important;font-weight:600}
         .price-low{color:#43a047 !important;font-weight:600}
         .price-equal{color:#fdd835 !important;font-weight:600}
         
-        /* 人员和州页面 - 比例3:7 */
         .split-layout{display:flex;gap:20px;min-height:500px}
-        /* offer列表卡片占3份 */
         .sidebar{width:280px;min-width:280px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
         .sidebar-title{padding:14px 18px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:14px;position:sticky;top:0;background:#fff}
         .sidebar-item{padding:12px 18px;cursor:pointer;font-size:14px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
         .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #2d3436;padding-left:15px}
-        /* 右边内容占7份 */
         .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);padding:24px}
         .data-table{width:100%;border-collapse:collapse}
         .data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
@@ -90,7 +84,6 @@
         .data-table tbody tr:nth-child(odd){background:#fff}
         .data-table tbody tr:hover{background:#eef0f5}
         
-        /* 州页面行颜色 */
         .data-table tbody tr.row-high{background:#ffebee !important}
         .data-table tbody tr.row-mid{background:#fff8e1 !important}
         .data-table tbody tr.row-low{background:#e8f5e9 !important}
@@ -198,8 +191,10 @@
         var OFFER_AVG_PRICE = {};
         
         function switchTab(p, t) {
-            document.querySelectorAll('.page').forEach(function(e) { e.classList.remove('active'); });
-            document.querySelectorAll('.nav-tab').forEach(function(e) { e.classList.remove('active'); });
+            var pages = document.querySelectorAll('.page');
+            for(var i=0; i<pages.length; i++) pages[i].classList.remove('active');
+            var tabs = document.querySelectorAll('.nav-tab');
+            for(var i=0; i<tabs.length; i++) tabs[i].classList.remove('active');
             document.getElementById(p).classList.add('active');
             t.classList.add('active');
             if (p === 'page2' && !_pr) { _pr = true; renderPersonOfferList(); }
@@ -258,7 +253,8 @@
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
                     var progressList = [];
-                    _offerList.forEach(function(o) {
+                    for(var idx=0; idx<_offerList.length; idx++){
+                        var o = _offerList[idx];
                         var s = stats[o];
                         var target = OFFER_TARGETS[o] || 0;
                         var done = s.count;
@@ -266,17 +262,17 @@
                         var avg = s.total / s.count;
                         var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
                         var last10 = entries.slice(0, 10);
-                        var last10Total = last10.reduce(function(a, b) { return a + b.price; }, 0);
+                        var last10Total = 0;
+                        for(var j=0; j<last10.length; j++) last10Total += last10[j].price;
                         var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
                         
-                        // 判断近10均价颜色
                         var last10Class = '';
                         if(last10Avg > avg) last10Class = 'price-high';
                         else if(last10Avg < avg) last10Class = 'price-low';
                         else last10Class = 'price-equal';
                         
                         progressList.push({ name: o, target: target, done: done, pct: pct, avg: avg, last10Avg: last10Avg, last10Class: last10Class });
-                    });
+                    }
                     progressList.sort(function(a, b) { return b.pct - a.pct; });
                     
                     var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
@@ -287,7 +283,7 @@
                         if (d.target > 0) {
                             ph += '<tr><td class="prog-td-name" title="' + d.name + '">' + d.name + '</td><td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></tr>';
                         } else {
-                            ph += '<tr><td class="prog-td-name" title="' + d.name + '">' + d.name + '</td><td class="prog-td-bar">' + d.done + '</td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></tr>';
+                            ph += '<tr><td class="prog-td-name" title="' + d.name + '">' + d.name + '</td><td class="prog-td-bar">' + d.done + '</td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></table>';
                         }
                     }
                     document.getElementById('progressBody').innerHTML = ph;
@@ -305,7 +301,6 @@
                     for(var i=0; i<persons.slice(0,15).length; i++){
                         var p = persons[i];
                         var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
-                        // 计算该人员的均价
                         var total = ps[p];
                         var count = 0;
                         _allData.forEach(function(r) {
@@ -315,7 +310,16 @@
                             }
                         });
                         var avg = count > 0 ? total / count : 0;
-                        prh += '<tr><td>' + badge + '</td><td>' + p + '</td><td class="rank-amount">$' + ps[p].toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td>$' + avg.toFixed(2) + '</td><td>' + count + '</td><td>0</td></tr>';
+                        // 从 PERSON_OPS 获取该人员的操作总数
+                        var personOpsTotal = 0;
+                        if(typeof PERSON_OPS !== 'undefined' && PERSON_OPS){
+                            for(var offerName in PERSON_OPS){
+                                if(PERSON_OPS[offerName] && PERSON_OPS[offerName][p]){
+                                    personOpsTotal += PERSON_OPS[offerName][p];
+                                }
+                            }
+                        }
+                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;font-size:14px;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '<tr>' + '</tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     
@@ -392,9 +396,13 @@
                 var s = st[p];
                 var t = 0;
                 for(var j=0; j<s.prices.length; j++) t += s.prices[j];
-                var ops = (PERSON_OPS[o] && PERSON_OPS[o][p]) ? PERSON_OPS[o][p] : 0;
-                var maxV = Math.max.apply(null, s.prices);
-                var minV = Math.min.apply(null, s.prices);
+                var ops = (typeof PERSON_OPS !== 'undefined' && PERSON_OPS[o] && PERSON_OPS[o][p]) ? PERSON_OPS[o][p] : 0;
+                var maxV = s.prices[0];
+                var minV = s.prices[0];
+                for(var j=0; j<s.prices.length; j++){
+                    if(s.prices[j] > maxV) maxV = s.prices[j];
+                    if(s.prices[j] < minV) minV = s.prices[j];
+                }
                 rows.push({ person: p, total: t, avg: t / s.prices.length, max: maxV, min: minV, conv: s.count, ops: ops, rate: ops > 0 ? (s.count / ops * 100).toFixed(0) + '%' : '-' });
             }
             var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + offerAvg.toFixed(2) + '</span></div>';
@@ -407,7 +415,7 @@
                     var x = rows[i];
                     var rankNum = i + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
-                    h += '<tr><td>' + rankNum + '</td><td>' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US', { minimumFractionDigits: 0 }) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
+                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700">' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US', { minimumFractionDigits: 0 }) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
                 }
                 h += '</tbody></table>';
             }
@@ -456,15 +464,24 @@
             for (var s in st) {
                 for(var j=0; j<st[s].prices.length; j++) ap.push(st[s].prices[j]);
             }
-            var ga = ap.reduce(function(a, b) { return a + b; }, 0) / ap.length;
+            var ga = 0;
+            for(var j=0; j<ap.length; j++) ga += ap[j];
+            ga = ga / ap.length;
             var ht = ga * 1.1, lt = ga * 0.9;
             for (var s in st) {
                 var ss = st[s];
-                var total = ss.prices.reduce(function(a, b) { return a + b; }, 0);
+                var total = 0;
+                for(var j=0; j<ss.prices.length; j++) total += ss.prices[j];
                 var a = total / ss.prices.length;
                 var rowClass = 'row-' + (a > ht ? 'high' : (a < lt ? 'low' : 'mid'));
                 var rating = a > ht ? '<span class="badge high">高</span>' : (a < lt ? '<span class="badge low">低</span>' : '<span class="badge mid">中</span>');
-                rows.push({ state: s, avg: a, count: ss.count, max: Math.max.apply(null, ss.prices), min: Math.min.apply(null, ss.prices), rating: rating, rowClass: rowClass });
+                var maxV = ss.prices[0];
+                var minV = ss.prices[0];
+                for(var j=0; j<ss.prices.length; j++){
+                    if(ss.prices[j] > maxV) maxV = ss.prices[j];
+                    if(ss.prices[j] < minV) minV = ss.prices[j];
+                }
+                rows.push({ state: s, avg: a, count: ss.count, max: maxV, min: minV, rating: rating, rowClass: rowClass });
             }
             var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + (OFFER_AVG_PRICE[o] || 0).toFixed(2) + '</span></div>';
             if (rows.length === 0) {
