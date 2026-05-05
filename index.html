@@ -23,43 +23,46 @@
         .sc-icon svg{width:20px;height:20px}
         .sc-label{font-size:13px;color:#999;margin-bottom:6px}
         .sc-value{font-size:30px;font-weight:600;color:#2d3436}
-        .bottom-row{display:grid;grid-template-columns:2.3fr 1fr;gap:24px;align-items:start}
+        
+        /* 比例 8:2 */
+        .bottom-row{display:grid;grid-template-columns:4fr 1fr;gap:24px;align-items:start}
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
         .progress-list{padding:0;overflow-x:auto}
-        .prog-table{width:100%;border-collapse:collapse}
-        .prog-table th{padding:10px 12px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:right}
+        .prog-table{width:100%;border-collapse:collapse;table-layout:auto}
+        .prog-table th{padding:10px 8px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
         .prog-table th:first-child{text-align:left}
-        .prog-table th:nth-child(2){text-align:left}
-        .prog-table td{padding:10px 12px;font-size:14px;border-bottom:1px solid #f8f8f8}
-        .prog-td-name{max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;font-size:14px}
-        .prog-td-bar{width:40%;white-space:nowrap;text-align:left}
-        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:200px}
+        .prog-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:180px}
+        .prog-td-bar{white-space:nowrap;text-align:left}
+        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:120px}
         .prog-fill{height:100%;border-radius:4px;transition:width .4s}
         .prog-num{color:#999;font-size:11px}
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
-        .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:14px}
+        .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
         
+        /* 人员排名表格 */
         .rank-table{width:100%;border-collapse:collapse}
-        .rank-table th{padding:10px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
-        .rank-table th:first-child{text-align:center;width:38px}
-        .rank-table th:nth-child(2){width:90px}
-        .rank-table th:nth-child(3){text-align:right;width:95px}
-        .rank-table th:nth-child(4){text-align:right;width:75px}
-        .rank-table th:nth-child(5){text-align:right;width:55px}
-        .rank-table th:nth-child(6){text-align:right;width:55px}
-        .rank-table td{padding:10px 10px;font-size:13px;border-bottom:1px solid #f5f5f5}
+        .rank-table th{padding:10px 6px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
+        .rank-table th:first-child{text-align:center;width:36px}
+        .rank-table th:nth-child(2){width:80px}
+        .rank-table th:nth-child(3){text-align:right;width:85px}
+        .rank-table th:nth-child(4){text-align:right;width:65px}
+        .rank-table th:nth-child(5){text-align:right;width:50px}
+        .rank-table th:nth-child(6){text-align:right;width:50px}
+        .rank-table td{padding:10px 6px;font-size:12px;border-bottom:1px solid #f5f5f5}
         .rank-table td:first-child{text-align:center}
-        .rank-table td:nth-child(2){text-align:left;white-space:nowrap;font-weight:700;font-size:13px}
-        .rank-table td:nth-child(3){text-align:right;font-family:'SF Mono','Consolas',monospace;font-weight:800;font-size:15px;color:#2979ff}
+        .rank-table td:nth-child(2){text-align:left;white-space:nowrap;font-weight:700}
+        .rank-table td:nth-child(3){text-align:right;font-family:'SF Mono','Consolas',monospace;font-weight:800;font-size:13px;color:#2979ff}
         .rank-table td:nth-child(4),
         .rank-table td:nth-child(5),
-        .rank-table td:nth-child(6){text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:13px}
+        .rank-table td:nth-child(6){text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:12px}
         .rank-table tbody tr:nth-child(even){background:#fafbfc}
         .rank-table tbody tr:nth-child(odd){background:#fff}
         .rank-table tbody tr:hover{background:#eef0f5}
         
+        /* 颜色样式 */
         .price-high{color:#e53935 !important;font-weight:600}
         .price-low{color:#43a047 !important;font-weight:600}
         .price-equal{color:#fdd835 !important;font-weight:600}
@@ -77,8 +80,8 @@
         .data-table th.num{text-align:right}
         .data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
         .data-table td:first-child{text-align:center}
-        .data-table td:nth-child(2){text-align:left;font-weight:700;font-size:14px}
-        .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
+        .data-table td:nth-child(2){text-align:left;font-weight:700}
+        .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace}
         .data-table th.ctr,.data-table td.ctr{text-align:center}
         .data-table tbody tr:nth-child(even){background:#fafbfc}
         .data-table tbody tr:nth-child(odd){background:#fff}
@@ -104,14 +107,14 @@
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
             .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}.sidebar-item{padding:10px 14px;font-size:13px}
-            .rank-table th,.rank-table td{padding:6px 6px;font-size:11px}.data-table th,.data-table td{padding:6px 6px;font-size:12px;white-space:normal}.section-title{font-size:15px}
+            .rank-table th,.rank-table td{padding:4px 6px;font-size:11px}.data-table th,.data-table td{padding:4px 6px;font-size:12px;white-space:normal}.section-title{font-size:15px}
         }
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 1000};var PERSON_OPS={"B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 150}, "B452-4 1973 GPR - AutoQuote Center": {"史天欢": 80, "李铜": 69, "陈帅": 200, "陈虹佑": 16, "郑义程": 32, "周港": 40, "张波": 17, "钟奕": 41, "温馨": 31, "陈朋": 27, "杨松柏": 36, "成昭旭": 48, "高峰": 28, "钟进": 18}, "Datewave-2 729268 Kisterra CarQuotesBox": {"李铜": 87, "陈虹佑": 114, "史天欢": 80, "郑义程": 10, "成昭旭": 10, "杨松柏": 9, "钟奕": 8}, "Datewave-2 710647  Quotes for all": {"张波": 11, "陈朋": 20, "郑义程": 80, "杨松柏": 81, "周港": 20, "高峰": 20, "钟奕": 82, "成昭旭": 80}, "Adscent-52 (15587)223-AutoQuoteMarket": {"温馨": 146, "陈虹佑": 39, "成昭旭": 105, "高峰": 80, "钟奕": 61, "郑义程": 62, "张波": 106, "杨松柏": 23, "陈朋": 60}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"张波": 21, "陈朋": 53, "高峰": 45}, "CRM-6 (1920) Quote Wizard -Home Insurance": {"张波": 27, "周港": 54}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"钟进": 91, "郭旭": 69}, "NexRidg-7 42-AutoQuoteZone": {"钟奕": 11, "周港": 70, "高峰": 42}, "B452-4 1678-BH - Auto Quote Market": {"成昭旭": 8, "钟奕": 66, "郑义程": 14, "陈朋": 51, "杨松柏": 42}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 20}, "BW-165 (2518) Qualityautoquote": {"陈朋": 21, "钟进": 15}, "Datewave-2 710641 NetAutoQuotes": {"郭旭": 8}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 1000};var PERSON_OPS={"Datewave-2 710647  Quotes for all": {"陈朋": 32, "张波": 29, "史天欢": 52, "杨松柏": 85, "陈虹佑": 102, "陈帅": 82, "李铜": 99, "温馨": 26, "钟奕": 96, "高峰": 52, "郑义程": 80}, "B452-4 1973 GPR - AutoQuote Center": {"郑义程": 84, "杨松柏": 84, "钟奕": 78, "高峰": 25, "陈朋": 90, "张波": 114, "陈帅": 40, "史天欢": 20}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 266}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈帅": 45, "杨松柏": 33, "张波": 10, "史天欢": 31, "陈朋": 10, "钟奕": 39, "郑义程": 30, "温馨": 10, "高峰": 10, "陈虹佑": 47, "李铜": 32}, "Adscent-52 (15587)223-AutoQuoteMarket": {"李铜": 76, "杨松柏": 54, "陈朋": 66, "陈帅": 52, "陈虹佑": 59, "张波": 57, "钟奕": 39, "高峰": 40, "史天欢": 91, "温馨": 114, "郑义程": 61}, "B452-4 2106 CL - Best Quote Auto": {"钟进": 67, "郭旭": 34}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 80, "史天欢": 10}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"张波": 39, "温馨": 10, "陈朋": 10, "高峰": 37}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 70, "钟进": 80}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 27}, "CRM-6 (1920) Quote Wizard -Home Insurance": {"温馨": 43, "陈朋": 35}, "B452-4 1678-BH - Auto Quote Market": {"钟奕": 29, "陈帅": 10}, "Datewave-2 710641 NetAutoQuotes": {"郭旭": 10}, "BW-165 (2518) Qualityautoquote": {"钟进": 8}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -122,6 +125,7 @@
         <span class="nav-update" id="updateTime">自动刷新</span>
     </nav>
 
+    <!-- 页面1：总览 -->
     <div class="page active" id="page1">
         <div class="container">
             <div class="stat-row">
@@ -131,8 +135,31 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div><div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th class="prog-th-name">Offer</th><th class="prog-th-bar">进度</th><th class="prog-th-avg">均价</th><th class="prog-th-avg10">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div></div>
-                <div class="panel"><div class="panel-header">人员排名</div>
+                <!-- Offer 进度卡片 -->
+                <div class="panel">
+                    <div class="panel-header">Offer 进度</div>
+                    <div class="progress-list">
+                        <table class="prog-table">
+                            <thead>
+                                <tr>
+                                    <th style="width:12%">Offer</th>
+                                    <th style="width:18%">进度</th>
+                                    <th style="width:8%">点击</th>
+                                    <th style="width:8%">转化</th>
+                                    <th style="width:10%">总价</th>
+                                    <th style="width:8%">均价</th>
+                                    <th style="width:10%">近10均价</th>
+                                    <th style="width:8%">CR</th>
+                                    <th style="width:8%">EPC</th>
+                                </tr>
+                            </thead>
+                            <tbody id="progressBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- 人员排名卡片 -->
+                <div class="panel">
+                    <div class="panel-header">人员排名</div>
                     <table class="rank-table">
                         <thead>
                             <tr>
@@ -145,12 +172,13 @@
                             </tr>
                         </thead>
                         <tbody id="personBody"></tbody>
-                    </table>
+                    尺
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 页面2：人员 -->
     <div class="page" id="page2">
         <div class="container">
             <div class="split-layout">
@@ -165,6 +193,7 @@
         </div>
     </div>
 
+    <!-- 页面3：州 -->
     <div class="page" id="page3">
         <div class="container">
             <div class="split-layout">
@@ -189,6 +218,7 @@
         var _currentPersonOffer = null;
         var _currentStateOffer = null;
         var OFFER_AVG_PRICE = {};
+        var OFFER_SUMMARY = {};  // 汇总数据：点击、转化、总价、CR、EPC
         
         function switchTab(p, t) {
             var pages = document.querySelectorAll('.page');
@@ -253,6 +283,8 @@
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
                     var progressList = [];
+                    var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
+                    
                     for(var idx=0; idx<_offerList.length; idx++){
                         var o = _offerList[idx];
                         var s = stats[o];
@@ -271,23 +303,60 @@
                         else if(last10Avg < avg) last10Class = 'price-low';
                         else last10Class = 'price-equal';
                         
-                        progressList.push({ name: o, target: target, done: done, pct: pct, avg: avg, last10Avg: last10Avg, last10Class: last10Class });
+                        // 获取汇总数据
+                        var summary = OFFER_SUMMARY[o] || {};
+                        var clicks = summary.clicks || '-';
+                        var conversions = summary.conversions || '-';
+                        var payout = summary.payout || '-';
+                        var cr = summary.cr || '-';
+                        var epc = summary.epc || '-';
+                        
+                        progressList.push({
+                            name: o,
+                            target: target,
+                            done: done,
+                            pct: pct,
+                            avg: avg,
+                            last10Avg: last10Avg,
+                            last10Class: last10Class,
+                            color: colors[idx % colors.length],
+                            clicks: clicks,
+                            conversions: conversions,
+                            payout: payout,
+                            cr: cr,
+                            epc: epc
+                        });
                     }
                     progressList.sort(function(a, b) { return b.pct - a.pct; });
                     
-                    var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
                     var ph = '';
                     for(var i=0; i<progressList.length; i++){
                         var d = progressList[i];
-                        var color = colors[i % colors.length];
+                        var color = d.color;
+                        ph += '</tr>';
+                        ph += '<td class="prog-td-name" style="width:12%">' + d.name + '</tr>';
+                        
                         if (d.target > 0) {
-                            ph += '<tr><td class="prog-td-name" title="' + d.name + '">' + d.name + '</td><td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></tr>';
+                            ph += '<td class="prog-td-bar" style="width:18%">';
+                            ph += '<div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div>';
+                            ph += '<div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div>';
+                            ph += '</td>';
                         } else {
-                            ph += '<tr><td class="prog-td-name" title="' + d.name + '">' + d.name + '</td><td class="prog-td-bar">' + d.done + '</td><td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td><td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></table>';
+                            ph += '<td class="prog-td-bar" style="width:18%"><span class="prog-num">' + d.done + '</span></td>';
                         }
+                        
+                        ph += '<td style="width:8%;text-align:right">' + d.clicks + '</td>';
+                        ph += '<td style="width:8%;text-align:right">' + d.conversions + '</td>';
+                        ph += '<td style="width:10%;text-align:right">' + d.payout + '</td>';
+                        ph += '<td class="prog-td-avg" style="width:8%;text-align:right">$' + d.avg.toFixed(2) + '</td>';
+                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '" style="width:10%;text-align:right">$' + d.last10Avg.toFixed(2) + '</td>';
+                        ph += '<td style="width:8%;text-align:right">' + d.cr + '</td>';
+                        ph += '<td style="width:8%;text-align:right">' + d.epc + '</td>';
+                        ph += '</tr>';
                     }
                     document.getElementById('progressBody').innerHTML = ph;
                     
+                    // 人员排名
                     var ps = {};
                     _allData.forEach(function(r) {
                         var p = String(r['人员'] || '-').trim();
@@ -310,7 +379,6 @@
                             }
                         });
                         var avg = count > 0 ? total / count : 0;
-                        // 从 PERSON_OPS 获取该人员的操作总数
                         var personOpsTotal = 0;
                         if(typeof PERSON_OPS !== 'undefined' && PERSON_OPS){
                             for(var offerName in PERSON_OPS){
@@ -319,10 +387,18 @@
                                 }
                             }
                         }
-                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;font-size:14px;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '<tr>' + '</tr>';
+                        prh += '<tr>';
+                        prh += '<td style="text-align:center">' + badge + '</td>';
+                        prh += '<td style="text-align:left;font-weight:700">' + p + '</td>';
+                        prh += '<td style="text-align:right;font-weight:800;font-size:13px;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td>';
+                        prh += '<td style="text-align:right">$' + avg.toFixed(2) + '</td>';
+                        prh += '<td style="text-align:right">' + count + '</td>';
+                        prh += '<td style="text-align:right">' + personOpsTotal + '</td>';
+                        prh += '</tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     
+                    // 刷新人员和州页面
                     if (_pr) {
                         var prevPerson = _currentPersonOffer;
                         renderPersonOfferList();
@@ -352,6 +428,35 @@
                 });
         }
         
+        // 加载汇总数据
+        function loadSummaryData() {
+            fetch('所有后台汇总数据_' + new Date().toISOString().slice(0,10).replace(/-/g, '') + '.csv?t=' + Date.now())
+                .then(function(r) {
+                    if(!r.ok) return;
+                    return r.text();
+                })
+                .then(function(csvText) {
+                    if(!csvText) return;
+                    var lines = csvText.split('\n');
+                    var headers = lines[0].split(',');
+                    for(var i=1; i<lines.length; i++){
+                        if(!lines[i].trim()) continue;
+                        var values = lines[i].split(',');
+                        var offer = values[0] ? values[0].replace(/^"|"$/g, '') : '';
+                        if(!offer) continue;
+                        OFFER_SUMMARY[offer] = {
+                            clicks: values[1] ? values[1].replace(/^"|"$/g, '') : '-',
+                            conversions: values[2] ? values[2].replace(/^"|"$/g, '') : '-',
+                            payout: values[3] ? values[3].replace(/^"|"$/g, '') : '-',
+                            cr: values[5] ? values[5].replace(/^"|"$/g, '') : '-',
+                            epc: values[6] ? values[6].replace(/^"|"$/g, '') : '-'
+                        };
+                    }
+                    loadData();
+                })
+                .catch(function() {});
+        }
+        
         function renderPersonOfferList() {
             var list = document.getElementById('pl');
             if (!list) return;
@@ -360,6 +465,7 @@
                 var o = _offerList[i];
                 var d = document.createElement('div');
                 d.className = 'sidebar-item';
+                if(i === 0) d.className += ' active';
                 d.textContent = o;
                 d.onclick = (function(offer){ return function(){ showPersonDetail(offer, this); }; })(o);
                 list.appendChild(d);
@@ -410,12 +516,24 @@
                 h += '<div class="no-data">暂无数据</div>';
             } else {
                 rows.sort(function(a, b) { return b.avg - a.avg; });
-                h += '<table class="data-table"><thead><tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+                h += '<table class="data-table"><thead>';
+                h += '<tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr>';
+                h += '</thead><tbody>';
                 for(var i=0; i<rows.length; i++){
                     var x = rows[i];
                     var rankNum = i + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
-                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700">' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US', { minimumFractionDigits: 0 }) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
+                    h += '<tr>';
+                    h += '<td>' + rankNum + '</td>';
+                    h += '<td>' + x.person + '</td>';
+                    h += '<td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td>';
+                    h += '<td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
+                    h += '<td class="num">' + x.conv + '</td>';
+                    h += '<td class="num">' + x.ops + '</td>';
+                    h += '<td class="num">' + x.rate + '</td>';
+                    h += '</tr>';
                 }
                 h += '</tbody></table>';
             }
@@ -430,6 +548,7 @@
                 var o = _offerList[i];
                 var d = document.createElement('div');
                 d.className = 'sidebar-item';
+                if(i === 0) d.className += ' active';
                 d.textContent = o;
                 d.onclick = (function(offer){ return function(){ showStateDetail(offer, this); }; })(o);
                 list.appendChild(d);
@@ -488,7 +607,9 @@
                 h += '<div class="no-data">暂无数据</div>';
             } else {
                 rows.sort(function(a, b) { return b.avg - a.avg; });
-                h += '<table class="data-table"><thead><tr><th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead><tbody>';
+                h += '<table class="data-table"><thead>';
+                h += '<tr><th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr>';
+                h += '</thead><tbody>';
                 for(var i=0; i<rows.length; i++){
                     var x = rows[i];
                     var rankNum = i + 1;
@@ -507,8 +628,9 @@
             document.getElementById('sc').innerHTML = h;
         }
         
-        loadData();
-        setInterval(loadData, 30000);
+        // 页面加载时先加载汇总数据，再加载明细数据
+        loadSummaryData();
+        setInterval(loadSummaryData, 30000);
     </script>
 </body>
 </html>
