@@ -23,14 +23,14 @@
         .sc-icon svg{width:20px;height:20px}
         .sc-label{font-size:13px;color:#999;margin-bottom:6px}
         .sc-value{font-size:30px;font-weight:600;color:#2d3436}
-        .bottom-row{display:grid;grid-template-columns:2fr 1fr;gap:24px;align-items:start}
+        .bottom-row{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start}
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
         .progress-list{padding:0;overflow-x:auto}
-        .prog-table{width:100%;border-collapse:collapse}
-        .prog-table th{padding:10px 12px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center}
+        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
+        .prog-table th{padding:10px 8px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
         .prog-table th:first-child{text-align:left}
-        .prog-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .prog-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f8f8f8}
         .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:180px}
         .prog-td-bar{white-space:nowrap;text-align:left}
         .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:150px}
@@ -39,10 +39,11 @@
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
+        .prog-td-avg10{min-width:110px}
         .rank-table{width:100%;border-collapse:collapse}
         .rank-table th{padding:10px 8px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
         .rank-table th:first-child{text-align:center;width:38px}
-        .rank-table th:nth-child(2){width:100px}
+        .rank-table th:nth-child(2){width:130px}
         .rank-table th:nth-child(3){text-align:right;width:85px}
         .rank-table th:nth-child(4){text-align:right;width:65px}
         .rank-table th:nth-child(5){text-align:right;width:55px}
@@ -73,7 +74,7 @@
         .data-table th.num{text-align:right}
         .data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
         .data-table td:first-child{text-align:center}
-        .data-table td:nth-child(2){text-align:left;font-weight:700}
+        .data-table td:nth-child(2){text-align:left;font-weight:700;white-space:nowrap}
         .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
         .data-table th.ctr,.data-table td.ctr{text-align:center}
         .data-table tbody tr:nth-child(even){background:#fafbfc}
@@ -91,7 +92,40 @@
         .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:15px}
         .footer{text-align:center;color:#ddd;font-size:12px;padding:20px}
         
-        /* 人员详情弹窗样式 */
+        /* 时间筛选按钮样式 */
+        .time-filter-btn {
+            background: #f0f0f0;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 16px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        .time-filter-btn.active {
+            background: #4CAF50;
+            color: white;
+        }
+        .time-filter-btn:hover {
+            background: #ddd;
+        }
+        
+        .detail-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            margin-left: 8px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .detail-btn:hover {
+            background: #45a049;
+        }
+        
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -162,30 +196,23 @@
         .person-detail-table tr:hover {
             background: #f5f5f5;
         }
-        .detail-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 2px 8px;
-            font-size: 11px;
-            cursor: pointer;
-            margin-left: 8px;
-        }
-        .detail-btn:hover {
-            background: #45a049;
-        }
         
         @media(max-width:430px){
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
             .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
-            .rank-table th,.rank-table td{padding:4px 6px;font-size:11px}.data-table th,.data-table td{padding:4px 6px;font-size:12px;white-space:normal}.section-title{font-size:15px}
+            .rank-table th,.rank-table td{padding:6px 8px;font-size:12px}
+            .rank-table th:nth-child(2){width:100px}
+            .data-table th,.data-table td{padding:6px 8px;font-size:12px;white-space:normal}
+            .data-table td:nth-child(2){white-space:normal}
+            .section-title{font-size:15px}
             .modal-content{width:95%;padding:12px}
             .modal-header h3{font-size:16px}
             .person-detail-table th,.person-detail-table td{padding:6px;font-size:11px}
+            .detail-btn{padding:2px 6px;font-size:10px}
+            .time-filter-btn{padding:4px 12px;font-size:11px}
         }
     </style>
 </head>
@@ -210,14 +237,39 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:20%">Offer</th><th style="width:30%">进度</th><th style="width:20%">均价</th><th style="width:30%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
+                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:25%">Offer</th><th style="width:35%">进度</th><th style="width:20%">均价</th><th style="width:20%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
                 <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></table></div>
             </div>
         </div>
     </div>
 
-    <div class="page" id="page2"><div class="container"><div class="split-layout"><div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div><div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
-    <div class="page" id="page3"><div class="container"><div class="split-layout"><div class="sidebar" id="ss"><div class="sidebar-title">Offer 列表</div><div id="sl"></div></div><div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
+    <div class="page" id="page2">
+        <div class="container">
+            <div class="split-layout">
+                <div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div>
+                <div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page3">
+        <div class="container">
+            <div class="split-layout">
+                <div class="sidebar" id="ss">
+                    <div class="sidebar-title">Offer 列表</div>
+                    <div id="sl"></div>
+                </div>
+                <div class="main-content" id="sc">
+                    <div style="display:flex; justify-content:flex-end; margin-bottom:16px; gap:10px;">
+                        <button class="time-filter-btn active" data-time="all" onclick="setStateTimeFilter('all')">全部时间</button>
+                        <button class="time-filter-btn" data-time="1h" onclick="setStateTimeFilter('1h')">近1小时</button>
+                    </div>
+                    <div id="scContent" class="no-data">← 选择 Offer</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="footer">广告数据大屏 · 自动刷新</div>
 
     <script>
@@ -234,6 +286,9 @@
         var _currentStateOffer = null;
         var OFFER_AVG_PRICE = {};
         var DEFAULT_TARGET = OFFER_TARGETS.default || 1000;
+        
+        // 州页面时间筛选状态
+        var currentStateTimeFilter = 'all';
         
         function switchTab(p, t) {
             var pages = document.querySelectorAll('.page');
@@ -253,27 +308,54 @@
             return 'price-equal';
         }
         
-        // 人员详情弹窗
-        function showPersonDetailModal(personName) {
-            // 收集该人员的所有 offer 数据
-            var offerMap = {};
-            
-            for(var i=0; i<_allData.length; i++) {
-                var r = _allData[i];
-                var person = String(r['人员'] || '-').trim();
-                if(person !== personName) continue;
-                
-                var offer = String(r.offer || '').trim();
-                var price = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                
-                if(!offerMap[offer]) {
-                    offerMap[offer] = { total: 0, count: 0 };
+        function isWithinLastHour(timeStr) {
+            if (!timeStr) return false;
+            var parsed = new Date(timeStr);
+            if (isNaN(parsed.getTime())) {
+                var parts = timeStr.match(/(\d{4})\/(\d{1,2})\/(\d{1,2})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})/);
+                if (parts) {
+                    parsed = new Date(parts[1], parts[2]-1, parts[3], parts[4], parts[5], parts[6]);
                 }
-                offerMap[offer].total += price;
-                offerMap[offer].count++;
             }
-            
-            // 获取操作数据（从 PERSON_OPS）
+            if (isNaN(parsed.getTime())) return false;
+            var now = new Date();
+            var oneHourAgo = new Date(now.getTime() - 60 * 60 * 1000);
+            return parsed >= oneHourAgo;
+        }
+        
+        function setStateTimeFilter(filter) {
+            currentStateTimeFilter = filter;
+            var btns = document.querySelectorAll('#page3 .time-filter-btn');
+            for (var i = 0; i < btns.length; i++) {
+                if (btns[i].getAttribute('data-time') === filter) {
+                    btns[i].classList.add('active');
+                } else {
+                    btns[i].classList.remove('active');
+                }
+            }
+            if (currentStateOffer) {
+                var activeItem = document.querySelector('#sl .sidebar-item.active');
+                if (activeItem) {
+                    showStateDetail(currentStateOffer, activeItem);
+                }
+            }
+        }
+        
+        function showPersonDetailModal(personName) {
+            var offerMap = {};
+            for(var offerName in PERSON_REAL_DATA) {
+                var entries = PERSON_REAL_DATA[offerName].entries;
+                for(var idx=0; idx<entries.length; idx++) {
+                    var entry = entries[idx];
+                    if(entry.person === personName) {
+                        if(!offerMap[offerName]) {
+                            offerMap[offerName] = { total: 0, count: 0 };
+                        }
+                        offerMap[offerName].total += entry.price;
+                        offerMap[offerName].count++;
+                    }
+                }
+            }
             var opsMap = {};
             if(PERSON_OPS) {
                 for(var offerName in PERSON_OPS) {
@@ -282,70 +364,22 @@
                     }
                 }
             }
-            
-            // 构建表格行
             var rows = [];
             for(var offer in offerMap) {
                 var total = offerMap[offer].total;
                 var conversion = offerMap[offer].count;
                 var avgPrice = conversion > 0 ? total / conversion : 0;
                 var ops = opsMap[offer] || 0;
-                rows.push({
-                    offer: offer,
-                    total: total,
-                    avg: avgPrice,
-                    conversion: conversion,
-                    ops: ops
-                });
+                rows.push({ offer: offer, total: total, avg: avgPrice, conversion: conversion, ops: ops });
             }
-            
-            // 按 offer 名称字母排序
             rows.sort(function(a, b) { return a.offer.localeCompare(b.offer); });
-            
-            // 构建 HTML
-            var html = `
-                <div class="modal-overlay" id="personModal" onclick="closePersonModal(event)">
-                    <div class="modal-content" onclick="event.stopPropagation()">
-                        <div class="modal-header">
-                            <h3>📋 人员详情 - ${personName}</h3>
-                            <button class="modal-close" onclick="closePersonModal()">&times;</button>
-                        </div>
-                        <table class="person-detail-table">
-                            <thead>
-                                <tr>
-                                    <th>Offer</th>
-                                    <th class="num">金额</th>
-                                    <th class="num">均价</th>
-                                    <th class="num">转化</th>
-                                    <th class="num">操作</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            `;
-            
+            var html = '<div class="modal-overlay" id="personModal" onclick="closePersonModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>📋 人员详情 - ' + personName + '</h3><button class="modal-close" onclick="closePersonModal()">&times;</button></div><table class="person-detail-table"><thead><tr><th>Offer</th><th class="num">金额</th><th class="num">均价</th><th class="num">转化</th><th class="num">操作</th></tr></thead><tbody>';
             for(var i=0; i<rows.length; i++) {
                 var x = rows[i];
-                html += `<tr>
-                    <td>${x.offer}</td>
-                    <td class="num">$${x.total.toLocaleString('en-US', {minimumFractionDigits:0})}</td>
-                    <td class="num">$${x.avg.toFixed(2)}</td>
-                    <td class="num">${x.conversion}</td>
-                    <td class="num">${x.ops}</td>
-                </tr>`;
+                html += '<tr><td>' + x.offer + '</td><td class="num">$' + x.total.toLocaleString('en-US', {minimumFractionDigits:0}) + '</td><td class="num">$' + x.avg.toFixed(2) + '</td><td class="num">' + x.conversion + '</td><td class="num">' + x.ops + '</td></tr>';
             }
-            
-            if(rows.length === 0) {
-                html += `<tr><td colspan="5" style="text-align:center">暂无数据</td></tr>`;
-            }
-            
-            html += `
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            `;
-            
-            // 添加模态框到页面
+            if(rows.length === 0) html += '<tr><td colspan="5" style="text-align:center">暂无数据</td></tr>';
+            html += '</tbody></table></div></div>';
             var existingModal = document.getElementById('personModal');
             if(existingModal) existingModal.remove();
             document.body.insertAdjacentHTML('beforeend', html);
@@ -363,7 +397,6 @@
                     console.log('data.json loaded', d);
                     _totalOps = d.total_ops || 0;
                     var rawData = d.data || [];
-                    
                     _allData = [];
                     for(var i=0; i<rawData.length; i++) {
                         var offer = String(rawData[i].offer || '').trim();
@@ -371,9 +404,7 @@
                             _allData.push(rawData[i]);
                         }
                     }
-                    
                     if (_allData.length === 0) return;
-                    
                     var stats = {}, totalAmount = 0, totalCount = 0;
                     for(var i=0; i<_allData.length; i++) {
                         var r = _allData[i];
@@ -391,23 +422,18 @@
                         totalAmount += p;
                         if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
                     }
-                    
                     _offerList = Object.keys(stats).sort();
-                    
                     for(var i=0; i<_offerList.length; i++){
                         var o = _offerList[i];
                         OFFER_AVG_PRICE[o] = stats[o].total / stats[o].count;
                     }
-                    
                     document.getElementById('totalOffers').textContent = _offerList.length;
                     document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
                     document.getElementById('totalCount').textContent = totalCount;
                     document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
-                    
                     var progressList = [];
                     var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
-                    
                     for(var idx=0; idx<_offerList.length; idx++){
                         var o = _offerList[idx];
                         var s = stats[o] || { total: 0, count: 0, entries: [] };
@@ -420,44 +446,27 @@
                         var last10Total = 0;
                         for(var j=0; j<last10.length; j++) last10Total += last10[j].price;
                         var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
-                        
                         var last10Class = '';
                         if(last10Avg > avg && avg > 0) last10Class = 'price-high';
                         else if(last10Avg < avg && avg > 0) last10Class = 'price-low';
                         else last10Class = 'price-equal';
-                        
-                        progressList.push({
-                            name: o,
-                            target: target,
-                            done: done,
-                            pct: pct,
-                            avg: avg,
-                            last10Avg: last10Avg,
-                            last10Class: last10Class,
-                            color: colors[idx % colors.length]
-                        });
+                        progressList.push({ name: o, target: target, done: done, pct: pct, avg: avg, last10Avg: last10Avg, last10Class: last10Class, color: colors[idx % colors.length] });
                     }
-                    
                     progressList.sort(function(a, b) { return a.name.localeCompare(b.name); });
-                    
                     var ph = '';
                     for(var i=0; i<progressList.length; i++){
                         var d = progressList[i];
                         var color = d.color;
-                        ph += '<table>';
-                        ph += '<td class="prog-td-name">' + d.name + '</td>';
+                        ph += '<tr><td class="prog-td-name">' + d.name + '</td>';
                         if (d.target > 0) {
                             ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
                         } else {
                             ph += '<td class="prog-td-bar"><span class="prog-num">' + d.done + '</span></td>';
                         }
                         ph += '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>';
-                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td>';
-                        ph += '</tr>';
+                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></tr>';
                     }
                     document.getElementById('progressBody').innerHTML = ph;
-                    
-                    // 人员排名（带详情按钮）
                     var ps = {};
                     for(var i=0; i<_allData.length; i++) {
                         var r = _allData[i];
@@ -487,19 +496,10 @@
                                 personOpsTotal += PERSON_OPS[offerName][p];
                             }
                         }
-                        // 转义单引号防止XSS
                         var safePerson = p.replace(/'/g, "\\'");
-                        prh += '<tr>';
-                        prh += '<td style="text-align:center">' + badge + '</td>';
-                        prh += '<td style="text-align:left;font-weight:700">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td>';
-                        prh += '<td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td>';
-                        prh += '<td style="text-align:right">$' + avg.toFixed(2) + '</td>';
-                        prh += '<td style="text-align:right">' + count + '</td>';
-                        prh += '<td style="text-align:right">' + personOpsTotal + '</td>';
-                        prh += '</tr>';
+                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</table>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
-                    
                     if (_pr) {
                         var prevPerson = _currentPersonOffer;
                         renderPersonOfferList();
@@ -527,9 +527,7 @@
                         }
                     }
                 })
-                .catch(function(err) {
-                    console.error('加载数据失败:', err);
-                });
+                .catch(function(err) { console.error('加载数据失败:', err); });
         }
         
         function renderPersonOfferList() {
@@ -558,54 +556,47 @@
             _currentPersonOffer = o;
             var items = document.querySelectorAll('#pl .sidebar-item');
             for(var i=0; i<items.length; i++) items[i].classList.remove('active');
-            e.classList.add('active');
-            
+            if(e) e.classList.add('active');
             var offerAvg = OFFER_AVG_PRICE[o] || 0;
-            var st = {};
-            for(var i=0; i<_allData.length; i++) {
-                var r = _allData[i];
-                if (String(r.offer || '').trim() === o) {
-                    var p = String(r['人员'] || '-').trim();
-                    if (p === '-') continue;
-                    var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                    if (!st[p]) st[p] = { prices: [], count: 0 };
-                    st[p].prices.push(pr);
-                    st[p].count++;
+            var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + offerAvg.toFixed(2) + '</span></div>';
+            var d = PERSON_REAL_DATA[o];
+            var r = [];
+            if(d && d.entries && d.entries.length > 0){
+                var s = {};
+                for(var idx=0; idx<d.entries.length; idx++){
+                    var x = d.entries[idx];
+                    var p = x.person;
+                    if(p === '-') continue;
+                    if(!s[p]) s[p] = {p:[], c:0};
+                    s[p].p.push(x.price);
+                    s[p].c++;
+                }
+                for(var p in s){
+                    var ss = s[p];
+                    var t = 0;
+                    for(var j=0; j<ss.p.length; j++) t += ss.p[j];
+                    var a = t / ss.p.length;
+                    var ops = (PERSON_OPS[o] && PERSON_OPS[o][p]) ? PERSON_OPS[o][p] : 0;
+                    var maxV = ss.p[0];
+                    var minV = ss.p[0];
+                    for(var j=0; j<ss.p.length; j++){
+                        if(ss.p[j] > maxV) maxV = ss.p[j];
+                        if(ss.p[j] < minV) minV = ss.p[j];
+                    }
+                    r.push({ person: p, total: t, avg: a, max: maxV, min: minV, conv: ss.c, ops: ops, rate: ops > 0 ? (ss.c / ops * 100).toFixed(0) + '%' : '-' });
                 }
             }
-            var rows = [];
-            for (var p in st) {
-                var s = st[p];
-                var t = 0;
-                for(var j=0; j<s.prices.length; j++) t += s.prices[j];
-                var ops = (PERSON_OPS[o] && PERSON_OPS[o][p]) ? PERSON_OPS[o][p] : 0;
-                var maxV = Math.max.apply(null, s.prices);
-                var minV = Math.min.apply(null, s.prices);
-                rows.push({ person: p, total: t, avg: t / s.prices.length, max: maxV, min: minV, conv: s.count, ops: ops, rate: ops > 0 ? (s.count / ops * 100).toFixed(0) + '%' : '-' });
-            }
-            var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + offerAvg.toFixed(2) + '</span></div>';
-            if (rows.length === 0) {
+            if(r.length === 0){
                 h += '<div class="no-data">暂无数据</div>';
-            } else {
-                rows.sort(function(a, b) { return b.avg - a.avg; });
-                h += '<table class="data-table"><thead>';
-                h += '<tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr>';
-                h += '</thead><tbody>';
-                for(var i=0; i<rows.length; i++){
-                    var x = rows[i];
-                    var rankNum = i + 1;
+            }else{
+                r.sort(function(a,b){ return b.avg - a.avg; });
+                h += '<table class="data-table"><thead><tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+                for(var idx=0; idx<r.length; idx++){
+                    var x = r[idx];
+                    var rankNum = idx + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
-                    h += '<tr>';
-                    h += '<td style="text-align:center">' + rankNum + '</td>';
-                    h += '<td style="text-align:left;font-weight:700">' + x.person + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + x.person.replace(/'/g, "\\'") + '\')">详情</button></td>';
-                    h += '<td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td>';
-                    h += '<td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td>';
-                    h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
-                    h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
-                    h += '<td class="num">' + x.conv + '</td>';
-                    h += '<td class="num">' + x.ops + '</td>';
-                    h += '<td class="num">' + x.rate + '</td>';
-                    h += '</tr>';
+                    var safePerson = x.person.replace(/'/g, "\\'");
+                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + x.person + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</tr><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
                 }
                 h += '</tbody></table>';
             }
@@ -640,15 +631,17 @@
             for(var i=0; i<items.length; i++) items[i].classList.remove('active');
             if(e) e.classList.add('active');
             
-            // 转化条数 = 明细数据中该 offer 的条数
-            var totalConversions = 0;
             var st = {};
+            var totalConversions = 0;
             for(var i=0; i<_allData.length; i++) {
                 var r = _allData[i];
                 if (String(r.offer || '').trim() === o) {
+                    var timeStr = String(r['时间'] || '');
+                    if (currentStateTimeFilter === '1h') {
+                        if (!isWithinLastHour(timeStr)) continue;
+                    }
                     var s = String(r['州'] || '-').trim();
                     var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                    
                     if (s !== '-') {
                         if (!st[s]) st[s] = { prices: [], count: 0 };
                         st[s].prices.push(pr);
@@ -658,7 +651,6 @@
                 }
             }
             
-            // 操作条数 = 从 PERSON_OPS 获取该 offer 的操作总数
             var totalOps = 0;
             if(PERSON_OPS && PERSON_OPS[o]){
                 for(var person in PERSON_OPS[o]){
@@ -666,11 +658,14 @@
                 }
             }
             
-            // 匹配条数 = 明细中能匹配到人员的条数
             var matchedCount = 0;
             for(var i=0; i<_allData.length; i++) {
                 var r = _allData[i];
                 if (String(r.offer || '').trim() === o) {
+                    var timeStr = String(r['时间'] || '');
+                    if (currentStateTimeFilter === '1h') {
+                        if (!isWithinLastHour(timeStr)) continue;
+                    }
                     var person = String(r['人员'] || '-').trim();
                     if(person !== '-' && person !== ''){
                         matchedCount++;
@@ -681,8 +676,9 @@
             var matchRate = totalOps > 0 ? ((matchedCount / totalOps) * 100).toFixed(1) + '%' : '0%';
             
             var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + (OFFER_AVG_PRICE[o] || 0).toFixed(2) + '</span></div>';
+            var filterText = currentStateTimeFilter === '1h' ? ' (近1小时)' : ' (全部时间)';
+            h += '<div style="font-size:12px; color:#999; margin-bottom:10px;">数据范围' + filterText + '</div>';
             
-            // 统计卡片
             h += '<div style="display:flex; gap:16px; margin-bottom:20px; padding:12px 16px; background:#f8f9fa; border-radius:10px; flex-wrap:wrap;">';
             h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">转化</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalConversions + '</div></div>';
             h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">操作</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalOps + '</div></div>';
@@ -694,12 +690,10 @@
             for (var s in st) {
                 for(var j=0; j<st[s].prices.length; j++) ap.push(st[s].prices[j]);
             }
-            
             var ga = 0;
             for(var j=0; j<ap.length; j++) ga += ap[j];
             ga = ga / ap.length;
             var ht = ga * 1.1, lt = ga * 0.9;
-            
             for (var s in st) {
                 var ss = st[s];
                 var total = 0;
@@ -711,7 +705,6 @@
                 var minV = Math.min.apply(null, ss.prices);
                 rows.push({ state: s, avg: a, count: ss.count, max: maxV, min: minV, rating: rating, rowClass: rowClass });
             }
-            
             if (rows.length === 0) {
                 h += '<div class="no-data">暂无数据</div>';
             } else {
@@ -725,16 +718,17 @@
                     h += '<tr class="' + x.rowClass + '">';
                     h += '<td style="text-align:center">' + rankNum + '</td>';
                     h += '<td style="text-align:left;font-weight:700">' + x.state + '</td>';
-                    h += '<td class="num">$' + x.avg.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.avg.toFixed(2) + '</tr>';
                     h += '<td class="num">' + x.count + '</td>';
                     h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
                     h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
                     h += '<td class="ctr">' + x.rating + '</td>';
                     h += '</tr>';
                 }
-                h += '</tbody><tr>';
+                h += '</tbody></table>';
             }
             document.getElementById('sc').innerHTML = h;
+            document.getElementById('scContent').innerHTML = h;
         }
         
         loadData();
