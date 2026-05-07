@@ -27,10 +27,10 @@
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
         .progress-list{padding:0;overflow-x:auto}
-        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
-        .prog-table th{padding:10px 8px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
+        .prog-table{width:100%;border-collapse:collapse}
+        .prog-table th{padding:10px 12px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center}
         .prog-table th:first-child{text-align:left}
-        .prog-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .prog-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f8f8f8}
         .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:180px}
         .prog-td-bar{white-space:nowrap;text-align:left}
         .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:150px}
@@ -67,23 +67,14 @@
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
         .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #2d3436;padding-left:15px}
         .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);padding:24px}
-        .data-table{width:100%;border-collapse:collapse;table-layout:fixed}
+        .data-table{width:100%;border-collapse:collapse}
         .data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
         .data-table th:first-child{text-align:center;width:45px}
-        .data-table th:nth-child(2){text-align:left;width:80px}
-        .data-table th:nth-child(3){text-align:right;width:85px}
-        .data-table th:nth-child(4){text-align:right;width:60px}
-        .data-table th:nth-child(5){text-align:right;width:85px}
-        .data-table th:nth-child(6){text-align:right;width:85px}
-        .data-table th:nth-child(7){text-align:center;width:60px}
+        .data-table th.num{text-align:right}
         .data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
         .data-table td:first-child{text-align:center}
         .data-table td:nth-child(2){text-align:left;font-weight:700}
-        .data-table td:nth-child(3),
-        .data-table td:nth-child(4),
-        .data-table td:nth-child(5),
-        .data-table td:nth-child(6){text-align:right;font-family:'SF Mono','Consolas',monospace}
-        .data-table td:nth-child(7){text-align:center}
+        .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
         .data-table th.ctr,.data-table td.ctr{text-align:center}
         .data-table tbody tr:nth-child(even){background:#fafbfc}
         .data-table tbody tr:nth-child(odd){background:#fff}
@@ -103,14 +94,14 @@
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
             .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
-            .rank-table th,.rank-table td{padding:6px 8px;font-size:12px}.data-table th,.data-table td{padding:6px 8px;font-size:12px;white-space:normal}.section-title{font-size:15px}
+            .rank-table th,.rank-table td{padding:4px 6px;font-size:11px}.data-table th,.data-table td{padding:4px 6px;font-size:12px;white-space:normal}.section-title{font-size:15px}
         }
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 29}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 10}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 18}, "Datewave-2 710647  Quotes for all": {"郑义程": 67, "杨松柏": 90, "张波": 19, "成昭旭": 68, "陈帅": 79, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 35, "钟奕": 58, "李铜": 28}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 7, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 5}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 39, "郑义程": 14, "张波": 134, "陈朋": 105, "李铜": 54, "陈虹佑": 39, "成昭旭": 76, "钟奕": 18, "史天欢": 15, "温馨": 5, "高峰": 5}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 51, "钟进": 100}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 64, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 54, "陈虹佑": 15, "史天欢": 19, "郑义程": 30, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 129}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 36}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 10}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 18}, "Datewave-2 710647  Quotes for all": {"郑义程": 67, "杨松柏": 90, "张波": 19, "成昭旭": 68, "陈帅": 79, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 35, "钟奕": 66, "李铜": 28}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 7, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 5}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 39, "郑义程": 19, "张波": 134, "陈朋": 105, "李铜": 54, "陈虹佑": 39, "成昭旭": 81, "钟奕": 18, "史天欢": 15, "温馨": 5, "高峰": 5}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 51, "钟进": 100}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 64, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 59, "陈虹佑": 15, "史天欢": 19, "郑义程": 30, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 132}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -130,30 +121,14 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:25%">Offer</th><th style="width:35%">进度</th><th style="width:20%">均价</th><th style="width:20%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
-                <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></td></div>
+                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:20%">Offer</th><th style="width:30%">进度</th><th style="width:20%">均价</th><th style="width:30%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
+                <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></table></div>
             </div>
         </div>
     </div>
 
-    <div class="page" id="page2">
-        <div class="container">
-            <div class="split-layout">
-                <div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div>
-                <div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div>
-            </div>
-        </div>
-    </div>
-
-    <div class="page" id="page3">
-        <div class="container">
-            <div class="split-layout">
-                <div class="sidebar" id="ss"><div class="sidebar-title">Offer 列表</div><div id="sl"></div></div>
-                <div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div>
-            </div>
-        </div>
-    </div>
-
+    <div class="page" id="page2"><div class="container"><div class="split-layout"><div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div><div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
+    <div class="page" id="page3"><div class="container"><div class="split-layout"><div class="sidebar" id="ss"><div class="sidebar-title">Offer 列表</div><div id="sl"></div></div><div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
     <div class="footer">广告数据大屏 · 自动刷新</div>
 
     <script>
@@ -277,10 +252,10 @@
                     for(var i=0; i<progressList.length; i++){
                         var d = progressList[i];
                         var color = d.color;
-                        ph += '<tr>';
-                        ph += '<td class="prog-td-name">' + d.name + '</table>';
+                        ph += '</tr>';
+                        ph += '<td class="prog-td-name">' + d.name + '</td>';
                         if (d.target > 0) {
-                            ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div><tr>';
+                            ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
                         } else {
                             ph += '<td class="prog-td-bar"><span class="prog-num">' + d.done + '</span></td>';
                         }
@@ -319,7 +294,7 @@
                                 personOpsTotal += PERSON_OPS[offerName][p];
                             }
                         }
-                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
+                        prh += '</tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     
@@ -365,9 +340,7 @@
                 d.className = 'sidebar-item';
                 if(i === 0) d.className += ' active';
                 d.textContent = o;
-                (function(offer, element){
-                    element.onclick = function(){ showPersonDetail(offer, element); };
-                })(o, d);
+                d.onclick = (function(offer){ return function(){ showPersonDetail(offer, this); }; })(o);
                 list.appendChild(d);
             }
             if (!_currentPersonOffer && _offerList.length > 0) {
@@ -383,7 +356,7 @@
             _currentPersonOffer = o;
             var items = document.querySelectorAll('#pl .sidebar-item');
             for(var i=0; i<items.length; i++) items[i].classList.remove('active');
-            if(e) e.classList.add('active');
+            e.classList.add('active');
             
             var offerAvg = OFFER_AVG_PRICE[o] || 0;
             var st = {};
@@ -413,14 +386,16 @@
                 h += '<div class="no-data">暂无数据</div>';
             } else {
                 rows.sort(function(a, b) { return b.avg - a.avg; });
-                h += '<table class="data-table"><thead><tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+                h += '<table class="data-table"><thead>';
+                h += '<tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr>';
+                h += '</thead><tbody>';
                 for(var i=0; i<rows.length; i++){
                     var x = rows[i];
                     var rankNum = i + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
-                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700">' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
+                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700">' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '<td></tr>';
                 }
-                h += '</tbody></table>';
+                h += '</tbody><tr>';
             }
             document.getElementById('pc').innerHTML = h;
         }
@@ -435,9 +410,7 @@
                 d.className = 'sidebar-item';
                 if(i === 0) d.className += ' active';
                 d.textContent = o;
-                (function(offer, element){
-                    element.onclick = function(){ showStateDetail(offer, element); };
-                })(o, d);
+                d.onclick = (function(offer){ return function(){ showStateDetail(offer, this); }; })(o);
                 list.appendChild(d);
             }
             if (!_currentStateOffer && _offerList.length > 0) {
