@@ -175,6 +175,9 @@
                     _totalOps = d.total_ops || 0;
                     var rawData = d.data || [];
                     OFFER_SUMMARY = d.summary || {};
+					
+					console.log('OFFER_SUMMARY 加载后:', OFFER_SUMMARY);
+					console.log('OFFER_SUMMARY keys:', Object.keys(OFFER_SUMMARY));
                     
                     // 过滤有效数据
                     _allData = [];
