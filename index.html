@@ -27,33 +27,33 @@
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
         .progress-list{padding:0;overflow-x:auto}
-        .prog-table{width:100%;border-collapse:collapse;table-layout:auto}
-        .prog-table th{padding:10px 12px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
+        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
+        .prog-table th{padding:10px 8px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
         .prog-table th:first-child{text-align:left}
-        .prog-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f8f8f8}
-        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:150px}
+        .prog-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f8f8f8}
+        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:180px}
         .prog-td-bar{white-space:nowrap;text-align:left}
-        .prog-bar{height:6px;border-radius:3px;background:#f0f1f3;overflow:hidden;width:100%;min-width:100px}
-        .prog-fill{height:100%;border-radius:3px;transition:width .4s}
-        .prog-num{color:#999;font-size:10px}
-        .prog-info{display:flex;justify-content:flex-end;margin-bottom:1px}
+        .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:150px}
+        .prog-fill{height:100%;border-radius:4px;transition:width .4s}
+        .prog-num{color:#999;font-size:11px}
+        .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
         .rank-table{width:100%;border-collapse:collapse}
-        .rank-table th{padding:8px 4px;font-size:11px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
-        .rank-table th:first-child{text-align:center;width:32px}
-        .rank-table th:nth-child(2){width:70px}
-        .rank-table th:nth-child(3){text-align:right;width:75px}
+        .rank-table th{padding:10px 8px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
+        .rank-table th:first-child{text-align:center;width:38px}
+        .rank-table th:nth-child(2){width:85px}
+        .rank-table th:nth-child(3){text-align:right;width:85px}
         .rank-table th:nth-child(4){text-align:right;width:65px}
         .rank-table th:nth-child(5){text-align:right;width:55px}
         .rank-table th:nth-child(6){text-align:right;width:55px}
-        .rank-table td{padding:8px 4px;font-size:13px;border-bottom:1px solid #f5f5f5}
+        .rank-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f5f5f5}
         .rank-table td:first-child{text-align:center}
         .rank-table td:nth-child(2){text-align:left;white-space:nowrap;font-weight:700}
         .rank-table td:nth-child(3){text-align:right;font-family:'SF Mono','Consolas',monospace;font-weight:800;font-size:14px;color:#2979ff}
         .rank-table td:nth-child(4),
         .rank-table td:nth-child(5),
-        .rank-table td:nth-child(6){text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:11px}
+        .rank-table td:nth-child(6){text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .rank-table tbody tr:nth-child(even){background:#fafbfc}
         .rank-table tbody tr:nth-child(odd){background:#fff}
         .rank-table tbody tr:hover{background:#eef0f5}
@@ -61,17 +61,17 @@
         .price-low{color:#43a047 !important;font-weight:600}
         .price-equal{color:#fdd835 !important;font-weight:600}
         .split-layout{display:flex;gap:20px;min-height:500px}
-        .sidebar{width:260px;min-width:260px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
-        .sidebar-title{padding:12px 16px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:13px;position:sticky;top:0;background:#fff}
-        .sidebar-item{padding:10px 16px;cursor:pointer;font-size:14px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .sidebar{width:280px;min-width:280px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
+        .sidebar-title{padding:14px 18px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:14px;position:sticky;top:0;background:#fff}
+        .sidebar-item{padding:12px 18px;cursor:pointer;font-size:14px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
-        .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #2d3436;padding-left:13px}
-        .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);padding:20px}
+        .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #2d3436;padding-left:15px}
+        .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);padding:24px}
         .data-table{width:100%;border-collapse:collapse}
-        .data-table th{padding:10px 8px;font-size:11px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
-        .data-table th:first-child{text-align:center;width:40px}
+        .data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
+        .data-table th:first-child{text-align:center;width:45px}
         .data-table th.num{text-align:right}
-        .data-table td{padding:10px 8px;font-size:14px;border-bottom:1px solid #f5f5f5}
+        .data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
         .data-table td:first-child{text-align:center}
         .data-table td:nth-child(2){text-align:left;font-weight:700}
         .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
@@ -82,29 +82,26 @@
         .data-table tbody tr.row-high{background:#ffebee !important}
         .data-table tbody tr.row-mid{background:#fff8e1 !important}
         .data-table tbody tr.row-low{background:#e8f5e9 !important}
-        .data-table tbody tr.row-high:hover{background:#ffcdd2 !important}
-        .data-table tbody tr.row-mid:hover{background:#ffecb3 !important}
-        .data-table tbody tr.row-low:hover{background:#c8e6c9 !important}
-        .badge{padding:2px 8px;border-radius:8px;font-size:11px;font-weight:550;white-space:nowrap}
+        .badge{padding:3px 10px;border-radius:10px;font-size:12px;font-weight:550;white-space:nowrap}
         .badge.high{background:#ffebee;color:#e53935}
         .badge.mid{background:#fff8e1;color:#fdd835}
         .badge.low{background:#e8f5e9;color:#43a047}
-        .section-title{font-size:16px;font-weight:600;margin-bottom:14px;color:#2d3436}
-        .section-title-price{color:#2979ff;margin-left:12px;font-weight:700;font-size:14px}
-        .no-data{text-align:center;color:#ccc;padding:60px 20px;font-size:14px}
-        .footer{text-align:center;color:#ddd;font-size:11px;padding:16px}
+        .section-title{font-size:18px;font-weight:600;margin-bottom:16px;color:#2d3436}
+        .section-title-price{color:#2979ff;margin-left:16px;font-weight:700;font-size:16px}
+        .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:15px}
+        .footer{text-align:center;color:#ddd;font-size:12px;padding:20px}
         @media(max-width:430px){
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
             .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:4px 4px;font-size:10px}.prog-td-name{max-width:80px}.prog-bar{min-width:80px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
-            .rank-table th,.rank-table td{padding:4px 4px;font-size:10px}.data-table th,.data-table td{padding:4px 4px;font-size:10px;white-space:normal}.section-title{font-size:14px}
+            .rank-table th,.rank-table td{padding:6px 8px;font-size:12px}.data-table th,.data-table td{padding:6px 8px;font-size:12px;white-space:normal}.section-title{font-size:15px}
         }
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (131316) 193-QuoteWizard-Home Insurance", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "CRM-6 (1920) Quote Wizard -Home Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"Datewave-2 710647  Quotes for all": {"郑义程": 38, "杨松柏": 50, "张波": 13, "成昭旭": 47, "陈帅": 31, "温馨": 31, "高峰": 19, "史天欢": 25, "陈朋": 19, "陈虹佑": 10, "钟奕": 10, "李铜": 3}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 5, "张波": 54, "陈朋": 32}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 16, "钟进": 29}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 35}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 49}, "Adscent-52 (15587)223-AutoQuoteMarket": {"温馨": 10, "史天欢": 19, "钟奕": 11}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 400, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 600, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 1000, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"Datewave-2 710647  Quotes for all": {"郑义程": 48, "杨松柏": 65, "张波": 17, "成昭旭": 58, "陈帅": 46, "温馨": 31, "高峰": 30, "史天欢": 35, "陈朋": 29, "陈虹佑": 35, "钟奕": 35, "李铜": 11}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "温馨": 3, "史天欢": 10}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 19, "张波": 100, "陈朋": 76, "李铜": 28, "成昭旭": 33, "陈虹佑": 5, "史天欢": 10}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 26, "钟进": 60}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 64, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 8, "温馨": 35, "史天欢": 19, "郑义程": 10, "钟奕": 21, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 80}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -124,7 +121,7 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:25%">Offer</th><th style="width:25%">进度</th><th style="width:8%">点击</th><th style="width:8%">转化</th><th style="width:10%">总价</th><th style="width:7%">均价</th><th style="width:7%">近10均价</th><th style="width:7%">CR</th><th style="width:7%">EPC</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
+                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:25%">Offer</th><th style="width:35%">进度</th><th style="width:20%">均价</th><th style="width:20%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
                 <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></table></div>
             </div>
         </div>
@@ -147,7 +144,7 @@
         var _currentPersonOffer = null;
         var _currentStateOffer = null;
         var OFFER_AVG_PRICE = {};
-        var OFFER_SUMMARY = {};
+        var DEFAULT_TARGET = OFFER_TARGETS.default || 1000;
         
         function switchTab(p, t) {
             var pages = document.querySelectorAll('.page');
@@ -174,10 +171,6 @@
                     console.log('data.json loaded', d);
                     _totalOps = d.total_ops || 0;
                     var rawData = d.data || [];
-                    OFFER_SUMMARY = d.summary || {};
-					
-					console.log('OFFER_SUMMARY 加载后:', OFFER_SUMMARY);
-					console.log('OFFER_SUMMARY keys:', Object.keys(OFFER_SUMMARY));
                     
                     // 过滤有效数据
                     _allData = [];
@@ -186,16 +179,6 @@
                         if (MAPPED_OFFERS.length === 0 || MAPPED_OFFERS.indexOf(offer) >= 0) {
                             _allData.push(rawData[i]);
                         }
-                    }
-                    
-                    // 如果没有明细数据，但有汇总数据，使用汇总数据构建offer列表
-                    if (_allData.length === 0 && Object.keys(OFFER_SUMMARY).length > 0) {
-                        _offerList = Object.keys(OFFER_SUMMARY).sort();
-                        for(var i=0; i<_offerList.length; i++) {
-                            OFFER_AVG_PRICE[_offerList[i]] = 0;
-                        }
-                        updateStatsDisplay();
-                        return;
                     }
                     
                     if (_allData.length === 0) return;
@@ -219,7 +202,7 @@
                         if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
                     }
                     
-                    _offerList = Object.keys(stats).sort();
+                    _offerList = Object.keys(stats).sort();  // 按字母顺序排列
                     
                     // 计算每个offer的均价
                     for(var i=0; i<_offerList.length; i++){
@@ -227,144 +210,124 @@
                         OFFER_AVG_PRICE[o] = stats[o].total / stats[o].count;
                     }
                     
-                    // 更新显示
-                    updateStatsDisplay();
+                    document.getElementById('totalOffers').textContent = _offerList.length;
+                    document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                    document.getElementById('totalCount').textContent = totalCount;
+                    document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
+                    document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
-                    function updateStatsDisplay() {
-                        document.getElementById('totalOffers').textContent = _offerList.length;
-                        document.getElementById('totalAmount').textContent = '$' + totalAmount.toLocaleString('en-US', { maximumFractionDigits: 0 });
-                        document.getElementById('totalCount').textContent = totalCount;
-                        document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
-                        document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
+                    // 生成进度列表 - 按字母顺序排列
+                    var progressList = [];
+                    var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
+                    
+                    for(var idx=0; idx<_offerList.length; idx++){
+                        var o = _offerList[idx];
+                        var s = stats[o] || { total: 0, count: 0, entries: [] };
+                        var target = OFFER_TARGETS[o] || DEFAULT_TARGET;
+                        var done = s.count;
+                        var pct = target > 0 ? Math.min(done / target * 100, 100) : 0;
+                        var avg = s.count > 0 ? s.total / s.count : 0;
+                        var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
+                        var last10 = entries.slice(0, 10);
+                        var last10Total = 0;
+                        for(var j=0; j<last10.length; j++) last10Total += last10[j].price;
+                        var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
                         
-                        // 生成进度列表
-                        var progressList = [];
-                        var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
+                        var last10Class = '';
+                        if(last10Avg > avg && avg > 0) last10Class = 'price-high';
+                        else if(last10Avg < avg && avg > 0) last10Class = 'price-low';
+                        else last10Class = 'price-equal';
                         
-                        for(var idx=0; idx<_offerList.length; idx++){
-                            var o = _offerList[idx];
-                            var s = stats[o] || { total: 0, count: 0, entries: [] };
-                            var target = OFFER_TARGETS[o] || 0;
-                            var done = s.count;
-                            var pct = target > 0 ? Math.min(done / target * 100, 100) : 0;
-                            var avg = s.count > 0 ? s.total / s.count : 0;
-                            var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
-                            var last10 = entries.slice(0, 10);
-                            var last10Total = 0;
-                            for(var j=0; j<last10.length; j++) last10Total += last10[j].price;
-                            var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
-                            
-                            var last10Class = '';
-                            if(last10Avg > avg && avg > 0) last10Class = 'price-high';
-                            else if(last10Avg < avg && avg > 0) last10Class = 'price-low';
-                            else last10Class = 'price-equal';
-                            
-                            var summary = OFFER_SUMMARY[o] || {};
-                            var clicks = summary.clicks || '-';
-                            var conversions = summary.conversions || '-';
-                            var payout = summary.payout || '-';
-                            var cr = summary.cr || '-';
-                            var epc = summary.epc || '-';
-                            
-                            progressList.push({
-                                name: o,
-                                target: target,
-                                done: done,
-                                pct: pct,
-                                avg: avg,
-                                last10Avg: last10Avg,
-                                last10Class: last10Class,
-                                color: colors[idx % colors.length],
-                                clicks: clicks,
-                                conversions: conversions,
-                                payout: payout,
-                                cr: cr,
-                                epc: epc
-                            });
+                        progressList.push({
+                            name: o,
+                            target: target,
+                            done: done,
+                            pct: pct,
+                            avg: avg,
+                            last10Avg: last10Avg,
+                            last10Class: last10Class,
+                            color: colors[idx % colors.length]
+                        });
+                    }
+                    
+                    // 按字母顺序排列
+                    progressList.sort(function(a, b) { return a.name.localeCompare(b.name); });
+                    
+                    var ph = '';
+                    for(var i=0; i<progressList.length; i++){
+                        var d = progressList[i];
+                        var color = d.color;
+                        ph += '<tr>';
+                        ph += '<td class="prog-td-name">' + d.name + '</td>';
+                        if (d.target > 0) {
+                            ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
+                        } else {
+                            ph += '<td class="prog-td-bar"><span class="prog-num">' + d.done + '</span></td>';
                         }
-                        progressList.sort(function(a, b) { return b.pct - a.pct; });
-                        
-                        var ph = '';
-                        for(var i=0; i<progressList.length; i++){
-                            var d = progressList[i];
-                            var color = d.color;
-                            ph += '<tr>';
-                            ph += '<td class="prog-td-name">' + d.name + '</td>';
-                            if (d.target > 0) {
-                                ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
-                            } else {
-                                ph += '<td class="prog-td-bar"><span class="prog-num">' + d.done + '</span></td>';
-                            }
-                            ph += '<td style="text-align:right">' + d.clicks + '</td>';
-                            ph += '<td style="text-align:right">' + d.conversions + '</td>';
-                            ph += '<td style="text-align:right">' + d.payout + '</td>';
-                            ph += '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>';
-                            ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td>';
-                            ph += '<td style="text-align:right">' + d.cr + '</td>';
-                            ph += '<td style="text-align:right">' + d.epc + '</td>';
-                            ph += '</tr>';
-                        }
-                        document.getElementById('progressBody').innerHTML = ph;
-                        
-                        // 人员排名
-                        var ps = {};
-                        for(var i=0; i<_allData.length; i++) {
-                            var r = _allData[i];
-                            var p = String(r['人员'] || '-').trim();
-                            if (p === '-') continue;
-                            var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                            if (!ps[p]) ps[p] = 0;
-                            ps[p] += pr;
-                        }
-                        var persons = Object.keys(ps).sort(function(a, b) { return ps[b] - ps[a]; });
-                        var prh = '';
-                        for(var i=0; i<persons.slice(0,15).length; i++){
-                            var p = persons[i];
-                            var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
-                            var total = ps[p];
-                            var count = 0;
-                            for(var j=0; j<_allData.length; j++) {
-                                if(String(_allData[j]['人员'] || '-').trim() === p){
-                                    var pr = parseFloat(String(_allData[j]['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                                    if(pr > 0) count++;
-                                }
-                            }
-                            var avg = count > 0 ? total / count : 0;
-                            var personOpsTotal = 0;
-                            for(var offerName in PERSON_OPS){
-                                if(PERSON_OPS[offerName] && PERSON_OPS[offerName][p]){
-                                    personOpsTotal += PERSON_OPS[offerName][p];
-                                }
-                            }
-                            prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
-                        }
-                        document.getElementById('personBody').innerHTML = prh;
-                        
-                        // 人员和州页面
-                        if (_pr) {
-                            var prevPerson = _currentPersonOffer;
-                            renderPersonOfferList();
-                            if (prevPerson && _offerList.indexOf(prevPerson) >= 0) {
-                                _currentPersonOffer = prevPerson;
-                                var items = document.querySelectorAll('#pl .sidebar-item');
-                                var idx = _offerList.indexOf(prevPerson);
-                                if (idx >= 0 && items[idx]) {
-                                    items[idx].classList.add('active');
-                                    showPersonDetail(prevPerson, items[idx]);
-                                }
+                        ph += '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>';
+                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td>';
+                        ph += '</tr>';
+                    }
+                    document.getElementById('progressBody').innerHTML = ph;
+                    
+                    // 人员排名
+                    var ps = {};
+                    for(var i=0; i<_allData.length; i++) {
+                        var r = _allData[i];
+                        var p = String(r['人员'] || '-').trim();
+                        if (p === '-') continue;
+                        var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                        if (!ps[p]) ps[p] = 0;
+                        ps[p] += pr;
+                    }
+                    var persons = Object.keys(ps).sort(function(a, b) { return ps[b] - ps[a]; });
+                    var prh = '';
+                    for(var i=0; i<persons.slice(0,15).length; i++){
+                        var p = persons[i];
+                        var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
+                        var total = ps[p];
+                        var count = 0;
+                        for(var j=0; j<_allData.length; j++) {
+                            if(String(_allData[j]['人员'] || '-').trim() === p){
+                                var pr = parseFloat(String(_allData[j]['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                                if(pr > 0) count++;
                             }
                         }
-                        if (_sr) {
-                            var prevState = _currentStateOffer;
-                            renderStateOfferList();
-                            if (prevState && _offerList.indexOf(prevState) >= 0) {
-                                _currentStateOffer = prevState;
-                                var items = document.querySelectorAll('#sl .sidebar-item');
-                                var idx = _offerList.indexOf(prevState);
-                                if (idx >= 0 && items[idx]) {
-                                    items[idx].classList.add('active');
-                                    showStateDetail(prevState, items[idx]);
-                                }
+                        var avg = count > 0 ? total / count : 0;
+                        var personOpsTotal = 0;
+                        for(var offerName in PERSON_OPS){
+                            if(PERSON_OPS[offerName] && PERSON_OPS[offerName][p]){
+                                personOpsTotal += PERSON_OPS[offerName][p];
+                            }
+                        }
+                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></td>';
+                    }
+                    document.getElementById('personBody').innerHTML = prh;
+                    
+                    // 人员和州页面
+                    if (_pr) {
+                        var prevPerson = _currentPersonOffer;
+                        renderPersonOfferList();
+                        if (prevPerson && _offerList.indexOf(prevPerson) >= 0) {
+                            _currentPersonOffer = prevPerson;
+                            var items = document.querySelectorAll('#pl .sidebar-item');
+                            var idx = _offerList.indexOf(prevPerson);
+                            if (idx >= 0 && items[idx]) {
+                                items[idx].classList.add('active');
+                                showPersonDetail(prevPerson, items[idx]);
+                            }
+                        }
+                    }
+                    if (_sr) {
+                        var prevState = _currentStateOffer;
+                        renderStateOfferList();
+                        if (prevState && _offerList.indexOf(prevState) >= 0) {
+                            _currentStateOffer = prevState;
+                            var items = document.querySelectorAll('#sl .sidebar-item');
+                            var idx = _offerList.indexOf(prevState);
+                            if (idx >= 0 && items[idx]) {
+                                items[idx].classList.add('active');
+                                showStateDetail(prevState, items[idx]);
                             }
                         }
                     }
@@ -489,7 +452,7 @@
             var ga = 0;
             for(var j=0; j<ap.length; j++) ga += ap[j];
             ga = ga / ap.length;
-            var ht = ga * 1.1, lt = ga * 0.9;
+            var ht = ga * 1.0, lt = ga * 0.8;
             for (var s in st) {
                 var ss = st[s];
                 var total = 0;
@@ -513,7 +476,7 @@
                     h += '<tr class="' + x.rowClass + '">';
                     h += '<td style="text-align:center">' + rankNum + '</td>';
                     h += '<td style="text-align:left;font-weight:700">' + x.state + '</td>';
-                    h += '<td class="num">$' + x.avg.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.avg.toFixed(2) + '<table>';
                     h += '<td class="num">' + x.count + '</td>';
                     h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
                     h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
