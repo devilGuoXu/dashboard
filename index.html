@@ -42,7 +42,7 @@
         .rank-table{width:100%;border-collapse:collapse}
         .rank-table th{padding:10px 8px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
         .rank-table th:first-child{text-align:center;width:38px}
-        .rank-table th:nth-child(2){width:85px}
+        .rank-table th:nth-child(2){width:100px}
         .rank-table th:nth-child(3){text-align:right;width:85px}
         .rank-table th:nth-child(4){text-align:right;width:65px}
         .rank-table th:nth-child(5){text-align:right;width:55px}
@@ -90,6 +90,92 @@
         .section-title-price{color:#2979ff;margin-left:16px;font-weight:700;font-size:16px}
         .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:15px}
         .footer{text-align:center;color:#ddd;font-size:12px;padding:20px}
+        
+        /* 人员详情弹窗样式 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #fff;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 85%;
+            overflow: auto;
+            padding: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #333;
+        }
+        .person-detail-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .person-detail-table th {
+            padding: 12px;
+            background: #f8f9fa;
+            font-weight: 600;
+            text-align: left;
+            border-bottom: 2px solid #eee;
+        }
+        .person-detail-table th.num {
+            text-align: right;
+        }
+        .person-detail-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .person-detail-table td.num {
+            text-align: right;
+            font-family: 'SF Mono', 'Consolas', monospace;
+        }
+        .person-detail-table tr:hover {
+            background: #f5f5f5;
+        }
+        .detail-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            margin-left: 8px;
+        }
+        .detail-btn:hover {
+            background: #45a049;
+        }
+        
         @media(max-width:430px){
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
@@ -97,11 +183,14 @@
             .prog-table th,.prog-table td{padding:6px 8px;font-size:11px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
             .rank-table th,.rank-table td{padding:4px 6px;font-size:11px}.data-table th,.data-table td{padding:4px 6px;font-size:12px;white-space:normal}.section-title{font-size:15px}
+            .modal-content{width:95%;padding:12px}
+            .modal-header h3{font-size:16px}
+            .person-detail-table th,.person-detail-table td{padding:6px;font-size:11px}
         }
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 36, "张波": 21}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 33}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 48, "温馨": 16}, "Datewave-2 710647  Quotes for all": {"郑义程": 72, "杨松柏": 90, "张波": 19, "成昭旭": 77, "陈帅": 94, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 65, "钟奕": 90, "李铜": 55}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 21, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 27, "成昭旭": 10}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 47, "郑义程": 28, "张波": 134, "陈朋": 105, "李铜": 54, "陈虹佑": 39, "成昭旭": 96, "钟奕": 18, "史天欢": 15, "温馨": 5, "高峰": 5}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 51, "钟进": 126}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 69, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 59, "陈虹佑": 20, "史天欢": 19, "郑义程": 30, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 157}, "B452-4 2106 CL - Best Quote Auto": {"杨松柏": 6, "郑义程": 5, "陈帅": 5}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 36, "张波": 32}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 41}, "Adscent-52 (253016)239-QuoteWizard Home Insurance": {"陈帅": 6, "陈虹佑": 9, "李铜": 6, "史天欢": 5}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 48, "温馨": 23}, "Datewave-2 710647  Quotes for all": {"郑义程": 72, "杨松柏": 90, "张波": 19, "成昭旭": 90, "陈帅": 94, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 65, "钟奕": 90, "李铜": 65}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 21, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 27, "成昭旭": 10, "陈朋": 4, "郑义程": 3}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 47, "郑义程": 28, "张波": 134, "陈朋": 119, "李铜": 54, "陈虹佑": 39, "成昭旭": 96, "钟奕": 18, "史天欢": 15, "温馨": 5, "高峰": 19}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 67, "钟进": 135}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 69, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 59, "陈虹佑": 20, "史天欢": 19, "郑义程": 30, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 165}, "B452-4 2106 CL - Best Quote Auto": {"杨松柏": 18, "郑义程": 10, "钟奕": 25, "陈帅": 5}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -162,6 +251,109 @@
             if(price > avgPrice) return 'price-high';
             if(price < avgPrice) return 'price-low';
             return 'price-equal';
+        }
+        
+        // 人员详情弹窗
+        function showPersonDetailModal(personName) {
+            // 收集该人员的所有 offer 数据
+            var offerMap = {};
+            
+            for(var i=0; i<_allData.length; i++) {
+                var r = _allData[i];
+                var person = String(r['人员'] || '-').trim();
+                if(person !== personName) continue;
+                
+                var offer = String(r.offer || '').trim();
+                var price = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                
+                if(!offerMap[offer]) {
+                    offerMap[offer] = { total: 0, count: 0 };
+                }
+                offerMap[offer].total += price;
+                offerMap[offer].count++;
+            }
+            
+            // 获取操作数据（从 PERSON_OPS）
+            var opsMap = {};
+            if(PERSON_OPS) {
+                for(var offerName in PERSON_OPS) {
+                    if(PERSON_OPS[offerName] && PERSON_OPS[offerName][personName]) {
+                        opsMap[offerName] = PERSON_OPS[offerName][personName];
+                    }
+                }
+            }
+            
+            // 构建表格行
+            var rows = [];
+            for(var offer in offerMap) {
+                var total = offerMap[offer].total;
+                var conversion = offerMap[offer].count;
+                var avgPrice = conversion > 0 ? total / conversion : 0;
+                var ops = opsMap[offer] || 0;
+                rows.push({
+                    offer: offer,
+                    total: total,
+                    avg: avgPrice,
+                    conversion: conversion,
+                    ops: ops
+                });
+            }
+            
+            // 按 offer 名称字母排序
+            rows.sort(function(a, b) { return a.offer.localeCompare(b.offer); });
+            
+            // 构建 HTML
+            var html = `
+                <div class="modal-overlay" id="personModal" onclick="closePersonModal(event)">
+                    <div class="modal-content" onclick="event.stopPropagation()">
+                        <div class="modal-header">
+                            <h3>📋 人员详情 - ${personName}</h3>
+                            <button class="modal-close" onclick="closePersonModal()">&times;</button>
+                        </div>
+                        <table class="person-detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Offer</th>
+                                    <th class="num">金额</th>
+                                    <th class="num">均价</th>
+                                    <th class="num">转化</th>
+                                    <th class="num">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+            
+            for(var i=0; i<rows.length; i++) {
+                var x = rows[i];
+                html += `<tr>
+                    <td>${x.offer}</td>
+                    <td class="num">$${x.total.toLocaleString('en-US', {minimumFractionDigits:0})}</td>
+                    <td class="num">$${x.avg.toFixed(2)}</td>
+                    <td class="num">${x.conversion}</td>
+                    <td class="num">${x.ops}</td>
+                </tr>`;
+            }
+            
+            if(rows.length === 0) {
+                html += `<tr><td colspan="5" style="text-align:center">暂无数据</td></tr>`;
+            }
+            
+            html += `
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+            
+            // 添加模态框到页面
+            var existingModal = document.getElementById('personModal');
+            if(existingModal) existingModal.remove();
+            document.body.insertAdjacentHTML('beforeend', html);
+        }
+        
+        function closePersonModal(event) {
+            var modal = document.getElementById('personModal');
+            if(modal) modal.remove();
         }
         
         function loadData() {
@@ -252,7 +444,7 @@
                     for(var i=0; i<progressList.length; i++){
                         var d = progressList[i];
                         var color = d.color;
-                        ph += '</tr>';
+                        ph += '<table>';
                         ph += '<td class="prog-td-name">' + d.name + '</td>';
                         if (d.target > 0) {
                             ph += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + d.done + '/' + d.target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + d.pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
@@ -265,6 +457,7 @@
                     }
                     document.getElementById('progressBody').innerHTML = ph;
                     
+                    // 人员排名（带详情按钮）
                     var ps = {};
                     for(var i=0; i<_allData.length; i++) {
                         var r = _allData[i];
@@ -294,7 +487,16 @@
                                 personOpsTotal += PERSON_OPS[offerName][p];
                             }
                         }
-                        prh += '</tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
+                        // 转义单引号防止XSS
+                        var safePerson = p.replace(/'/g, "\\'");
+                        prh += '<tr>';
+                        prh += '<td style="text-align:center">' + badge + '</td>';
+                        prh += '<td style="text-align:left;font-weight:700">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td>';
+                        prh += '<td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td>';
+                        prh += '<td style="text-align:right">$' + avg.toFixed(2) + '</td>';
+                        prh += '<td style="text-align:right">' + count + '</td>';
+                        prh += '<td style="text-align:right">' + personOpsTotal + '</td>';
+                        prh += '</tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     
@@ -393,9 +595,19 @@
                     var x = rows[i];
                     var rankNum = i + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
-                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700">' + x.person + '</td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '<td></tr>';
+                    h += '<tr>';
+                    h += '<td style="text-align:center">' + rankNum + '</td>';
+                    h += '<td style="text-align:left;font-weight:700">' + x.person + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + x.person.replace(/'/g, "\\'") + '\')">详情</button></td>';
+                    h += '<td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td>';
+                    h += '<td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
+                    h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
+                    h += '<td class="num">' + x.conv + '</td>';
+                    h += '<td class="num">' + x.ops + '</td>';
+                    h += '<td class="num">' + x.rate + '</td>';
+                    h += '</tr>';
                 }
-                h += '</tbody><tr>';
+                h += '</tbody></table>';
             }
             document.getElementById('pc').innerHTML = h;
         }
@@ -520,7 +732,7 @@
                     h += '<td class="ctr">' + x.rating + '</td>';
                     h += '</tr>';
                 }
-                h += '</tbody></table>';
+                h += '</tbody><tr>';
             }
             document.getElementById('sc').innerHTML = h;
         }
