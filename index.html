@@ -40,6 +40,8 @@
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
         .prog-td-avg10{min-width:110px}
+        
+        /* 总览页面排名表格样式 */
         .rank-table{width:100%;border-collapse:collapse}
         .rank-table th{padding:10px 8px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left;white-space:nowrap}
         .rank-table th:first-child{text-align:center;width:38px}
@@ -58,6 +60,37 @@
         .rank-table tbody tr:nth-child(even){background:#fafbfc}
         .rank-table tbody tr:nth-child(odd){background:#fff}
         .rank-table tbody tr:hover{background:#eef0f5}
+        
+        /* 人员页面专用表格样式 */
+        .person-data-table{width:100%;border-collapse:collapse}
+        .person-data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
+        .person-data-table th:first-child{text-align:center;width:45px}
+        .person-data-table th.num{text-align:right}
+        .person-data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
+        .person-data-table td:first-child{text-align:center}
+        .person-data-table td:nth-child(2){text-align:left;font-weight:700;white-space:nowrap}
+        .person-data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
+        .person-data-table tbody tr:nth-child(even){background:#fafbfc}
+        .person-data-table tbody tr:nth-child(odd){background:#fff}
+        .person-data-table tbody tr:hover{background:#eef0f5}
+        
+        /* 州页面专用表格样式 */
+        .state-data-table{width:100%;border-collapse:collapse}
+        .state-data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
+        .state-data-table th:first-child{text-align:center;width:45px}
+        .state-data-table th.num{text-align:right}
+        .state-data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
+        .state-data-table td:first-child{text-align:center}
+        .state-data-table td:nth-child(2){text-align:left;font-weight:700;white-space:nowrap}
+        .state-data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
+        .state-data-table th.ctr,.state-data-table td.ctr{text-align:center}
+        .state-data-table tbody tr:nth-child(even){background:#fafbfc}
+        .state-data-table tbody tr:nth-child(odd){background:#fff}
+        .state-data-table tbody tr:hover{background:#eef0f5}
+        .state-data-table tbody tr.row-high{background:#ffebee !important}
+        .state-data-table tbody tr.row-mid{background:#fff8e1 !important}
+        .state-data-table tbody tr.row-low{background:#e8f5e9 !important}
+        
         .price-high{color:#e53935 !important;font-weight:600}
         .price-low{color:#43a047 !important;font-weight:600}
         .price-equal{color:#fdd835 !important;font-weight:600}
@@ -68,21 +101,6 @@
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
         .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #2d3436;padding-left:15px}
         .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);padding:24px}
-        .data-table{width:100%;border-collapse:collapse}
-        .data-table th{padding:12px 10px;font-size:12px;color:#999;font-weight:500;border-bottom:1px solid #eee;text-align:left}
-        .data-table th:first-child{text-align:center;width:45px}
-        .data-table th.num{text-align:right}
-        .data-table td{padding:12px 10px;font-size:14px;border-bottom:1px solid #f5f5f5}
-        .data-table td:first-child{text-align:center}
-        .data-table td:nth-child(2){text-align:left;font-weight:700;white-space:nowrap}
-        .data-table td.num{text-align:right;font-family:'SF Mono','Consolas',monospace;font-size:14px}
-        .data-table th.ctr,.data-table td.ctr{text-align:center}
-        .data-table tbody tr:nth-child(even){background:#fafbfc}
-        .data-table tbody tr:nth-child(odd){background:#fff}
-        .data-table tbody tr:hover{background:#eef0f5}
-        .data-table tbody tr.row-high{background:#ffebee !important}
-        .data-table tbody tr.row-mid{background:#fff8e1 !important}
-        .data-table tbody tr.row-low{background:#e8f5e9 !important}
         .badge{padding:3px 10px;border-radius:10px;font-size:12px;font-weight:550;white-space:nowrap}
         .badge.high{background:#ffebee;color:#e53935}
         .badge.mid{background:#fff8e1;color:#fdd835}
@@ -205,8 +223,10 @@
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
             .rank-table th,.rank-table td{padding:6px 8px;font-size:12px}
             .rank-table th:nth-child(2){width:100px}
-            .data-table th,.data-table td{padding:6px 8px;font-size:12px;white-space:normal}
-            .data-table td:nth-child(2){white-space:normal}
+            .person-data-table th,.person-data-table td{padding:6px 8px;font-size:12px;white-space:normal}
+            .person-data-table td:nth-child(2){white-space:normal}
+            .state-data-table th,.state-data-table td{padding:6px 8px;font-size:12px;white-space:normal}
+            .state-data-table td:nth-child(2){white-space:normal}
             .section-title{font-size:15px}
             .modal-content{width:95%;padding:12px}
             .modal-header h3{font-size:16px}
@@ -217,7 +237,7 @@
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 36, "张波": 42}, "Adscent-52 (253016)239-QuoteWizard Home Insurance": {"陈虹佑": 51, "陈帅": 7, "李铜": 52, "史天欢": 47, "郑义程": 10, "成昭旭": 10, "杨松柏": 10, "钟奕": 10}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 41}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 64, "温馨": 54, "张波": 14, "高峰": 26}, "Datewave-2 710647  Quotes for all": {"郑义程": 90, "杨松柏": 90, "张波": 19, "成昭旭": 90, "陈帅": 94, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 65, "钟奕": 90, "李铜": 73}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 26, "高峰": 21, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 27, "成昭旭": 25, "陈朋": 12, "钟奕": 26, "郑义程": 11}, "LA-30 459 TurboSavingsAuto": {"钟进": 14, "杨松柏": 11, "郑义程": 19, "钟奕": 7, "成昭旭": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 47, "郑义程": 28, "张波": 153, "陈朋": 157, "李铜": 54, "陈虹佑": 39, "成昭旭": 96, "钟奕": 22, "史天欢": 15, "高峰": 44, "温馨": 9, "杨松柏": 42}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 77, "钟进": 188}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 69, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 69, "陈虹佑": 30, "史天欢": 19, "郑义程": 30, "钟奕": 51, "李铜": 10, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 205}, "B452-4 2106 CL - Best Quote Auto": {"杨松柏": 18, "郑义程": 20, "钟奕": 25, "成昭旭": 20, "陈帅": 29}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 36, "张波": 42}, "Adscent-52 (253016)239-QuoteWizard Home Insurance": {"陈虹佑": 51, "陈帅": 12, "李铜": 52, "史天欢": 55, "杨松柏": 19, "郑义程": 14, "成昭旭": 24, "钟奕": 19}, "B452-4 2118 RP - Quote Wizard Home": {"史天欢": 41}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"陈朋": 64, "温馨": 54, "张波": 14, "高峰": 26}, "Datewave-2 710647  Quotes for all": {"郑义程": 90, "杨松柏": 90, "张波": 19, "成昭旭": 90, "陈帅": 94, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 65, "钟奕": 90, "李铜": 73}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 26, "高峰": 21, "张波": 12, "温馨": 20, "史天欢": 19, "杨松柏": 27, "成昭旭": 25, "陈朋": 12, "钟奕": 26, "郑义程": 11}, "LA-30 459 TurboSavingsAuto": {"钟进": 14, "杨松柏": 11, "郑义程": 39, "钟奕": 13, "成昭旭": 16, "陈帅": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 47, "郑义程": 28, "张波": 159, "陈朋": 162, "李铜": 54, "陈虹佑": 39, "成昭旭": 96, "钟奕": 22, "史天欢": 15, "高峰": 54, "温馨": 9, "杨松柏": 42}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 82, "钟进": 189}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 69, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 96, "陈虹佑": 49, "史天欢": 26, "郑义程": 30, "钟奕": 51, "张波": 9, "高峰": 18, "李铜": 19, "陈朋": 19}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 215}, "B452-4 2106 CL - Best Quote Auto": {"杨松柏": 18, "郑义程": 20, "钟奕": 25, "成昭旭": 20, "陈帅": 29}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -333,6 +353,7 @@
                     btns[i].classList.remove('active');
                 }
             }
+            // 刷新当前显示的 Offer 数据
             if (currentStateOffer) {
                 var activeItem = document.querySelector('#sl .sidebar-item.active');
                 if (activeItem) {
@@ -464,7 +485,8 @@
                             ph += '<td class="prog-td-bar"><span class="prog-num">' + d.done + '</span></td>';
                         }
                         ph += '<td class="prog-td-avg">$' + d.avg.toFixed(2) + '</td>';
-                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td></tr>';
+                        ph += '<td class="prog-td-avg10 ' + d.last10Class + '">$' + d.last10Avg.toFixed(2) + '</td>';
+                        ph += '</tr>';
                     }
                     document.getElementById('progressBody').innerHTML = ph;
                     var ps = {};
@@ -497,7 +519,7 @@
                             }
                         }
                         var safePerson = p.replace(/'/g, "\\'");
-                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</table>';
+                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     if (_pr) {
@@ -590,13 +612,13 @@
                 h += '<div class="no-data">暂无数据</div>';
             }else{
                 r.sort(function(a,b){ return b.avg - a.avg; });
-                h += '<table class="data-table"><thead><tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
+                h += '<table class="person-data-table"><thead><tr><th>#</th><th>人员</th><th class="num">金额</th><th class="num">均价</th><th class="num">最高</th><th class="num">最低</th><th class="num">转化</th><th class="num">操作</th><th class="num">转化率</th></tr></thead><tbody>';
                 for(var idx=0; idx<r.length; idx++){
                     var x = r[idx];
                     var rankNum = idx + 1;
                     var avgClass = getPriceCompareClass(x.avg, offerAvg);
                     var safePerson = x.person.replace(/'/g, "\\'");
-                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + x.person + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</tr><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
+                    h += '<tr><td style="text-align:center">' + rankNum + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + x.person + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td class="num">$' + x.total.toLocaleString('en-US',{minimumFractionDigits:0}) + '</td><td class="num ' + avgClass + '">$' + x.avg.toFixed(2) + '</td><td class="num">$' + x.max.toFixed(2) + '</td><td class="num">$' + x.min.toFixed(2) + '</td><td class="num">' + x.conv + '</td><td class="num">' + x.ops + '</td><td class="num">' + x.rate + '</td></tr>';
                 }
                 h += '</tbody></table>';
             }
@@ -709,7 +731,7 @@
                 h += '<div class="no-data">暂无数据</div>';
             } else {
                 rows.sort(function(a, b) { return b.avg - a.avg; });
-                h += '<table class="data-table"><thead>';
+                h += '<table class="state-data-table"><thead>';
                 h += '<tr><th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr>';
                 h += '</thead><tbody>';
                 for(var i=0; i<rows.length; i++){
@@ -718,12 +740,12 @@
                     h += '<tr class="' + x.rowClass + '">';
                     h += '<td style="text-align:center">' + rankNum + '</td>';
                     h += '<td style="text-align:left;font-weight:700">' + x.state + '</td>';
-                    h += '<td class="num">$' + x.avg.toFixed(2) + '</tr>';
+                    h += '<td class="num">$' + x.avg.toFixed(2) + '</td>';
                     h += '<td class="num">' + x.count + '</td>';
                     h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
                     h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
                     h += '<td class="ctr">' + x.rating + '</td>';
-                    h += '</tr>';
+                    h += '<tr>';
                 }
                 h += '</tbody></table>';
             }
