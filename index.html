@@ -82,6 +82,9 @@
         .data-table tbody tr.row-high{background:#ffebee !important}
         .data-table tbody tr.row-mid{background:#fff8e1 !important}
         .data-table tbody tr.row-low{background:#e8f5e9 !important}
+        .data-table tbody tr.row-high:hover{background:#ffcdd2 !important}
+        .data-table tbody tr.row-mid:hover{background:#ffecb3 !important}
+        .data-table tbody tr.row-low:hover{background:#c8e6c9 !important}
         .badge{padding:3px 10px;border-radius:10px;font-size:12px;font-weight:550;white-space:nowrap}
         .badge.high{background:#ffebee;color:#e53935}
         .badge.mid{background:#fff8e1;color:#fdd835}
@@ -101,7 +104,7 @@
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"Datewave-2 710647  Quotes for all": {"郑义程": 53, "杨松柏": 68, "张波": 17, "成昭旭": 58, "陈帅": 51, "温馨": 31, "高峰": 30, "史天欢": 40, "陈朋": 29, "陈虹佑": 35, "钟奕": 35, "李铜": 11}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 7, "张波": 4, "温馨": 13, "史天欢": 14}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 39, "张波": 122, "陈朋": 100, "李铜": 47, "陈虹佑": 25, "成昭旭": 57, "史天欢": 15, "温馨": 5, "高峰": 5}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 41, "钟进": 73}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 64, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 21, "温馨": 39, "史天欢": 19, "郑义程": 25, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 93}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2118 RP - Quote Wizard Home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 700, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 100, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "default": 9999};var PERSON_OPS={"CRM-6 (1920) Quote Wizard -Home Insurance": {"高峰": 18}, "Datewave-2 710647  Quotes for all": {"郑义程": 57, "杨松柏": 82, "张波": 17, "成昭旭": 58, "陈帅": 65, "温馨": 31, "高峰": 30, "史天欢": 50, "陈朋": 29, "陈虹佑": 35, "钟奕": 40, "李铜": 17}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈虹佑": 30, "李铜": 24, "陈帅": 5, "高峰": 7, "张波": 11, "温馨": 20, "史天欢": 19}, "LA-30 459 TurboSavingsAuto": {"钟进": 14}, "B452-4 1973 GPR - AutoQuote Center": {"陈帅": 39, "郑义程": 9, "张波": 128, "陈朋": 105, "李铜": 54, "陈虹佑": 39, "成昭旭": 72, "钟奕": 18, "史天欢": 15, "温馨": 5, "高峰": 5}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 41, "钟进": 86}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 64, "杨松柏": 29, "陈帅": 9, "郑义程": 29, "史天欢": 15, "钟奕": 33, "温馨": 8, "陈虹佑": 10}, "Adscent-52 (15587)223-AutoQuoteMarket": {"杨松柏": 28, "温馨": 44, "史天欢": 19, "郑义程": 30, "钟奕": 51, "高峰": 5}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 115}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -127,8 +130,24 @@
         </div>
     </div>
 
-    <div class="page" id="page2"><div class="container"><div class="split-layout"><div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div><div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
-    <div class="page" id="page3"><div class="container"><div class="split-layout"><div class="sidebar" id="ss"><div class="sidebar-title">Offer 列表</div><div id="sl"></div></div><div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div></div></div></div>
+    <div class="page" id="page2">
+        <div class="container">
+            <div class="split-layout">
+                <div class="sidebar" id="ps"><div class="sidebar-title">Offer 列表</div><div id="pl"></div></div>
+                <div class="main-content" id="pc"><div class="no-data">← 选择 Offer</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page" id="page3">
+        <div class="container">
+            <div class="split-layout">
+                <div class="sidebar" id="ss"><div class="sidebar-title">Offer 列表</div><div id="sl"></div></div>
+                <div class="main-content" id="sc"><div class="no-data">← 选择 Offer</div></div>
+            </div>
+        </div>
+    </div>
+
     <div class="footer">广告数据大屏 · 自动刷新</div>
 
     <script>
@@ -172,7 +191,6 @@
                     _totalOps = d.total_ops || 0;
                     var rawData = d.data || [];
                     
-                    // 过滤有效数据
                     _allData = [];
                     for(var i=0; i<rawData.length; i++) {
                         var offer = String(rawData[i].offer || '').trim();
@@ -183,7 +201,6 @@
                     
                     if (_allData.length === 0) return;
                     
-                    // 统计明细数据
                     var stats = {}, totalAmount = 0, totalCount = 0;
                     for(var i=0; i<_allData.length; i++) {
                         var r = _allData[i];
@@ -202,9 +219,8 @@
                         if (ip && price && ip !== '-' && price !== '-') totalCount += 1;
                     }
                     
-                    _offerList = Object.keys(stats).sort();  // 按字母顺序排列
+                    _offerList = Object.keys(stats).sort();
                     
-                    // 计算每个offer的均价
                     for(var i=0; i<_offerList.length; i++){
                         var o = _offerList[i];
                         OFFER_AVG_PRICE[o] = stats[o].total / stats[o].count;
@@ -216,7 +232,6 @@
                     document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
-                    // 生成进度列表 - 按字母顺序排列
                     var progressList = [];
                     var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
                     
@@ -250,7 +265,6 @@
                         });
                     }
                     
-                    // 按字母顺序排列
                     progressList.sort(function(a, b) { return a.name.localeCompare(b.name); });
                     
                     var ph = '';
@@ -270,7 +284,6 @@
                     }
                     document.getElementById('progressBody').innerHTML = ph;
                     
-                    // 人员排名
                     var ps = {};
                     for(var i=0; i<_allData.length; i++) {
                         var r = _allData[i];
@@ -300,11 +313,10 @@
                                 personOpsTotal += PERSON_OPS[offerName][p];
                             }
                         }
-                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></td>';
+                        prh += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700">' + p + '</td><td style="text-align:right;font-weight:800;color:#2979ff">$' + total.toLocaleString('en-US', { maximumFractionDigits: 0 }) + '</td><td style="text-align:right">$' + avg.toFixed(2) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
                     }
                     document.getElementById('personBody').innerHTML = prh;
                     
-                    // 人员和州页面
                     if (_pr) {
                         var prevPerson = _currentPersonOffer;
                         renderPersonOfferList();
@@ -347,7 +359,9 @@
                 d.className = 'sidebar-item';
                 if(i === 0) d.className += ' active';
                 d.textContent = o;
-                d.onclick = (function(offer){ return function(){ showPersonDetail(offer, this); }; })(o);
+                (function(offer, element){
+                    element.onclick = function(){ showPersonDetail(offer, element); };
+                })(o, d);
                 list.appendChild(d);
             }
             if (!_currentPersonOffer && _offerList.length > 0) {
@@ -415,7 +429,9 @@
                 d.className = 'sidebar-item';
                 if(i === 0) d.className += ' active';
                 d.textContent = o;
-                d.onclick = (function(offer){ return function(){ showStateDetail(offer, this); }; })(o);
+                (function(offer, element){
+                    element.onclick = function(){ showStateDetail(offer, element); };
+                })(o, d);
                 list.appendChild(d);
             }
             if (!_currentStateOffer && _offerList.length > 0) {
@@ -426,110 +442,108 @@
                 }
             }
         }
-
-		function showStateDetail(o, e){
-			var items = document.querySelectorAll('#sl .sidebar-item');
-			for(var i=0; i<items.length; i++) items[i].classList.remove('active');
-			e.classList.add('active');
-			
-			// 收集州数据
-			var st = {};
-			var totalConversions = 0;
-			var totalOps = 0;
-			var matchedCount = 0;
-			
-			for(var i=0; i<_allData.length; i++) {
-				var r = _allData[i];
-				if (String(r.offer || '').trim() === o) {
-					var s2 = String(r['州'] || '-').trim();
-					var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-					
-					if(s2 !== '-') {
-						if(!st[s2]) st[s2] = {p:[], c:0};
-						st[s2].p.push(pr);
-						st[s2].c++;
-						totalConversions++;
-					}
-					
-					var ip = String(r['ip'] || r['IP'] || '').trim();
-					var offerName = String(r.offer || '').trim();
-					if(ip && offerName) {
-						totalOps++;
-						var person = String(r['人员'] || '-').trim();
-						if(person !== '-') matchedCount++;
-					}
-				}
-			}
-			
-			var matchRate = totalOps > 0 ? ((matchedCount / totalOps) * 100).toFixed(1) + '%' : '0%';
-			
-			var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + (OFFER_AVG_PRICE[o] || 0).toFixed(2) + '</span></div>';
-			
-			// 统计卡片
-			h += '<div style="display:flex; gap:16px; margin-bottom:20px; padding:12px 16px; background:#f8f9fa; border-radius:10px; flex-wrap:wrap;">';
-			h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">转化条数</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalConversions + '</div></div>';
-			h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">操作条数</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalOps + '</div></div>';
-			h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配条数</div><div style="font-size:22px; font-weight:700; color:#2979ff;">' + matchedCount + '</div></div>';
-			h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配率</div><div style="font-size:22px; font-weight:700; color:#43a047;">' + matchRate + '</div></div>';
-			h += '</div>';
-			
-			// 计算州均价
-			var rows = [], ap = [];
-			for(var s2 in st){
-				for(var j=0; j<st[s2].p.length; j++) ap.push(st[s2].p[j]);
-			}
-			var ga = 0;
-			for(var j=0; j<ap.length; j++) ga += ap[j];
-			ga = ga / ap.length;
-			var ht = ga * 1.1;
-			var lt = ga * 0.9;
-			
-			for(var s2 in st){
-				var ss = st[s2];
-				var total = 0;
-				for(var j=0; j<ss.p.length; j++) total += ss.p[j];
-				var a = total / ss.p.length;
-				var rowClass = 'row-' + (a > ht ? 'high' : (a < lt ? 'low' : 'mid'));
-				var rating = a > ht ? '<span class="badge high">高</span>' : (a < lt ? '<span class="badge low">低</span>' : '<span class="badge mid">中</span>');
-				var maxV = Math.max.apply(null, ss.p);
-				var minV = Math.min.apply(null, ss.p);
-				rows.push({
-					state: s2,
-					avg: a,
-					count: ss.c,
-					max: maxV,
-					min: minV,
-					rating: rating,
-					rowClass: rowClass
-				});
-			}
-			
-			if(rows.length === 0){
-				h += '<div class="no-data">暂无数据</div>';
-			}else{
-				rows.sort(function(a,b){ return b.avg - a.avg; });
-				h += '<table class="data-table"><thead>';
-				h += '<tr><th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr>';
-				h += '</thead><tbody>';
-				for(var i=0; i<rows.length; i++){
-					var x = rows[i];
-					var rankNum = i + 1;
-					h += '<tr class="' + x.rowClass + '">';
-					h += '<td style="text-align:center">' + rankNum + '</td>';
-					h += '<td style="text-align:left;font-weight:700">' + x.state + '</td>';
-					h += '<td class="num">$' + x.avg.toFixed(2) + '</td>';
-					h += '<td class="num">' + x.count + '</td>';
-					h += '<td class="num">$' + x.max.toFixed(2) + '</td>';
-					h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
-					h += '<td class="ctr">' + x.rating + '</td>';
-					h += '</tr>';
-				}
-				h += '</tbody></table>';
-			}
-			document.getElementById('sc').innerHTML = h;
-		}
-
-        // 启动
+        
+        function showStateDetail(o, e) {
+            _currentStateOffer = o;
+            var items = document.querySelectorAll('#sl .sidebar-item');
+            for(var i=0; i<items.length; i++) items[i].classList.remove('active');
+            if(e) e.classList.add('active');
+            
+            // 转化条数 = 明细数据中该 offer 的条数
+            var totalConversions = 0;
+            var st = {};
+            for(var i=0; i<_allData.length; i++) {
+                var r = _allData[i];
+                if (String(r.offer || '').trim() === o) {
+                    var s = String(r['州'] || '-').trim();
+                    var pr = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                    
+                    if (s !== '-') {
+                        if (!st[s]) st[s] = { prices: [], count: 0 };
+                        st[s].prices.push(pr);
+                        st[s].count++;
+                        totalConversions++;
+                    }
+                }
+            }
+            
+            // 操作条数 = 从 PERSON_OPS 获取该 offer 的操作总数
+            var totalOps = 0;
+            if(PERSON_OPS && PERSON_OPS[o]){
+                for(var person in PERSON_OPS[o]){
+                    totalOps += PERSON_OPS[o][person];
+                }
+            }
+            
+            // 匹配条数 = 明细中能匹配到人员的条数
+            var matchedCount = 0;
+            for(var i=0; i<_allData.length; i++) {
+                var r = _allData[i];
+                if (String(r.offer || '').trim() === o) {
+                    var person = String(r['人员'] || '-').trim();
+                    if(person !== '-') matchedCount++;
+                }
+            }
+            
+            var matchRate = totalOps > 0 ? ((matchedCount / totalOps) * 100).toFixed(1) + '%' : '0%';
+            
+            var h = '<div class="section-title">' + o + '<span class="section-title-price">均价 $' + (OFFER_AVG_PRICE[o] || 0).toFixed(2) + '</span></div>';
+            
+            // 统计卡片
+            h += '<div style="display:flex; gap:16px; margin-bottom:20px; padding:12px 16px; background:#f8f9fa; border-radius:10px; flex-wrap:wrap;">';
+            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">转化</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalConversions + '</div></div>';
+            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">操作</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalOps + '</div></div>';
+            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配</div><div style="font-size:22px; font-weight:700; color:#2979ff;">' + matchedCount + '</div></div>';
+            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配率</div><div style="font-size:22px; font-weight:700; color:#43a047;">' + matchRate + '</div></div>';
+            h += '</div>';
+            
+            var rows = [], ap = [];
+            for (var s in st) {
+                for(var j=0; j<st[s].prices.length; j++) ap.push(st[s].prices[j]);
+            }
+            
+            var ga = 0;
+            for(var j=0; j<ap.length; j++) ga += ap[j];
+            ga = ga / ap.length;
+            var ht = ga * 1.1, lt = ga * 0.9;
+            
+            for (var s in st) {
+                var ss = st[s];
+                var total = 0;
+                for(var j=0; j<ss.prices.length; j++) total += ss.prices[j];
+                var a = total / ss.prices.length;
+                var rowClass = 'row-' + (a > ht ? 'high' : (a < lt ? 'low' : 'mid'));
+                var rating = a > ht ? '<span class="badge high">高</span>' : (a < lt ? '<span class="badge low">低</span>' : '<span class="badge mid">中</span>');
+                var maxV = Math.max.apply(null, ss.prices);
+                var minV = Math.min.apply(null, ss.prices);
+                rows.push({ state: s, avg: a, count: ss.count, max: maxV, min: minV, rating: rating, rowClass: rowClass });
+            }
+            
+            if (rows.length === 0) {
+                h += '<div class="no-data">暂无数据</div>';
+            } else {
+                rows.sort(function(a, b) { return b.avg - a.avg; });
+                h += '<table class="data-table"><thead>';
+                h += '<tr><th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr>';
+                h += '</thead><tbody>';
+                for(var i=0; i<rows.length; i++){
+                    var x = rows[i];
+                    var rankNum = i + 1;
+                    h += '<tr class="' + x.rowClass + '">';
+                    h += '<td style="text-align:center">' + rankNum + '</td>';
+                    h += '<td style="text-align:left;font-weight:700">' + x.state + '</td>';
+                    h += '<td class="num">$' + x.avg.toFixed(2) + '</td>';
+                    h += '<td class="num">' + x.count + '</td>';
+                    h += '<td class="num">$' + x.max.toFixed(2) + '<td>';
+                    h += '<td class="num">$' + x.min.toFixed(2) + '</td>';
+                    h += '<td class="ctr">' + x.rating + '</td>';
+                    h += '</tr>';
+                }
+                h += '</tbody></table>';
+            }
+            document.getElementById('sc').innerHTML = h;
+        }
+        
         loadData();
         setInterval(loadData, 30000);
     </script>
