@@ -539,7 +539,17 @@
             rows.sort(function(a, b) { return b.avg - a.avg; });
             
             h += '<table class="state-data-table">';
-            h += '<thead>运转<th>#</th><th>州</th><th class="num">均价</th><th class="num">条数</th><th class="num">最高</th><th class="num">最低</th><th class="ctr">评级</th></tr></thead>';
+            h += '<thead>';
+			h += '<tr>';
+			h += '<th>#</th>';
+			h += '<th>州</th>';
+			h += '<th class="num">均价</th>';
+			h += '<th class="num">条数</th>';
+			h += '<th class="num">最高</th>';
+			h += '<th class="num">最低</th>';
+			h += '<th class="ctr">评级</th>';
+			h += '</tr>';
+			h += '</thead>';
             h += '<tbody>';
             for (var i = 0; i < rows.length; i++) {
                 var x = rows[i];
