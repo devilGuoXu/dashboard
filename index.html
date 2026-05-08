@@ -215,6 +215,35 @@
             background: #f5f5f5;
         }
         
+        .filter-bar {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+            gap: 10px;
+        }
+        
+        .stats-cards {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 12px 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+        .stat-card {
+            flex: 1;
+            text-align: center;
+        }
+        .stat-card-label {
+            font-size: 12px;
+            color: #999;
+        }
+        .stat-card-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
         @media(max-width:430px){
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
@@ -233,6 +262,9 @@
             .person-detail-table th,.person-detail-table td{padding:6px;font-size:11px}
             .detail-btn{padding:2px 6px;font-size:10px}
             .time-filter-btn{padding:4px 12px;font-size:11px}
+            .stats-cards{gap:8px}
+            .stat-card-value{font-size:16px}
+            .filter-bar{margin-bottom:10px}
         }
     </style>
 </head>
@@ -279,12 +311,14 @@
                     <div class="sidebar-title">Offer 列表</div>
                     <div id="sl"></div>
                 </div>
-                <div class="main-content" id="sc">
-                    <div style="display:flex; justify-content:flex-end; margin-bottom:16px; gap:10px;">
-                        <button class="time-filter-btn" data-time="all">全部时间</button>
+                <div class="main-content">
+                    <div class="filter-bar">
+                        <button class="time-filter-btn active" data-time="all">全部时间</button>
                         <button class="time-filter-btn" data-time="1h">近1小时</button>
                     </div>
-                    <div id="scContent" class="no-data">← 选择 Offer</div>
+                    <div id="scContent" style="min-height: 400px;">
+                        <div class="no-data">← 选择 Offer</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -301,7 +335,7 @@
         // 全局数据
         var _allData = [];
         var _offerList = [];
-        var _offerStats = {};  // 存储每个 offer 的统计数据
+        var _offerStats = {};
         var _totalOps = 0;
         var OFFER_AVG_PRICE = {};
         var DEFAULT_TARGET = OFFER_TARGETS.default || 1000;
@@ -338,6 +372,39 @@
             if (price > avgPrice) return 'price-high';
             if (price < avgPrice) return 'price-low';
             return 'price-equal';
+        }
+        
+        // 切换页面
+        function switchTab(pageId, tabElement) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
+            var tabs = document.querySelectorAll('.nav-tab');
+            for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+            document.getElementById(pageId).classList.add('active');
+            if (tabElement) tabElement.classList.add('active');
+            if (pageId === 'page2') renderPersonOfferList();
+            if (pageId === 'page3') renderStateOfferList();
+        }
+        
+        // 设置州页面时间筛选
+        function setStateTimeFilter(filter) {
+            currentStateTimeFilter = filter;
+            var btns = document.querySelectorAll('#page3 .time-filter-btn');
+            for (var i = 0; i < btns.length; i++) {
+                if (btns[i].getAttribute('data-time') === filter) {
+                    btns[i].classList.add('active');
+                } else {
+                    btns[i].classList.remove('active');
+                }
+            }
+            if (_currentStateOffer) {
+                var activeItem = document.querySelector('#sl .sidebar-item.active');
+                if (activeItem) {
+                    showStateDetail(_currentStateOffer, activeItem);
+                } else if (_offerList.indexOf(_currentStateOffer) >= 0) {
+                    showStateDetail(_currentStateOffer, null);
+                }
+            }
         }
         
         // 显示人员详情弹窗
@@ -388,39 +455,6 @@
             if (modal) modal.remove();
         }
         
-        // 切换页面
-        function switchTab(pageId, tabElement) {
-            var pages = document.querySelectorAll('.page');
-            for (var i = 0; i < pages.length; i++) pages[i].classList.remove('active');
-            var tabs = document.querySelectorAll('.nav-tab');
-            for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
-            document.getElementById(pageId).classList.add('active');
-            if (tabElement) tabElement.classList.add('active');
-            // 刷新页面内容
-            if (pageId === 'page2') renderPersonOfferList();
-            if (pageId === 'page3') renderStateOfferList();
-        }
-        
-        // 设置州页面时间筛选
-        function setStateTimeFilter(filter) {
-            currentStateTimeFilter = filter;
-            var btns = document.querySelectorAll('#page3 .time-filter-btn');
-            for (var i = 0; i < btns.length; i++) {
-                if (btns[i].getAttribute('data-time') === filter) {
-                    btns[i].classList.add('active');
-                } else {
-                    btns[i].classList.remove('active');
-                }
-            }
-            // 刷新当前显示的 Offer 数据
-            if (_currentStateOffer) {
-                var activeItem = document.querySelector('#sl .sidebar-item.active');
-                if (activeItem) {
-                    showStateDetail(_currentStateOffer, activeItem);
-                }
-            }
-        }
-        
         // 显示人员页面详情
         function showPersonDetail(offerName, element) {
             _currentPersonOffer = offerName;
@@ -431,7 +465,6 @@
             var offerAvg = OFFER_AVG_PRICE[offerName] || 0;
             var h = '<div class="section-title">' + offerName + '<span class="section-title-price">均价 ' + formatMoney(offerAvg) + '</span></div>';
             
-            // 从 _allData 中筛选该 offer 的数据
             var personMap = {};
             for (var i = 0; i < _allData.length; i++) {
                 var row = _allData[i];
@@ -518,6 +551,13 @@
                     firstItem.classList.add('active');
                     showPersonDetail(_offerList[0], firstItem);
                 }
+            } else if (_currentPersonOffer && _offerList.indexOf(_currentPersonOffer) >= 0) {
+                var items = list.children;
+                var idx = _offerList.indexOf(_currentPersonOffer);
+                if (items[idx]) {
+                    items[idx].classList.add('active');
+                    showPersonDetail(_currentPersonOffer, items[idx]);
+                }
             }
         }
         
@@ -532,7 +572,6 @@
             var filterText = currentStateTimeFilter === '1h' ? ' (近1小时)' : ' (全部时间)';
             h += '<div style="font-size:12px; color:#999; margin-bottom:10px;">数据范围' + filterText + '</div>';
             
-            // 统计州数据
             var stateMap = {};
             var totalConversions = 0;
             for (var i = 0; i < _allData.length; i++) {
@@ -549,13 +588,13 @@
                 totalConversions++;
             }
             
-            // 计算操作数和匹配数
             var totalOps = 0;
             if (PERSON_OPS && PERSON_OPS[offerName]) {
                 for (var person in PERSON_OPS[offerName]) {
                     totalOps += PERSON_OPS[offerName][person];
                 }
             }
+            
             var matchedCount = 0;
             for (var i = 0; i < _allData.length; i++) {
                 var row = _allData[i];
@@ -567,22 +606,19 @@
             }
             var matchRate = totalOps > 0 ? ((matchedCount / totalOps) * 100).toFixed(1) + '%' : '0%';
             
-            // 统计卡片
-            h += '<div style="display:flex; gap:16px; margin-bottom:20px; padding:12px 16px; background:#f8f9fa; border-radius:10px; flex-wrap:wrap;">';
-            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">转化</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalConversions + '</div></div>';
-            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">操作</div><div style="font-size:22px; font-weight:700; color:#2c3e66;">' + totalOps + '</div></div>';
-            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配</div><div style="font-size:22px; font-weight:700; color:#2979ff;">' + matchedCount + '</div></div>';
-            h += '<div style="flex:1; text-align:center;"><div style="font-size:12px; color:#999;">匹配率</div><div style="font-size:22px; font-weight:700; color:#43a047;">' + matchRate + '</div></div>';
+            h += '<div class="stats-cards">';
+            h += '<div class="stat-card"><div class="stat-card-label">转化</div><div class="stat-card-value" style="color:#2c3e66;">' + totalConversions + '</div></div>';
+            h += '<div class="stat-card"><div class="stat-card-label">操作</div><div class="stat-card-value" style="color:#2c3e66;">' + totalOps + '</div></div>';
+            h += '<div class="stat-card"><div class="stat-card-label">匹配</div><div class="stat-card-value" style="color:#2979ff;">' + matchedCount + '</div></div>';
+            h += '<div class="stat-card"><div class="stat-card-label">匹配率</div><div class="stat-card-value" style="color:#43a047;">' + matchRate + '</div></div>';
             h += '</div>';
             
             if (Object.keys(stateMap).length === 0) {
                 h += '<div class="no-data">暂无州数据</div>';
-                document.getElementById('sc').innerHTML = h;
                 document.getElementById('scContent').innerHTML = h;
                 return;
             }
             
-            // 计算全局均价和阈值
             var allPrices = [];
             for (var s in stateMap) {
                 for (var j = 0; j < stateMap[s].prices.length; j++) allPrices.push(stateMap[s].prices[j]);
@@ -593,7 +629,6 @@
             var highThreshold = globalAvg * 1.1;
             var lowThreshold = globalAvg * 0.9;
             
-            // 构建行数据
             var rows = [];
             for (var s in stateMap) {
                 var ss = stateMap[s];
@@ -633,7 +668,6 @@
             }
             h += '</tbody></table>';
             
-            document.getElementById('sc').innerHTML = h;
             document.getElementById('scContent').innerHTML = h;
         }
         
@@ -659,6 +693,13 @@
                     firstItem.classList.add('active');
                     showStateDetail(_offerList[0], firstItem);
                 }
+            } else if (_currentStateOffer && _offerList.indexOf(_currentStateOffer) >= 0) {
+                var items = list.children;
+                var idx = _offerList.indexOf(_currentStateOffer);
+                if (items[idx]) {
+                    items[idx].classList.add('active');
+                    showStateDetail(_currentStateOffer, items[idx]);
+                }
             }
         }
         
@@ -679,7 +720,6 @@
                     }
                     if (_allData.length === 0) return;
                     
-                    // 统计每个 offer 的数据
                     _offerStats = {};
                     var totalAmount = 0, totalCount = 0;
                     for (var i = 0; i < _allData.length; i++) {
@@ -705,14 +745,12 @@
                         OFFER_AVG_PRICE[o] = _offerStats[o].total / _offerStats[o].count;
                     }
                     
-                    // 更新总览页统计
                     document.getElementById('totalOffers').textContent = _offerList.length;
                     document.getElementById('totalAmount').textContent = formatMoney(totalAmount);
                     document.getElementById('totalCount').textContent = totalCount;
                     document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
                     document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
                     
-                    // 进度条
                     var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
                     var progressHtml = '';
                     for (var idx = 0; idx < _offerList.length; idx++) {
@@ -732,7 +770,7 @@
                         else if (last10Avg < avg && avg > 0) last10Class = 'price-low';
                         else last10Class = 'price-equal';
                         var color = colors[idx % colors.length];
-                        progressHtml += '<tr><td class="prog-td-name">' + o + '</td>';
+                        progressHtml += '<tr><td class="prog-td-name">' + o + '<td>';
                         if (target > 0) {
                             progressHtml += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + done + '/' + target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
                         } else {
@@ -744,7 +782,6 @@
                     }
                     document.getElementById('progressBody').innerHTML = progressHtml;
                     
-                    // 人员排名
                     var personAmount = {};
                     for (var i = 0; i < _allData.length; i++) {
                         var p = _allData[i]['人员'] || '-';
@@ -777,7 +814,6 @@
                     }
                     document.getElementById('personBody').innerHTML = personHtml;
                     
-                    // 刷新人员页面和州页面
                     renderPersonOfferList();
                     renderStateOfferList();
                 })
@@ -786,7 +822,6 @@
         
         // 绑定事件
         function bindEvents() {
-            // Tab 切换
             var tabs = document.querySelectorAll('.nav-tab');
             for (var i = 0; i < tabs.length; i++) {
                 tabs[i].addEventListener('click', function(e) {
@@ -794,7 +829,6 @@
                     if (tabId) switchTab(tabId, this);
                 });
             }
-            // 时间筛选按钮
             var timeBtns = document.querySelectorAll('#page3 .time-filter-btn');
             for (var i = 0; i < timeBtns.length; i++) {
                 timeBtns[i].addEventListener('click', function(e) {
@@ -804,7 +838,6 @@
             }
         }
         
-        // 初始化
         bindEvents();
         loadData();
         setInterval(loadData, 30000);
