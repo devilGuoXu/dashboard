@@ -325,7 +325,7 @@
                 rows.push({ offer: offer, total: total, avg: avgPrice, conversion: conversion, ops: ops });
             }
             rows.sort(function(a, b) { return a.offer.localeCompare(b.offer); });
-            var html = '<div class="modal-overlay" id="personModal" onclick="closePersonModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>?? 人员详情 - ' + personName + '</h3><button class="modal-close" onclick="closePersonModal()">&times;</button></div><table class="person-detail-table"><thead><tr><th>Offer</th><th class="num">金额</th><th class="num">均价</th><th class="num">转化</th><th class="num">操作</th></tr></thead><tbody>';
+            var html = '<div class="modal-overlay" id="personModal" onclick="closePersonModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>📋 人员详情 - ' + personName + '</h3><button class="modal-close" onclick="closePersonModal()">&times;</button></div><table class="person-detail-table"><thead><tr><th>Offer</th><th class="num">金额</th><th class="num">均价</th><th class="num">转化</th><th class="num">操作</th></tr></thead><tbody>';
             for (var i = 0; i < rows.length; i++) {
                 var x = rows[i];
                 html += '<tr><td style="text-align:left">' + x.offer + '</td><td class="num">' + formatMoney(x.total) + '</td><td class="num">' + formatMoney(x.avg) + '</td><td class="num">' + x.conversion + '</td><td class="num">' + x.ops + '</td></tr>';
