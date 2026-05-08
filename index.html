@@ -27,11 +27,11 @@
         .panel{background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05),0 1px 2px rgba(0,0,0,0.03);overflow:hidden;margin-bottom:16px}
         .panel-header{padding:14px 18px;font-weight:600;font-size:14px;border-bottom:1px solid #f2f2f2}
         .progress-list{padding:0;overflow-x:auto}
-        .prog-table{width:100%;border-collapse:collapse;table-layout:fixed}
+        .prog-table{width:100%;border-collapse:collapse}
         .prog-table th{padding:10px 8px;font-size:12px;color:#aaa;font-weight:500;border-bottom:1px solid #f2f2f2;text-align:center;white-space:nowrap}
         .prog-table th:first-child{text-align:left}
         .prog-table td{padding:10px 8px;font-size:13px;border-bottom:1px solid #f8f8f8}
-        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:180px}
+        .prog-td-name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700;text-align:left;max-width:200px}
         .prog-td-bar{white-space:nowrap;text-align:left}
         .prog-bar{height:8px;border-radius:4px;background:#f0f1f3;overflow:hidden;width:100%;min-width:150px}
         .prog-fill{height:100%;border-radius:4px;transition:width .4s}
@@ -39,7 +39,6 @@
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
-        .prog-td-avg10{min-width:110px}
         
         /* 总览页面排名表格样式 */
         .rank-table{width:100%;border-collapse:collapse}
@@ -248,14 +247,13 @@
             body{padding:0}.navbar{padding:0 12px;height:48px}.nav-brand{font-size:14px;margin-right:12px}.nav-tabs{gap:10px}.nav-tab{font-size:12px;padding:0 2px}.nav-update{font-size:10px}
             .page{padding:12px 8px}.stat-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}.sc{padding:12px 10px}.sc-value{font-size:20px}.sc-icon{width:32px;height:32px;margin-bottom:6px}.sc-icon svg{width:14px;height:14px}.sc-label{font-size:11px}
             .bottom-row{grid-template-columns:1fr;gap:10px}.panel{margin-bottom:8px}.panel-header{padding:10px 12px;font-size:12px}
-            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}.prog-num{font-size:10px}
+            .prog-table th,.prog-table td{padding:6px 8px;font-size:12px}.prog-td-name{max-width:100px}.prog-bar{min-width:100px}
             .split-layout{flex-direction:column}.sidebar{width:100%;max-height:180px}
             .rank-table th,.rank-table td{padding:6px 8px;font-size:12px}
             .rank-table th:nth-child(2){width:100px}
             .person-data-table th,.person-data-table td{padding:6px 8px;font-size:12px;white-space:normal}
             .person-data-table td:nth-child(2){white-space:normal}
             .state-data-table th,.state-data-table td{padding:6px 8px;font-size:12px;white-space:normal}
-            .state-data-table td:nth-child(2){white-space:normal}
             .section-title{font-size:15px}
             .modal-content{width:95%;padding:12px}
             .modal-header h3{font-size:16px}
@@ -289,7 +287,7 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:25%">Offer</th><th style="width:35%">进度</th><th style="width:20%">均价</th><th style="width:20%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
+                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead>运转<th style="width:25%">Offer</th><th style="width:35%">进度</th><th style="width:20%">均价</th><th style="width:20%">近10均价</th></tr></thead><tbody id="progressBody"></tbody></table></div></div>
                 <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></table></div>
             </div>
         </div>
@@ -340,7 +338,7 @@
         var OFFER_AVG_PRICE = {};
         var DEFAULT_TARGET = OFFER_TARGETS.default || 1000;
         
-        // UI 状态
+        // UI 状态 - 保持选中的 Offer
         var _currentPersonOffer = null;
         var _currentStateOffer = null;
         var currentStateTimeFilter = 'all';
@@ -398,12 +396,7 @@
                 }
             }
             if (_currentStateOffer) {
-                var activeItem = document.querySelector('#sl .sidebar-item.active');
-                if (activeItem) {
-                    showStateDetail(_currentStateOffer, activeItem);
-                } else if (_offerList.indexOf(_currentStateOffer) >= 0) {
-                    showStateDetail(_currentStateOffer, null);
-                }
+                showStateDetail(_currentStateOffer, null);
             }
         }
         
@@ -529,7 +522,7 @@
             document.getElementById('pc').innerHTML = h;
         }
         
-        // 渲染人员页面 Offer 列表
+        // 渲染人员页面 Offer 列表（保持选中状态）
         function renderPersonOfferList() {
             var list = document.getElementById('pl');
             if (!list) return;
@@ -538,25 +531,27 @@
                 var o = _offerList[i];
                 var d = document.createElement('div');
                 d.className = 'sidebar-item';
-                if (i === 0) d.className += ' active';
+                if (_currentPersonOffer === o) d.classList.add('active');
                 d.textContent = o;
                 d.onclick = (function(offer) {
                     return function() { showPersonDetail(offer, this); };
                 })(o);
                 list.appendChild(d);
             }
-            if (!_currentPersonOffer && _offerList.length > 0) {
+            // 如果有选中的 Offer 且存在于列表中，显示它
+            if (_currentPersonOffer && _offerList.indexOf(_currentPersonOffer) >= 0) {
+                var items = list.children;
+                var idx = _offerList.indexOf(_currentPersonOffer);
+                if (items[idx]) {
+                    showPersonDetail(_currentPersonOffer, items[idx]);
+                }
+            } else if (_offerList.length > 0) {
+                // 没有选中或选中的不存在，默认选中第一个
+                _currentPersonOffer = _offerList[0];
                 var firstItem = list.firstChild;
                 if (firstItem) {
                     firstItem.classList.add('active');
                     showPersonDetail(_offerList[0], firstItem);
-                }
-            } else if (_currentPersonOffer && _offerList.indexOf(_currentPersonOffer) >= 0) {
-                var items = list.children;
-                var idx = _offerList.indexOf(_currentPersonOffer);
-                if (items[idx]) {
-                    items[idx].classList.add('active');
-                    showPersonDetail(_currentPersonOffer, items[idx]);
                 }
             }
         }
@@ -671,7 +666,7 @@
             document.getElementById('scContent').innerHTML = h;
         }
         
-        // 渲染州页面 Offer 列表
+        // 渲染州页面 Offer 列表（保持选中状态）
         function renderStateOfferList() {
             var list = document.getElementById('sl');
             if (!list) return;
@@ -680,25 +675,27 @@
                 var o = _offerList[i];
                 var d = document.createElement('div');
                 d.className = 'sidebar-item';
-                if (i === 0) d.className += ' active';
+                if (_currentStateOffer === o) d.classList.add('active');
                 d.textContent = o;
                 d.onclick = (function(offer) {
                     return function() { showStateDetail(offer, this); };
                 })(o);
                 list.appendChild(d);
             }
-            if (!_currentStateOffer && _offerList.length > 0) {
+            // 如果有选中的 Offer 且存在于列表中，显示它
+            if (_currentStateOffer && _offerList.indexOf(_currentStateOffer) >= 0) {
+                var items = list.children;
+                var idx = _offerList.indexOf(_currentStateOffer);
+                if (items[idx]) {
+                    showStateDetail(_currentStateOffer, items[idx]);
+                }
+            } else if (_offerList.length > 0) {
+                // 没有选中或选中的不存在，默认选中第一个
+                _currentStateOffer = _offerList[0];
                 var firstItem = list.firstChild;
                 if (firstItem) {
                     firstItem.classList.add('active');
                     showStateDetail(_offerList[0], firstItem);
-                }
-            } else if (_currentStateOffer && _offerList.indexOf(_currentStateOffer) >= 0) {
-                var items = list.children;
-                var idx = _offerList.indexOf(_currentStateOffer);
-                if (items[idx]) {
-                    items[idx].classList.add('active');
-                    showStateDetail(_currentStateOffer, items[idx]);
                 }
             }
         }
@@ -770,7 +767,7 @@
                         else if (last10Avg < avg && avg > 0) last10Class = 'price-low';
                         else last10Class = 'price-equal';
                         var color = colors[idx % colors.length];
-                        progressHtml += '<tr><td class="prog-td-name">' + o + '<td>';
+                        progressHtml += '<tr><td class="prog-td-name">' + o + '</td>';
                         if (target > 0) {
                             progressHtml += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + done + '/' + target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
                         } else {
@@ -810,10 +807,11 @@
                             }
                         }
                         var safePerson = p.replace(/'/g, "\\'");
-                        personHtml += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">' + formatMoney(total) + '</td><td style="text-align:right">' + formatMoney(avg) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
+                        personHtml += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">' + formatMoney(total) + '</td><td style="text-align:right">' + formatMoney(avg) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></table>';
                     }
                     document.getElementById('personBody').innerHTML = personHtml;
                     
+                    // 刷新人员页面和州页面（保持选中状态）
                     renderPersonOfferList();
                     renderStateOfferList();
                 })
