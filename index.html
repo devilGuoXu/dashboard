@@ -190,6 +190,8 @@
 									<th style="width:35%">进度</th>
 									<th style="width:10%">均价</th>
 									<th style="width:10%">近10均价</th>
+									<th style="width:10%">操作</th>
+									<th style="width:10%">时间</th>
 								<tr>
 							</thead>
 							<tbody id="progressBody"></tbody>
@@ -689,6 +691,8 @@
                         progressHtml += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + done + '/' + target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
                         progressHtml += '<td class="prog-td-avg">' + formatMoney(avg) + '</td>';
                         progressHtml += '<td class="prog-td-avg10 ' + last10Class + '">' + formatMoney(last10Avg) + '</td>';
+						progress_items += '<td class="prog-td-ops">{:,}</td>'.format(d['ops'])  # 新增
+						progress_items += '<td class="prog-td-time">{}</td>'.format(d['last_time'])  # 新增
                         progressHtml += '</tr>';
                     }
                     document.getElementById('progressBody').innerHTML = progressHtml;
