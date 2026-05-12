@@ -39,6 +39,16 @@
         .prog-info{display:flex;justify-content:flex-end;margin-bottom:2px}
         .prog-td-avg,.prog-td-avg10{text-align:right;white-space:nowrap;font-family:'SF Mono','Consolas',monospace;font-size:13px}
         .prog-td-avg{font-weight:600;color:#2c3e66}
+		/* ========== 新增样式放在这里 ========== */
+		.prog-td-ops {
+			text-align: right;
+			font-family: 'SF Mono', 'Consolas', monospace;
+			font-size: 13px;
+			font-weight: 600;
+			font-weight: normal;
+			color: #333333;
+		}
+		/* =================================== */
         
         /* 总览页面排名表格样式 */
         .rank-table{width:100%;border-collapse:collapse}
@@ -160,7 +170,7 @@
     </style>
 </head>
 <body>
-<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2145 C - QW home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "Stellar-2 228 - CheapCarSecure", "LA-30 452 TurboSavingsAuto", "LA-30 459 TurboSavingsAuto", "LA-30 465 TurboSavingsAuto"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 500, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "B452-4 2145 C - QW home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 150, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "Stellar-2 228 - CheapCarSecure": 100, "LA-30 452 TurboSavingsAuto": 200, "LA-30 459 TurboSavingsAuto": 200, "LA-30 465 TurboSavingsAuto": 200, "default": 9999};var PERSON_OPS={"B452-4 2145 C - QW home": {"陈虹佑": 30, "史天欢": 39, "周港": 11}, "B452-4 2118 RP - Quote Wizard Home": {"李铜": 37}, "B452-4 1973 GPR - AutoQuote Center": {"陈虹佑": 74, "郑义程": 86, "钟奕": 137, "杨松柏": 117, "成昭旭": 79, "陈朋": 68, "张波": 83, "陈帅": 20, "周港": 15, "史天欢": 39, "温馨": 4}, "CRM-6 (1920) Quote Wizard -Home Insurance": {"周港": 39, "张波": 43}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"温馨": 38, "陈朋": 33, "高峰": 38}, "LA-30 452 TurboSavingsAuto": {"陈帅": 24, "史天欢": 9, "陈虹佑": 85, "高峰": 54}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 115, "钟进": 173}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 123}, "Datewave-2 710647  Quotes for all": {"成昭旭": 76, "郑义程": 25, "李铜": 49, "陈朋": 14, "张波": 15, "杨松柏": 5, "钟奕": 7, "陈帅": 9}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 102, "陈帅": 67, "温馨": 91, "钟进": 7}, "Adscent-52 (15587)223-AutoQuoteMarket": {"张波": 113, "温馨": 63, "高峰": 20, "郑义程": 18, "陈帅": 14, "成昭旭": 36, "史天欢": 23, "周港": 59, "陈朋": 115}, "LA-30 459 TurboSavingsAuto": {"周港": 33, "陈帅": 78, "郑义程": 88, "杨松柏": 5}, "LA-30 465 TurboSavingsAuto": {"杨松柏": 81, "钟奕": 99, "钟进": 15}, "B452-4 1678-BH - Auto Quote Market": {"陈帅": 18, "史天欢": 20, "杨松柏": 26, "钟奕": 27}, "B452-4 2106 CL - Best Quote Auto": {"成昭旭": 10, "陈虹佑": 19, "郑义程": 43, "钟奕": 10}, "Stellar-2 228 - CheapCarSecure": {"史天欢": 66, "周港": 38, "郭旭": 5}, "Ashnova-128 [3579]TurboSavingsAuto": {"成昭旭": 77, "郭旭": 4, "李铜": 77}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈朋": 24, "温馨": 17, "陈虹佑": 10, "史天欢": 15, "高峰": 24, "李铜": 14}};</script>
+<script>var MAPPED_OFFERS=["Datewave-2 710641 NetAutoQuotes", "Datewave-2 710647  Quotes for all", "Datewave-2 729268 Kisterra CarQuotesBox", "Adscent-52 (15587)223-AutoQuoteMarket", "Adscent-52 (253016)239-QuoteWizard Home Insurance", "B452-4 2077 Gro - WiseAutoQuotes", "B452-4 2106 CL - Best Quote Auto", "B452-4 1973 GPR - AutoQuote Center", "B452-4 2084 RP - Auto Quote Center", "B452-4 2094 C - Home Quote Land", "B452-4 1678-BH - Auto Quote Market", "B452-4 2145 C - QW home", "NexRidg-7 42-AutoQuoteZone", "BW-165 (2518) Qualityautoquote", "BW-165 (2425)-Finance Buzz-Auto Insurance", "Stellar-2 228 - CheapCarSecure", "LA-30 452 TurboSavingsAuto", "LA-30 459 TurboSavingsAuto", "LA-30 465 TurboSavingsAuto", "Ashnova-128 [3579]TurboSavingsAuto"];var OFFER_TARGETS={"Datewave-2 710641 NetAutoQuotes": 300, "Datewave-2 710647  Quotes for all": 800, "Datewave-2 729268 Kisterra CarQuotesBox": 300, "Adscent-52 (15587)223-AutoQuoteMarket": 500, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": 200, "Adscent-52 (253016)239-QuoteWizard Home Insurance": 200, "B452-4 2106 CL - Best Quote Auto": 100, "B452-4 1973 GPR - AutoQuote Center": 700, "B452-4 1678-BH - Auto Quote Market": 1000, "B452-4 2118 RP - Quote Wizard Home": 50, "B452-4 2145 C - QW home": 50, "NexRidg-7 42-AutoQuoteZone": 9999, "BW-165 (2518) Qualityautoquote": 1200, "BW-165 (2425)-Finance Buzz-Auto Insurance": 150, "CRM-6 (1920) Quote Wizard -Home Insurance": 50, "Stellar-2 228 - CheapCarSecure": 100, "LA-30 452 TurboSavingsAuto": 200, "LA-30 459 TurboSavingsAuto": 200, "LA-30 465 TurboSavingsAuto": 200, "default": 9999};var PERSON_OPS={"B452-4 2145 C - QW home": {"陈虹佑": 30, "史天欢": 39, "周港": 11}, "B452-4 2118 RP - Quote Wizard Home": {"李铜": 37}, "B452-4 1973 GPR - AutoQuote Center": {"陈虹佑": 74, "郑义程": 86, "钟奕": 137, "杨松柏": 117, "成昭旭": 79, "陈朋": 68, "张波": 83, "陈帅": 20, "周港": 15, "史天欢": 39, "温馨": 4}, "CRM-6 (1920) Quote Wizard -Home Insurance": {"周港": 39, "张波": 43}, "Adscent-52 (131316) 193-QuoteWizard-Home Insurance": {"温馨": 38, "陈朋": 33, "高峰": 38}, "LA-30 452 TurboSavingsAuto": {"陈帅": 24, "史天欢": 9, "陈虹佑": 85, "高峰": 54, "成昭旭": 8}, "BW-165 (2425)-Finance Buzz-Auto Insurance": {"郭旭": 115, "钟进": 173}, "B452-4 1942 P - My Auto Free Quotes": {"陈仕荣": 123}, "Datewave-2 710647  Quotes for all": {"陈虹佑": 13, "成昭旭": 76, "陈帅": 39, "郑义程": 45, "李铜": 77, "陈朋": 14, "张波": 30, "杨松柏": 26, "钟奕": 35}, "NexRidg-7 42-AutoQuoteZone": {"高峰": 102, "陈帅": 67, "温馨": 91, "钟进": 7}, "Adscent-52 (15587)223-AutoQuoteMarket": {"张波": 113, "温馨": 63, "高峰": 20, "郑义程": 18, "陈帅": 14, "成昭旭": 50, "史天欢": 42, "周港": 74, "陈朋": 115}, "LA-30 459 TurboSavingsAuto": {"周港": 33, "陈帅": 78, "郑义程": 88, "杨松柏": 5}, "LA-30 465 TurboSavingsAuto": {"杨松柏": 81, "钟奕": 99, "钟进": 15, "成昭旭": 5}, "B452-4 1678-BH - Auto Quote Market": {"陈帅": 18, "史天欢": 20, "杨松柏": 26, "钟奕": 27}, "B452-4 2106 CL - Best Quote Auto": {"成昭旭": 10, "陈虹佑": 29, "郑义程": 53, "钟奕": 10}, "Stellar-2 228 - CheapCarSecure": {"史天欢": 66, "周港": 38, "郭旭": 5}, "Datewave-2 729268 Kisterra CarQuotesBox": {"陈朋": 40, "温馨": 35, "陈虹佑": 10, "史天欢": 20, "高峰": 49, "李铜": 14, "周港": 5}, "Ashnova-128 [3579]TurboSavingsAuto": {"成昭旭": 77, "郭旭": 4, "李铜": 77}};</script>
     <nav class="navbar">
         <span class="nav-brand">广告数据</span>
         <div class="nav-tabs">
@@ -180,7 +190,23 @@
                 <div class="sc"><div class="sc-icon" style="background:#fef5f0"><svg viewBox="0 0 24 24" fill="none" stroke="#e8905c" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 1v4m0 14v4M1 12h4m14 0h4"/></svg></div><div><div class="sc-label">操作总数</div><div class="sc-value" id="totalOps">-</div></div></div>
             </div>
             <div class="bottom-row">
-                <div class="panel"><div class="panel-header">Offer 进度</div><div class="progress-list"><table class="prog-table"><thead><tr><th style="width:35%">Offer</th><th style="width:35%">进度</th><th style="width:10%">均价</th><th style="width:10%">近10均价</th><tr></thead><tbody id="progressBody"></tbody></table></div></div>
+                <div class="panel">
+					<div class="panel-header">Offer 进度</div>
+					<div class="progress-list">
+						<table class="prog-table">
+							<thead>
+								<tr>
+									<th style="width:30%">Offer</th>
+									<th style="width:40%">进度</th>
+									<th style="width:10%">均价</th>
+									<th style="width:10%">近10均价</th>
+									<th style="width:10%">操作</th>
+								</tr>
+							</thead>
+							<tbody id="progressBody"></tbody>
+						</table>
+					</div>
+				</div>
                 <div class="panel"><div class="panel-header">人员排名</div><table class="rank-table"><thead><tr><th>#</th><th>人员</th><th>总金额</th><th>均价</th><th>转化</th><th>操作</th></tr></thead><tbody id="personBody"></tbody></table></div>
             </div>
         </div>
@@ -646,7 +672,7 @@
                     document.getElementById('totalAmount').textContent = formatMoney(totalAmount);
                     document.getElementById('totalCount').textContent = totalCount;
                     document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
-                    document.getElementById('updateTime').textContent = '更新: ' + new Date().toLocaleTimeString('zh-CN');
+                    document.getElementById('updateTime').innerHTML = '更新: ' + new Date().toLocaleTimeString('zh-CN') + ' | API: ' + (d.api_last_time || '未获取');
                     
                     var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
                     var progressHtml = '';
