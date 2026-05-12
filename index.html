@@ -627,121 +627,140 @@
         }
         
         // 加载数据
-        function loadData() {
-            fetch('data.json?t=' + Date.now())
-                .then(function(r) { return r.json(); })
-                .then(function(d) {
-                    console.log('data.json loaded', d);
-                    _totalOps = d.total_ops || 0;
-                    var rawData = d.data || [];
-                    _allData = [];
-                    for (var i = 0; i < rawData.length; i++) {
-                        var offer = String(rawData[i].offer || '').trim();
-                        if (MAPPED_OFFERS.length === 0 || MAPPED_OFFERS.indexOf(offer) >= 0) {
-                            _allData.push(rawData[i]);
-                        }
-                    }
-                    if (_allData.length === 0) return;
-                    
-                    _offerStats = {};
-                    var totalAmount = 0, totalCount = 0;
-                    for (var i = 0; i < _allData.length; i++) {
-                        var r = _allData[i];
-                        var o = String(r.offer || '未知').trim();
-                        var p = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                        var ip = String(r['ip'] || r['IP'] || '').trim();
-                        if (!_offerStats[o]) _offerStats[o] = { total: 0, count: 0, entries: [] };
-                        _offerStats[o].total += p;
-                        _offerStats[o].count += 1;
-                        _offerStats[o].entries.push({
-                            price: p,
-                            time: r['时间'] || '',
-                            person: r['人员'] || '-',
-                            state: r['州'] || '-'
-                        });
-                        totalAmount += p;
-                        if (ip && p) totalCount += 1;
-                    }
-                    _offerList = Object.keys(_offerStats).sort();
-                    for (var i = 0; i < _offerList.length; i++) {
-                        var o = _offerList[i];
-                        OFFER_AVG_PRICE[o] = _offerStats[o].total / _offerStats[o].count;
-                    }
-                    
-                    document.getElementById('totalOffers').textContent = _offerList.length;
-                    document.getElementById('totalAmount').textContent = formatMoney(totalAmount);
-                    document.getElementById('totalCount').textContent = totalCount;
-                    document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
-                    document.getElementById('updateTime').innerHTML = '更新: ' + new Date().toLocaleTimeString('zh-CN') + ' | API: ' + (d.api_last_time || '未获取');
-                    
-                    var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
-                    var progressHtml = '';
-                    for (var idx = 0; idx < _offerList.length; idx++) {
-                        var o = _offerList[idx];
-                        var s = _offerStats[o];
-                        var target = OFFER_TARGETS[o] || DEFAULT_TARGET;
-                        var done = s.count;
-                        var pct = target > 0 ? Math.min(done / target * 100, 100) : 0;
-                        var avg = s.total / s.count;
-                        var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
-                        var last10 = entries.slice(0, 10);
-                        var last10Total = 0;
-                        for (var j = 0; j < last10.length; j++) last10Total += last10[j].price;
-                        var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
-                        var last10Class = '';
-                        if (last10Avg > avg && avg > 0) last10Class = 'price-high';
-                        else if (last10Avg < avg && avg > 0) last10Class = 'price-low';
-                        else last10Class = 'price-equal';
-                        var color = colors[idx % colors.length];
-                        
-                        // 关键修复：确保只有4个td，没有多余的空td
-                        progressHtml += '<tr>';
-                        progressHtml += '<td class="prog-td-name">' + o + '</td>';
-                        progressHtml += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + done + '/' + target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
-                        progressHtml += '<td class="prog-td-avg">' + formatMoney(avg) + '</td>';
-                        progressHtml += '<td class="prog-td-avg10 ' + last10Class + '">' + formatMoney(last10Avg) + '</td>';
-                        progressHtml += '</tr>';
-                    }
-                    document.getElementById('progressBody').innerHTML = progressHtml;
-                    
-                    var personAmount = {};
-                    for (var i = 0; i < _allData.length; i++) {
-                        var p = _allData[i]['人员'] || '-';
-                        if (p === '-') continue;
-                        var pr = parseFloat(String(_allData[i]['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                        personAmount[p] = (personAmount[p] || 0) + pr;
-                    }
-                    var persons = Object.keys(personAmount).sort(function(a, b) { return personAmount[b] - personAmount[a]; });
-                    var personHtml = '';
-                    for (var i = 0; i < Math.min(persons.length, 15); i++) {
-                        var p = persons[i];
-                        var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
-                        var total = personAmount[p];
-                        var count = 0;
-                        for (var j = 0; j < _allData.length; j++) {
-                            if (_allData[j]['人员'] === p) {
-                                var pr = parseFloat(String(_allData[j]['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                                if (pr > 0) count++;
-                            }
-                        }
-                        var avg = count > 0 ? total / count : 0;
-                        var personOpsTotal = 0;
-                        for (var offerName in PERSON_OPS) {
-                            if (PERSON_OPS[offerName] && PERSON_OPS[offerName][p]) {
-                                personOpsTotal += PERSON_OPS[offerName][p];
-                            }
-                        }
-                        var safePerson = p.replace(/'/g, "\\'");
-                        personHtml += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">' + formatMoney(total) + '</td><td style="text-align:right">' + formatMoney(avg) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
-                    }
-                    document.getElementById('personBody').innerHTML = personHtml;
-                    
-                    renderPersonOfferList();
-                    renderStateOfferList();
-                })
-                .catch(function(err) { console.error('加载数据失败:', err); });
-        }
-        
+	function loadData() {
+		fetch('data.json?t=' + Date.now())
+			.then(function(r) { return r.json(); })
+			.then(function(d) {
+				console.log('data.json loaded', d);
+				_totalOps = d.total_ops || 0;
+				var rawData = d.data || [];
+				
+				// 获取 PERSON_OPS 数据（优先从 data.json，其次从全局变量）
+				var personOpsData = (d.person_offer_ops && Object.keys(d.person_offer_ops).length > 0) 
+					? d.person_offer_ops 
+					: (typeof PERSON_OPS !== 'undefined' ? PERSON_OPS : {});
+				console.log('PERSON_OPS 可用 Offer:', Object.keys(personOpsData || {}).length);
+				
+				_allData = [];
+				for (var i = 0; i < rawData.length; i++) {
+					var offer = String(rawData[i].offer || '').trim();
+					if (MAPPED_OFFERS.length === 0 || MAPPED_OFFERS.indexOf(offer) >= 0) {
+						_allData.push(rawData[i]);
+					}
+				}
+				if (_allData.length === 0) return;
+				
+				_offerStats = {};
+				var totalAmount = 0, totalCount = 0;
+				for (var i = 0; i < _allData.length; i++) {
+					var r = _allData[i];
+					var o = String(r.offer || '未知').trim();
+					var p = parseFloat(String(r['价格'] || '0').replace(/[$,]/g, '')) || 0;
+					var ip = String(r['ip'] || r['IP'] || '').trim();
+					if (!_offerStats[o]) _offerStats[o] = { total: 0, count: 0, entries: [] };
+					_offerStats[o].total += p;
+					_offerStats[o].count += 1;
+					_offerStats[o].entries.push({
+						price: p,
+						time: r['时间'] || '',
+						person: r['人员'] || '-',
+						state: r['州'] || '-'
+					});
+					totalAmount += p;
+					if (ip && p) totalCount += 1;
+				}
+				_offerList = Object.keys(_offerStats).sort();
+				for (var i = 0; i < _offerList.length; i++) {
+					var o = _offerList[i];
+					OFFER_AVG_PRICE[o] = _offerStats[o].total / _offerStats[o].count;
+				}
+				
+				document.getElementById('totalOffers').textContent = _offerList.length;
+				document.getElementById('totalAmount').textContent = formatMoney(totalAmount);
+				document.getElementById('totalCount').textContent = totalCount;
+				document.getElementById('totalOps').textContent = _totalOps.toLocaleString();
+				document.getElementById('updateTime').innerHTML = '更新: ' + new Date().toLocaleTimeString('zh-CN') + ' | API: ' + (d.api_last_time || '未获取');
+				
+				var colors = ['#4f6ef7', '#00b894', '#e8905c', '#6c5ce7', '#fd79a8', '#0984e3', '#fdcb6e', '#a29bfe'];
+				var progressHtml = '';
+				
+				for (var idx = 0; idx < _offerList.length; idx++) {
+					var o = _offerList[idx];
+					var s = _offerStats[o];
+					var target = OFFER_TARGETS[o] || DEFAULT_TARGET;
+					var done = s.count;
+					var pct = target > 0 ? Math.min(done / target * 100, 100) : 0;
+					var avg = s.total / s.count;
+					var entries = s.entries.slice().sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
+					var last10 = entries.slice(0, 10);
+					var last10Total = 0;
+					for (var j = 0; j < last10.length; j++) last10Total += last10[j].price;
+					var last10Avg = last10.length > 0 ? last10Total / last10.length : 0;
+					var last10Class = '';
+					if (last10Avg > avg && avg > 0) last10Class = 'price-high';
+					else if (last10Avg < avg && avg > 0) last10Class = 'price-low';
+					else last10Class = 'price-equal';
+					var color = colors[idx % colors.length];
+					
+					// 获取该 Offer 的操作数
+					var offerOps = 0;
+					if (personOpsData && personOpsData[o]) {
+						for (var person in personOpsData[o]) {
+							if (personOpsData[o].hasOwnProperty(person)) {
+								offerOps += personOpsData[o][person];
+							}
+						}
+					}
+					
+					// 构建表格行，现在有 5 列：Offer名称、进度、均价、近10均价、操作数
+					progressHtml += '<tr>';
+					progressHtml += '<td class="prog-td-name">' + o + '</td>';
+					progressHtml += '<td class="prog-td-bar"><div class="prog-info"><span class="prog-num">' + done + '/' + target + '</span></div><div class="prog-bar"><div class="prog-fill" style="width:' + pct.toFixed(0) + '%;background:' + color + '"></div></div></td>';
+					progressHtml += '<td class="prog-td-avg">' + formatMoney(avg) + '</td>';
+					progressHtml += '<td class="prog-td-avg10 ' + last10Class + '">' + formatMoney(last10Avg) + '</td>';
+					progressHtml += '<td class="prog-td-ops">' + offerOps.toLocaleString() + '</td>';  // 新增操作列
+					progressHtml += '</tr>';
+				}
+				document.getElementById('progressBody').innerHTML = progressHtml;
+				
+				var personAmount = {};
+				for (var i = 0; i < _allData.length; i++) {
+					var p = _allData[i]['人员'] || '-';
+					if (p === '-') continue;
+					var pr = parseFloat(String(_allData[i]['价格'] || '0').replace(/[$,]/g, '')) || 0;
+					personAmount[p] = (personAmount[p] || 0) + pr;
+				}
+				var persons = Object.keys(personAmount).sort(function(a, b) { return personAmount[b] - personAmount[a]; });
+				var personHtml = '';
+				for (var i = 0; i < Math.min(persons.length, 15); i++) {
+					var p = persons[i];
+					var badge = i < 3 ? ['🥇', '🥈', '🥉'][i] : String(i + 1).padStart(2, '0');
+					var total = personAmount[p];
+					var count = 0;
+					for (var j = 0; j < _allData.length; j++) {
+						if (_allData[j]['人员'] === p) {
+							var pr = parseFloat(String(_allData[j]['价格'] || '0').replace(/[$,]/g, '')) || 0;
+							if (pr > 0) count++;
+						}
+					}
+					var avg = count > 0 ? total / count : 0;
+					var personOpsTotal = 0;
+					for (var offerName in personOpsData) {
+						if (personOpsData[offerName] && personOpsData[offerName][p]) {
+							personOpsTotal += personOpsData[offerName][p];
+						}
+					}
+					var safePerson = p.replace(/'/g, "\\'");
+					personHtml += '<tr><td style="text-align:center">' + badge + '</td><td style="text-align:left;font-weight:700;white-space:nowrap">' + p + '<button class="detail-btn" onclick="showPersonDetailModal(\'' + safePerson + '\')">详情</button></td><td style="text-align:right;font-weight:800;color:#2979ff">' + formatMoney(total) + '</td><td style="text-align:right">' + formatMoney(avg) + '</td><td style="text-align:right">' + count + '</td><td style="text-align:right">' + personOpsTotal + '</td></tr>';
+				}
+				document.getElementById('personBody').innerHTML = personHtml;
+				
+				renderPersonOfferList();
+				renderStateOfferList();
+			})
+			.catch(function(err) { console.error('加载数据失败:', err); });
+	}
+
         // 绑定事件
         function bindEvents() {
             var tabs = document.querySelectorAll('.nav-tab');
