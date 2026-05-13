@@ -1,0 +1,10 @@
+{
+  "employees": ["张三", "李四", "王五"],
+  "offers": [
+    { "id": "offer1", "alliance": "NexRidg-7", "offerName": "42-AutoQuoteZone", "assignments": [] },
+    { "id": "offer2", "alliance": "LA-30", "offerName": "452 TurboSavingsAuto", "assignments": [] },
+    { "id": "offer3", "alliance": "LA-30", "offerName": "459 TurboSavingsAuto", "assignments": [] },
+    { "id": "offer4", "alliance": "LA-30", "offerName": "465 TurboSavingsAuto", "assignments": [] }
+  ],
+  "offerOrder": []
+}
