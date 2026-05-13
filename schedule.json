@@ -1,10 +1,175 @@
 {
-  "employees": ["张三", "李四", "王五"],
-  "offers": [
-    { "id": "offer1", "alliance": "NexRidg-7", "offerName": "42-AutoQuoteZone", "assignments": [] },
-    { "id": "offer2", "alliance": "LA-30", "offerName": "452 TurboSavingsAuto", "assignments": [] },
-    { "id": "offer3", "alliance": "LA-30", "offerName": "459 TurboSavingsAuto", "assignments": [] },
-    { "id": "offer4", "alliance": "LA-30", "offerName": "465 TurboSavingsAuto", "assignments": [] }
+  "employees": [
+    "史天欢",
+    "张波",
+    "成昭旭",
+    "李铜",
+    "杨松柏",
+    "温馨",
+    "郑义程",
+    "钟奕",
+    "陈帅",
+    "陈朋",
+    "陈虹佑",
+    "高峰",
+    "周港"
   ],
-  "offerOrder": []
+  "offers": [
+    {
+      "id": "1778684269597_0.8010880000717144",
+      "alliance": "B452-4",
+      "offerName": "1973 GPR - AutoQuote Center",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.9814244767157523",
+      "alliance": "B452-4",
+      "offerName": "2106 CL - Best Quote Auto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.6665081659044598",
+      "alliance": "Datewave-2",
+      "offerName": "710647  Quotes for all",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.4561804250813625",
+      "alliance": "Datewave-2",
+      "offerName": "729268 Kisterra CarQuotesBox",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.16642956459569158",
+      "alliance": "Ashnova-128",
+      "offerName": "[3579]TurboSavingsAuto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.04254857760239095",
+      "alliance": "Stellar-2",
+      "offerName": "228 - CheapCarSecure",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.7717755012237305",
+      "alliance": "Ziro-2",
+      "offerName": "5 SpicyQuote",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.46184680130115285",
+      "alliance": "Ziro-2",
+      "offerName": "7 GoodRatesFinder",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.38876110180855816",
+      "alliance": "Ziro-2",
+      "offerName": "8 CarCoverMatrix",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.2590503044969449",
+      "alliance": "NexRidg-7",
+      "offerName": "42-AutoQuoteZone",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.3590055102893974",
+      "alliance": "LA-30",
+      "offerName": "452 TurboSavingsAuto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.9689017950682048",
+      "alliance": "LA-30",
+      "offerName": "459 TurboSavingsAuto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.038736284840814816",
+      "alliance": "LA-30",
+      "offerName": "465 TurboSavingsAuto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.7232400368919025",
+      "alliance": "Adscent-52",
+      "offerName": "(15587)223-AutoQuoteMarket",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.793255430571303",
+      "alliance": "Adscent-52",
+      "offerName": "(253013)168-TurboSavingsAuto",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.812191571109489",
+      "alliance": "Adscent-52",
+      "offerName": "(296123) 214-CheapCarSecure",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.8047954780220008",
+      "alliance": "Adscent-52",
+      "offerName": "(131316) 193-QuoteWizard-Home Insurance",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.484605607597954",
+      "alliance": "Adscent-52",
+      "offerName": "(253016)239-QuoteWizard Home Insurance",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.12685901551940504",
+      "alliance": "CRM-6",
+      "offerName": "(1920) Quote Wizard -Home Insurance",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.1097034851136065",
+      "alliance": "B452-4",
+      "offerName": "2145 C - QW home",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.2893275555864615",
+      "alliance": "B452-4",
+      "offerName": "2118 RP - Quote Wizard Home",
+      "assignments": []
+    },
+    {
+      "id": "1778684269597_0.0975018651329338",
+      "alliance": "BW-165",
+      "offerName": "(2425)-Finance Buzz-Auto Insurance",
+      "assignments": []
+    }
+  ],
+  "offerOrder": [
+    "1778684269597_0.8010880000717144",
+    "1778684269597_0.9814244767157523",
+    "1778684269597_0.6665081659044598",
+    "1778684269597_0.4561804250813625",
+    "1778684269597_0.16642956459569158",
+    "1778684269597_0.04254857760239095",
+    "1778684269597_0.7717755012237305",
+    "1778684269597_0.46184680130115285",
+    "1778684269597_0.38876110180855816",
+    "1778684269597_0.2590503044969449",
+    "1778684269597_0.3590055102893974",
+    "1778684269597_0.9689017950682048",
+    "1778684269597_0.038736284840814816",
+    "1778684269597_0.7232400368919025",
+    "1778684269597_0.793255430571303",
+    "1778684269597_0.812191571109489",
+    "1778684269597_0.8047954780220008",
+    "1778684269597_0.484605607597954",
+    "1778684269597_0.12685901551940504",
+    "1778684269597_0.1097034851136065",
+    "1778684269597_0.2893275555864615",
+    "1778684269597_0.0975018651329338"
+  ]
 }
