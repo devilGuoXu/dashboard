@@ -61,6 +61,9 @@
         
         .footer{text-align:center;color:#ddd;font-size:12px;padding:20px}
         
+        /* 刷新提示 */
+        .refresh-tip{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;z-index:100}
+        
         @media(max-width:768px){
             .container{padding:12px}
             .split-layout{flex-direction:column}
@@ -95,14 +98,20 @@
         </div>
         <div class="footer">点击州行查看明细</div>
     </div>
+    <div class="refresh-tip" id="refreshTip"></div>
 
     <script>
         var allData = [];
         var currentOffer = null;
         var currentPerson = null;
+        var isFirstLoad = true;
         
         // 缓存: offer -> person -> state -> {count, totalPrice}
         var stateCache = {};
+        
+        // localStorage 的 key
+        var STORAGE_OFFER_KEY = 'person_state_selected_offer';
+        var STORAGE_PERSON_KEY = 'person_state_selected_person';
         
         function formatNumber(num) {
             return num.toLocaleString();
@@ -112,17 +121,59 @@
             return '$' + val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
         }
         
+        function saveSelectedState() {
+            if (currentOffer) localStorage.setItem(STORAGE_OFFER_KEY, currentOffer);
+            if (currentPerson) localStorage.setItem(STORAGE_PERSON_KEY, currentPerson);
+        }
+        
+        function loadSelectedState() {
+            return {
+                offer: localStorage.getItem(STORAGE_OFFER_KEY),
+                person: localStorage.getItem(STORAGE_PERSON_KEY)
+            };
+        }
+        
+        function clearSelectedState() {
+            localStorage.removeItem(STORAGE_OFFER_KEY);
+            localStorage.removeItem(STORAGE_PERSON_KEY);
+        }
+        
+        function showRefreshTip() {
+            var tip = document.getElementById('refreshTip');
+            tip.textContent = '🔄 数据已更新';
+            tip.style.opacity = '1';
+            setTimeout(function() {
+                tip.style.opacity = '0';
+            }, 2000);
+        }
+        
         function loadData() {
             fetch('data.json?t=' + Date.now())
                 .then(function(r) { return r.json(); })
                 .then(function(d) {
-                    allData = d.data || [];
+                    var newData = d.data || [];
+                    var dataChanged = JSON.stringify(allData) !== JSON.stringify(newData);
+                    allData = newData;
                     buildCache();
-                    buildOfferList();
+                    
+                    if (isFirstLoad) {
+                        // 首次加载：尝试恢复上次选中的状态
+                        var saved = loadSelectedState();
+                        buildOfferList(saved.offer, saved.person);
+                        isFirstLoad = false;
+                    } else {
+                        // 后续刷新：保留当前选中的状态
+                        var savedOffer = currentOffer;
+                        var savedPerson = currentPerson;
+                        buildOfferList(savedOffer, savedPerson);
+                        if (dataChanged) showRefreshTip();
+                    }
                 })
                 .catch(function(err) {
                     console.error('加载失败:', err);
-                    document.getElementById('offerList').innerHTML = '<div class="no-data" style="padding:20px;">加载失败</div>';
+                    if (isFirstLoad) {
+                        document.getElementById('offerList').innerHTML = '<div class="no-data" style="padding:20px;">加载失败</div>';
+                    }
                 });
         }
         
@@ -150,23 +201,70 @@
             }
         }
         
-        function buildOfferList() {
+        function buildOfferList(savedOffer, savedPerson) {
             var offers = Object.keys(stateCache).sort();
             var html = '';
             for (var i = 0; i < offers.length; i++) {
                 var offer = offers[i];
                 var personCount = Object.keys(stateCache[offer]).length;
-                html += '<div class="sidebar-item" onclick="selectOffer(this, \'' + offer.replace(/"/g, '&quot;') + '\')">';
+                var activeClass = (savedOffer === offer) ? 'active' : '';
+                html += '<div class="sidebar-item ' + activeClass + '" data-offer="' + offer.replace(/"/g, '&quot;') + '" onclick="selectOffer(this, \'' + offer.replace(/"/g, '&quot;') + '\')">';
                 html += '<span>' + offer + '</span>';
                 html += '<span class="sidebar-count">' + personCount + '</span>';
                 html += '</div>';
             }
             document.getElementById('offerList').innerHTML = html || '<div class="no-data" style="padding:20px;">暂无数据</div>';
             
-            // 默认选中第一个
-            if (offers.length > 0) {
-                var firstItem = document.querySelector('#offerList .sidebar-item');
-                if (firstItem) selectOffer(firstItem, offers[0]);
+            // 确定要选中的 Offer
+            var targetOffer = savedOffer;
+            if (!targetOffer || !stateCache[targetOffer]) {
+                targetOffer = offers.length > 0 ? offers[0] : null;
+            }
+            
+            if (targetOffer) {
+                currentOffer = targetOffer;
+                buildPersonList(targetOffer, savedPerson);
+            } else {
+                currentOffer = null;
+                currentPerson = null;
+                document.getElementById('personList').innerHTML = '';
+                document.getElementById('content').innerHTML = '<div class="no-data">暂无数据</div>';
+                document.getElementById('selectedInfo').innerHTML = '';
+            }
+        }
+        
+        function buildPersonList(offerName, savedPerson) {
+            var persons = stateCache[offerName] || {};
+            var personNames = Object.keys(persons).sort();
+            
+            var html = '';
+            for (var i = 0; i < personNames.length; i++) {
+                var person = personNames[i];
+                var stateCount = Object.keys(persons[person]).length;
+                var activeClass = (savedPerson === person) ? 'active' : '';
+                html += '<div class="person-item ' + activeClass + '" data-person="' + person.replace(/"/g, '&quot;') + '" onclick="selectPerson(this, \'' + person.replace(/"/g, '&quot;') + '\')">';
+                html += '<span>' + person + '</span>';
+                html += '<span class="person-count">' + stateCount + '</span>';
+                html += '</div>';
+            }
+            document.getElementById('personList').innerHTML = html || '<div class="no-data" style="padding:20px;">暂无人员</div>';
+            
+            // 确定要选中的人员
+            var targetPerson = savedPerson;
+            if (!targetPerson || !persons[targetPerson]) {
+                targetPerson = personNames.length > 0 ? personNames[0] : null;
+            }
+            
+            if (targetPerson) {
+                currentPerson = targetPerson;
+                document.getElementById('selectedInfo').innerHTML = '<span style="color:#999;">' + offerName + ' / ' + currentPerson + '</span>';
+                renderStateTable(offerName, currentPerson);
+                saveSelectedState();
+            } else {
+                currentPerson = null;
+                document.getElementById('content').innerHTML = '<div class="no-data">该 Offer 下暂无人员数据</div>';
+                document.getElementById('selectedInfo').innerHTML = '';
+                saveSelectedState();
             }
         }
         
@@ -177,32 +275,7 @@
             
             currentOffer = offerName;
             currentPerson = null;
-            buildPersonList(offerName);
-        }
-        
-        function buildPersonList(offerName) {
-            var persons = stateCache[offerName] || {};
-            var personNames = Object.keys(persons).sort();
-            
-            var html = '';
-            for (var i = 0; i < personNames.length; i++) {
-                var person = personNames[i];
-                var stateCount = Object.keys(persons[person]).length;
-                html += '<div class="person-item" onclick="selectPerson(this, \'' + person.replace(/"/g, '&quot;') + '\')">';
-                html += '<span>' + person + '</span>';
-                html += '<span class="person-count">' + stateCount + '</span>';
-                html += '</div>';
-            }
-            document.getElementById('personList').innerHTML = html || '<div class="no-data" style="padding:20px;">暂无人员</div>';
-            
-            // 默认选中第一个
-            if (personNames.length > 0) {
-                var firstItem = document.querySelector('#personList .person-item');
-                if (firstItem) selectPerson(firstItem, personNames[0]);
-            } else {
-                document.getElementById('content').innerHTML = '<div class="no-data">该 Offer 下暂无人员数据</div>';
-                document.getElementById('selectedInfo').innerHTML = '';
-            }
+            buildPersonList(offerName, null);
         }
         
         function selectPerson(element, personName) {
@@ -213,6 +286,7 @@
             currentPerson = personName;
             document.getElementById('selectedInfo').innerHTML = '<span style="color:#999;">' + currentOffer + ' / ' + currentPerson + '</span>';
             renderStateTable(currentOffer, currentPerson);
+            saveSelectedState();
         }
         
         function renderStateTable(offerName, personName) {
@@ -227,7 +301,6 @@
                     count: data.count
                 });
             }
-            // 按操作次数降序排列
             rows.sort(function(a, b) { return b.count - a.count; });
             
             if (rows.length === 0) {
@@ -258,7 +331,6 @@
                 html += '</tr>';
             }
             
-            // 合计行
             html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;">';
             html += '<td style="font-weight:600;">📊 合计</td>';
             html += '<td style="text-align:right;font-weight:600;">' + formatMoney(totalAvg) + '</td>';
@@ -319,6 +391,7 @@
             if (modal) modal.remove();
         }
         
+        // 启动
         loadData();
         setInterval(loadData, 30000);
     </script>
