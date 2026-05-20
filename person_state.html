@@ -8,48 +8,42 @@
         *{margin:0;padding:0;box-sizing:border-box}
         body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f5f6f8;color:#2d3436;min-height:100vh}
         
-        .container{display:flex;gap:20px;padding:20px;min-height:calc(100vh - 60px)}
+        .container{max-width:1400px;margin:0 auto;padding:24px 20px}
+        
+        .split-layout{display:flex;gap:24px;align-items:flex-start}
         
         /* 左侧 Offer 列表 */
-        .sidebar{width:260px;min-width:260px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;height:fit-content;max-height:calc(100vh - 40px)}
+        .sidebar{width:260px;min-width:260px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
         .sidebar-title{padding:14px 18px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:14px;position:sticky;top:0;background:#fff}
-        .sidebar-list{flex:1;overflow-y:auto}
         .sidebar-item{padding:12px 18px;cursor:pointer;font-size:14px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .sidebar-item:hover{background:#f8f9fb;color:#2d3436}
         .sidebar-item.active{background:#f5f6f8;color:#2d3436;font-weight:550;border-left:3px solid #4CAF50;padding-left:15px}
+        .sidebar-count{float:right;color:#999;font-size:12px}
         
         /* 中间人员列表 */
-        .person-panel{width:220px;min-width:220px;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);overflow:hidden;display:flex;flex-direction:column;height:fit-content;max-height:calc(100vh - 40px)}
+        .person-panel{width:220px;min-width:220px;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05);overflow:hidden;height:fit-content;max-height:560px;overflow-y:auto}
         .person-title{padding:14px 18px;font-weight:600;color:#2d3436;border-bottom:1px solid #f2f2f2;font-size:14px;position:sticky;top:0;background:#fff}
-        .person-list{flex:1;overflow-y:auto}
         .person-item{padding:12px 18px;cursor:pointer;font-size:14px;color:#666;border-bottom:1px solid #fafafa;transition:all .15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
         .person-item:hover{background:#f8f9fb;color:#2d3436}
         .person-item.active{background:#e8f5e9;color:#2e7d32;font-weight:550;border-left:3px solid #2e7d32;padding-left:15px}
-        .person-count{float:right;color:#999;font-size:12px;font-weight:normal}
+        .person-count{float:right;color:#999;font-size:12px}
         
         /* 右侧内容区 */
-        .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:20px;display:flex;flex-direction:column}
-        .section-title{font-size:18px;font-weight:600;margin-bottom:16px;color:#2d3436;padding-bottom:10px;border-bottom:2px solid #f0f0f0}
-        .section-title span{color:#4CAF50;font-size:14px;font-weight:normal;margin-left:12px}
+        .main-content{flex:1;min-width:0;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.05);padding:24px}
+        .section-title{font-size:18px;font-weight:600;margin-bottom:16px;color:#2d3436}
+        .section-title span{color:#999;font-size:14px;font-weight:normal;margin-left:12px}
         
-        /* 州统计表格 */
-        .stats-table{width:100%;border-collapse:collapse}
-        .stats-table th{padding:12px 10px;background:#f8f9fa;font-weight:600;font-size:13px;color:#666;border-bottom:1px solid #eee;text-align:center}
-        .stats-table th:first-child{text-align:left;padding-left:15px}
-        .stats-table th:last-child{text-align:right;padding-right:15px}
-        .stats-table td{padding:10px 10px;border-bottom:1px solid #f0f0f0;font-size:13px}
-        .stats-table td:first-child{text-align:left;padding-left:15px;font-weight:500}
-        .stats-table td:last-child{text-align:right;padding-right:15px;font-family:'SF Mono','Consolas',monospace;font-weight:600;color:#2e7d32}
-        .stats-table tr:hover{background:#f5f5f5;cursor:pointer}
+        /* 两列表格 - 紧凑不换行 */
+        .state-table{width:100%;border-collapse:collapse}
+        .state-table th{padding:10px 12px;background:#f8f9fa;font-weight:600;font-size:13px;color:#666;border-bottom:1px solid #eee}
+        .state-table th:first-child{text-align:left}
+        .state-table th:last-child{text-align:right}
+        .state-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
+        .state-table td:first-child{text-align:left;font-weight:500}
+        .state-table td:last-child{text-align:right;font-family:'SF Mono','Consolas',monospace;font-weight:600;color:#2e7d32}
+        .state-table tr:hover{background:#f5f5f5;cursor:pointer}
         
-        /* 州徽章用于弹窗 */
-        .state-badge{display:inline-block;background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:20px;font-size:12px;margin:2px 4px}
-        .state-badge .count{font-weight:bold;margin-left:6px;color:#1b5e20;background:#c8e6c9;padding:0 6px;border-radius:12px}
-        
-        .no-data{text-align:center;color:#ccc;padding:80px 40px;font-size:15px}
-        .loading{text-align:center;padding:60px;color:#999}
-        
-        .footer{text-align:center;color:#ccc;font-size:12px;padding:10px 20px}
+        .no-data{text-align:center;color:#ccc;padding:60px 20px;font-size:14px}
         
         /* 弹窗样式 */
         .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center}
@@ -57,55 +51,56 @@
         .modal-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:15px;border-bottom:1px solid #eee;margin-bottom:20px}
         .modal-header h3{font-size:18px}
         .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:#999}
-        .modal-close:hover{color:#333}
         .detail-table{width:100%;border-collapse:collapse}
         .detail-table th{padding:8px;background:#f8f9fa;text-align:left;border-bottom:1px solid #eee}
         .detail-table th.num{text-align:right}
         .detail-table td{padding:8px;border-bottom:1px solid #f0f0f0}
         .detail-table td.num{text-align:right}
         
+        .footer{text-align:center;color:#ddd;font-size:12px;padding:20px}
+        
         @media(max-width:768px){
-            .container{flex-direction:column;padding:12px}
-            .sidebar,.person-panel{width:100%;max-height:180px}
-            .stats-table th,.stats-table td{font-size:11px;padding:8px 5px}
+            .container{padding:12px}
+            .split-layout{flex-direction:column}
+            .sidebar,.person-panel{width:100%;max-height:200px}
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 左侧 Offer 列表 -->
-        <div class="sidebar">
-            <div class="sidebar-title">📋 Offer 列表</div>
-            <div class="sidebar-list" id="offerList"></div>
-        </div>
-        
-        <!-- 中间人员列表 -->
-        <div class="person-panel">
-            <div class="person-title">👥 人员列表 <span id="personCount" style="font-size:12px;color:#999;"></span></div>
-            <div class="person-list" id="personList"></div>
-        </div>
-        
-        <!-- 右侧州统计 -->
-        <div class="main-content">
-            <div class="section-title">
-                📍 州操作统计
-                <span id="selectedInfo"></span>
+        <div class="split-layout">
+            <!-- 左侧 Offer 列表 -->
+            <div class="sidebar">
+                <div class="sidebar-title">Offer 列表</div>
+                <div id="offerList"></div>
             </div>
-            <div id="content">
-                <div class="no-data">← 请选择 Offer 和人员</div>
+            
+            <!-- 中间人员列表 -->
+            <div class="person-panel">
+                <div class="person-title">人员列表</div>
+                <div id="personList"></div>
+            </div>
+            
+            <!-- 右侧州统计 -->
+            <div class="main-content">
+                <div class="section-title">
+                    州统计 <span id="selectedInfo"></span>
+                </div>
+                <div id="content">
+                    <div class="no-data">← 选择 Offer 和人员</div>
+                </div>
             </div>
         </div>
+        <div class="footer">点击州行查看明细</div>
     </div>
-    <div class="footer">点击州行可查看详细记录</div>
 
     <script>
         var allData = [];
-        var offerList = [];
         var currentOffer = null;
         var currentPerson = null;
         
-        // 人员在该 Offer 下的州统计数据
-        var personStateCache = {};  // {offer: {person: {state: count}}}
+        // 缓存: offer -> person -> state -> count
+        var stateCache = {};
         
         function formatNumber(num) {
             return num.toLocaleString();
@@ -120,7 +115,7 @@
                 .then(function(r) { return r.json(); })
                 .then(function(d) {
                     allData = d.data || [];
-                    buildDataCache();
+                    buildCache();
                     buildOfferList();
                 })
                 .catch(function(err) {
@@ -129,10 +124,8 @@
                 });
         }
         
-        function buildDataCache() {
-            // 构建缓存: offer -> person -> state -> count
-            personStateCache = {};
-            
+        function buildCache() {
+            stateCache = {};
             for (var i = 0; i < allData.length; i++) {
                 var row = allData[i];
                 var offer = row['offer'] || '';
@@ -143,81 +136,62 @@
                 if (person === '-' || person === '') continue;
                 if (state === '-') continue;
                 
-                if (!personStateCache[offer]) personStateCache[offer] = {};
-                if (!personStateCache[offer][person]) personStateCache[offer][person] = {};
+                if (!stateCache[offer]) stateCache[offer] = {};
+                if (!stateCache[offer][person]) stateCache[offer][person] = {};
                 
-                personStateCache[offer][person][state] = (personStateCache[offer][person][state] || 0) + 1;
+                stateCache[offer][person][state] = (stateCache[offer][person][state] || 0) + 1;
             }
         }
         
         function buildOfferList() {
-            // 收集所有有数据的 Offer
-            var offerSet = {};
-            for (var offer in personStateCache) {
-                offerSet[offer] = true;
-            }
-            offerList = Object.keys(offerSet).sort();
-            
+            var offers = Object.keys(stateCache).sort();
             var html = '';
-            for (var i = 0; i < offerList.length; i++) {
-                var offer = offerList[i];
-                var personCount = Object.keys(personStateCache[offer] || {}).length;
-                html += '<div class="sidebar-item" data-offer="' + offer.replace(/"/g, '&quot;') + '" onclick="selectOffer(this, \'' + offer.replace(/"/g, '&quot;') + '\')">';
-                html += offer;
-                html += '<span style="float:right;color:#999;font-size:12px;">' + personCount + '</span>';
+            for (var i = 0; i < offers.length; i++) {
+                var offer = offers[i];
+                var personCount = Object.keys(stateCache[offer]).length;
+                html += '<div class="sidebar-item" onclick="selectOffer(this, \'' + offer.replace(/"/g, '&quot;') + '\')">';
+                html += '<span>' + offer + '</span>';
+                html += '<span class="sidebar-count">' + personCount + '</span>';
                 html += '</div>';
             }
-            
-            document.getElementById('offerList').innerHTML = html || '<div style="padding:20px;color:#999;">暂无数据</div>';
+            document.getElementById('offerList').innerHTML = html || '<div class="no-data" style="padding:20px;">暂无数据</div>';
             
             // 默认选中第一个
-            if (offerList.length > 0) {
+            if (offers.length > 0) {
                 var firstItem = document.querySelector('#offerList .sidebar-item');
-                if (firstItem) {
-                    selectOffer(firstItem, offerList[0]);
-                }
+                if (firstItem) selectOffer(firstItem, offers[0]);
             }
         }
         
         function selectOffer(element, offerName) {
-            // 更新选中样式
             var items = document.querySelectorAll('#offerList .sidebar-item');
-            for (var i = 0; i < items.length; i++) {
-                items[i].classList.remove('active');
-            }
+            for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
             element.classList.add('active');
             
             currentOffer = offerName;
-            currentPerson = null;  // 重置人员选择
-            
+            currentPerson = null;
             buildPersonList(offerName);
         }
         
         function buildPersonList(offerName) {
-            var persons = personStateCache[offerName] || {};
+            var persons = stateCache[offerName] || {};
             var personNames = Object.keys(persons).sort();
-            
-            var personCountSpan = document.getElementById('personCount');
-            personCountSpan.textContent = '(' + personNames.length + '人)';
             
             var html = '';
             for (var i = 0; i < personNames.length; i++) {
                 var person = personNames[i];
                 var stateCount = Object.keys(persons[person]).length;
-                html += '<div class="person-item" data-person="' + person.replace(/"/g, '&quot;') + '" onclick="selectPerson(this, \'' + person.replace(/"/g, '&quot;') + '\')">';
-                html += person;
-                html += '<span class="person-count">' + stateCount + '州</span>';
+                html += '<div class="person-item" onclick="selectPerson(this, \'' + person.replace(/"/g, '&quot;') + '\')">';
+                html += '<span>' + person + '</span>';
+                html += '<span class="person-count">' + stateCount + '</span>';
                 html += '</div>';
             }
+            document.getElementById('personList').innerHTML = html || '<div class="no-data" style="padding:20px;">暂无人员</div>';
             
-            document.getElementById('personList').innerHTML = html || '<div style="padding:20px;color:#999;">暂无人员</div>';
-            
-            // 默认选中第一个人员
+            // 默认选中第一个
             if (personNames.length > 0) {
                 var firstItem = document.querySelector('#personList .person-item');
-                if (firstItem) {
-                    selectPerson(firstItem, personNames[0]);
-                }
+                if (firstItem) selectPerson(firstItem, personNames[0]);
             } else {
                 document.getElementById('content').innerHTML = '<div class="no-data">该 Offer 下暂无人员数据</div>';
                 document.getElementById('selectedInfo').innerHTML = '';
@@ -225,129 +199,86 @@
         }
         
         function selectPerson(element, personName) {
-            // 更新选中样式
             var items = document.querySelectorAll('#personList .person-item');
-            for (var i = 0; i < items.length; i++) {
-                items[i].classList.remove('active');
-            }
+            for (var i = 0; i < items.length; i++) items[i].classList.remove('active');
             element.classList.add('active');
             
             currentPerson = personName;
-            document.getElementById('selectedInfo').innerHTML = '<span style="color:#666;">' + currentOffer + ' / ' + currentPerson + '</span>';
-            
-            renderStateStats(currentOffer, currentPerson);
+            document.getElementById('selectedInfo').innerHTML = '<span style="color:#999;">' + currentOffer + ' / ' + currentPerson + '</span>';
+            renderStateTable(currentOffer, currentPerson);
         }
         
-        function renderStateStats(offerName, personName) {
-            var stateCounts = personStateCache[offerName]?.[personName] || {};
+        function renderStateTable(offerName, personName) {
+            var states = stateCache[offerName]?.[personName] || {};
             
-            // 转换为数组并按次数降序排列
             var rows = [];
-            for (var state in stateCounts) {
-                rows.push({
-                    state: state,
-                    count: stateCounts[state]
-                });
+            for (var state in states) {
+                rows.push({ state: state, count: states[state] });
             }
-            rows.sort(function(a, b) {
-                return b.count - a.count;
-            });
+            rows.sort(function(a, b) { return b.count - a.count; });
             
             if (rows.length === 0) {
                 document.getElementById('content').innerHTML = '<div class="no-data">该人员暂无州数据</div>';
                 return;
             }
             
-            // 计算总次数
-            var totalCount = rows.reduce(function(sum, r) { return sum + r.count; }, 0);
+            var total = rows.reduce(function(s, r) { return s + r.count; }, 0);
             
-            var html = '<table class="stats-table">';
-            html += '<thead>';
-            html += '<tr>';
-            html += '<th style="width:50%">州</th>';
-            html += '<th style="width:50%">操作次数</th>';
-            html += '</tr>';
-            html += '</thead>';
+            var html = '<table class="state-table">';
+            html += '<thead><tr><th>州</th><th>操作次数</th></tr></thead>';
             html += '<tbody>';
             
             for (var i = 0; i < rows.length; i++) {
                 var r = rows[i];
-                var safeState = r.state.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+                var safeState = r.state.replace(/'/g, "\\'");
                 html += '<tr onclick="showDetail(\'' + personName.replace(/'/g, "\\'") + '\', \'' + offerName.replace(/'/g, "\\'") + '\', \'' + safeState + '\')">';
-                html += '<td style="font-weight:500;">' + r.state + '</td>';
-                html += '<td style="text-align:right;font-weight:600;color:#2e7d32;">' + formatNumber(r.count) + ' 次</td>';
+                html += '<td>' + r.state + '</td>';
+                html += '<td>' + formatNumber(r.count) + ' 次</td>';
                 html += '</tr>';
             }
             
-            html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;">';
-            html += '<td style="font-weight:600;">📊 合计</td>';
-            html += '<td style="text-align:right;font-weight:700;color:#1b5e20;">' + formatNumber(totalCount) + ' 次</td>';
-            html += '</tr>';
-            
-            html += '</tbody>';
-            html += '</table>';
+            html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;"><td style="font-weight:600;">📊 合计</td><td style="font-weight:700;color:#1b5e20;">' + formatNumber(total) + ' 次</td></tr>';
+            html += '</tbody></table>';
             
             document.getElementById('content').innerHTML = html;
         }
         
         function showDetail(personName, offerName, stateName) {
-            // 收集该人员在该 Offer 下该州的详细记录
             var details = [];
             var totalPrice = 0;
             
             for (var i = 0; i < allData.length; i++) {
                 var row = allData[i];
-                var offer = row['offer'] || '';
-                var person = row['人员'] || '-';
-                var state = row['州'] || '-';
-                var price = parseFloat(String(row['价格'] || '0').replace(/[$,]/g, '')) || 0;
-                var time = row['时间'] || '';
-                var ip = row['ip'] || '';
-                
-                if (offer === offerName && person === personName && state === state) {
+                if (row['offer'] === offerName && row['人员'] === personName && row['州'] === stateName) {
+                    var price = parseFloat(String(row['价格'] || '0').replace(/[$,]/g, '')) || 0;
                     details.push({
                         price: price,
-                        time: time,
-                        ip: ip
+                        time: row['时间'] || '',
+                        ip: row['ip'] || ''
                     });
                     totalPrice += price;
                 }
             }
             
-            // 按时间倒序
             details.sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
             
-            var html = '<div class="modal-overlay" id="detailModal" onclick="closeModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>📋 ' + personName + ' @ ' + offerName + ' - ' + stateName + '</h3><button class="modal-close" onclick="closeModal()">&times;</button></div>';
+            var html = '<div class="modal-overlay" id="detailModal" onclick="closeModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>' + personName + ' @ ' + offerName + ' - ' + stateName + '</h3><button class="modal-close" onclick="closeModal()">&times;</button></div>';
             
-            // 统计摘要
             html += '<div style="margin-bottom:20px;padding:12px;background:#f5f5f5;border-radius:8px;display:flex;gap:30px;">';
             html += '<div><strong>总金额</strong><br><span style="font-size:20px;color:#2979ff;">' + formatMoney(totalPrice) + '</span></div>';
-            html += '<div><strong>总转化</strong><br><span style="font-size:20px;color:#2e7d32;">' + details.length + '</span></div>';
+            html += '<div><strong>转化数</strong><br><span style="font-size:20px;color:#2e7d32;">' + details.length + '</span></div>';
             html += '</div>';
             
-            // 明细表格
-            html += '<table class="detail-table" style="width:100%;border-collapse:collapse;">';
-            html += '<thead><tr><th style="padding:8px;text-align:left;">时间</th><th style="padding:8px;text-align:right;">金额</th><th style="padding:8px;text-align:left;">IP</th></tr></thead>';
-            html += '<tbody>';
-            
+            html += '<table class="detail-table"><thead><tr><th>时间</th><th class="num">金额</th><th>IP</th></tr></thead><tbody>';
             for (var i = 0; i < Math.min(details.length, 100); i++) {
                 var d = details[i];
-                html += '<tr>';
-                html += '<td style="padding:8px;text-align:left;font-size:12px;">' + (d.time || '-') + '</td>';
-                html += '<td style="padding:8px;text-align:right;font-weight:600;">' + formatMoney(d.price) + '</td>';
-                html += '<td style="padding:8px;text-align:left;font-size:12px;">' + (d.ip || '-') + '</td>';
-                html += '</tr>';
+                html += '<tr><td>' + (d.time || '-') + '</td><td class="num">' + formatMoney(d.price) + '</td><td>' + (d.ip || '-') + '</td></tr>';
             }
+            if (details.length > 100) html += '<tr><td colspan="3" style="text-align:center">还有 ' + (details.length - 100) + ' 条</td></tr>';
+            html += '</tbody></table></div></div>';
             
-            if (details.length > 100) {
-                html += '<tr><td colspan="3" style="padding:8px;text-align:center;">还有 ' + (details.length - 100) + ' 条未显示</td></tr>';
-            }
-            
-            html += '</tbody></table>';
-            html += '</div></div>';
-            
-            var existingModal = document.getElementById('detailModal');
-            if (existingModal) existingModal.remove();
+            var existing = document.getElementById('detailModal');
+            if (existing) existing.remove();
             document.body.insertAdjacentHTML('beforeend', html);
         }
         
@@ -356,10 +287,7 @@
             if (modal) modal.remove();
         }
         
-        // 初始化
         loadData();
-        
-        // 每30秒刷新
         setInterval(loadData, 30000);
     </script>
 </body>
