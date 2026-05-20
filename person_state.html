@@ -64,6 +64,10 @@
         /* 刷新提示 */
         .refresh-tip{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,0.6);color:#fff;padding:6px 12px;border-radius:20px;font-size:11px;z-index:100}
         
+		.price-high{color:#e53935 !important;font-weight:600}
+		.price-low{color:#43a047 !important;font-weight:600}
+		.price-equal{color:#fdd835 !important;font-weight:600}
+
         @media(max-width:768px){
             .container{padding:12px}
             .split-layout{flex-direction:column}
@@ -289,60 +293,67 @@
             saveSelectedState();
         }
         
-        function renderStateTable(offerName, personName) {
-            var states = stateCache[offerName]?.[personName] || {};
-            
-            var rows = [];
-            for (var state in states) {
-                var data = states[state];
-                rows.push({
-                    state: state,
-                    avg: data.totalPrice / data.count,
-                    count: data.count
-                });
-            }
-            rows.sort(function(a, b) { return b.count - a.count; });
-            
-            if (rows.length === 0) {
-                document.getElementById('content').innerHTML = '<div class="no-data">该人员暂无州数据</div>';
-                return;
-            }
-            
-            var totalCount = rows.reduce(function(s, r) { return s + r.count; }, 0);
-            var totalPrice = 0;
-            for (var state in states) {
-                totalPrice += states[state].totalPrice;
-            }
-            var totalAvg = totalCount > 0 ? totalPrice / totalCount : 0;
-            
-            var html = '<table class="state-table">';
-            html += '<thead>';
-            html += '<tr><th>州</th><th>均价</th><th>操作</th></tr>';
-            html += '</thead>';
-            html += '<tbody>';
-            
-            for (var i = 0; i < rows.length; i++) {
-                var r = rows[i];
-                var safeState = r.state.replace(/'/g, "\\'");
-                html += '<tr onclick="showDetail(\'' + personName.replace(/'/g, "\\'") + '\', \'' + offerName.replace(/'/g, "\\'") + '\', \'' + safeState + '\')">';
-                html += '<td>' + r.state + '</td>';
-                html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;">' + formatMoney(r.avg) + '</td>';
-                html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;font-weight:600;">' + formatNumber(r.count) + '</td>';
-                html += '</tr>';
-            }
-            
-            html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;">';
-            html += '<td style="font-weight:600;">📊 合计</td>';
-            html += '<td style="text-align:right;font-weight:600;">' + formatMoney(totalAvg) + '</td>';
-            html += '<td style="text-align:right;font-weight:700;color:#1b5e20;">' + formatNumber(totalCount) + '</td>';
-            html += '</tr>';
-            
-            html += '</tbody>';
-            html += '</table>';
-            
-            document.getElementById('content').innerHTML = html;
-        }
-        
+		function renderStateTable(offerName, personName) {
+			var states = stateCache[offerName]?.[personName] || {};
+			
+			var rows = [];
+			for (var state in states) {
+				var data = states[state];
+				rows.push({
+					state: state,
+					avg: data.totalPrice / data.count,
+					count: data.count
+				});
+			}
+			// 按均价从高到低降序排列
+			rows.sort(function(a, b) { return b.avg - a.avg; });
+			
+			if (rows.length === 0) {
+				document.getElementById('content').innerHTML = '<div class="no-data">该人员暂无州数据</div>';
+				return;
+			}
+			
+			var totalCount = rows.reduce(function(s, r) { return s + r.count; }, 0);
+			var totalPrice = 0;
+			for (var state in states) {
+				totalPrice += states[state].totalPrice;
+			}
+			var totalAvg = totalCount > 0 ? totalPrice / totalCount : 0;
+			
+			var html = '<table class="state-table">';
+			html += '<thead>';
+			html += '<tr><th>州</th><th>均价</th><th>操作</th></tr>';
+			html += '</thead>';
+			html += '<tbody>';
+			
+			for (var i = 0; i < rows.length; i++) {
+				var r = rows[i];
+				var safeState = r.state.replace(/'/g, "\\'");
+				// 添加价格高亮样式
+				var avgClass = '';
+				if (r.avg > totalAvg) avgClass = 'price-high';
+				else if (r.avg < totalAvg) avgClass = 'price-low';
+				else avgClass = 'price-equal';
+				
+				html += '<tr onclick="showDetail(\'' + personName.replace(/'/g, "\\'") + '\', \'' + offerName.replace(/'/g, "\\'") + '\', \'' + safeState + '\')">';
+				html += '<td>' + r.state + '</td>';
+				html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;" class="' + avgClass + '">' + formatMoney(r.avg) + '</td>';
+				html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;font-weight:600;">' + formatNumber(r.count) + '</td>';
+				html += '</tr>';
+			}
+			
+			html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;">';
+			html += '<td style="font-weight:600;">📊 合计</td>';
+			html += '<td style="text-align:right;font-weight:600;">' + formatMoney(totalAvg) + '</td>';
+			html += '<td style="text-align:right;font-weight:700;color:#1b5e20;">' + formatNumber(totalCount) + '</td>';
+			html += '</tr>';
+			
+			html += '</tbody>';
+			html += '</table>';
+			
+			document.getElementById('content').innerHTML = html;
+		}
+
         function showDetail(personName, offerName, stateName) {
             var details = [];
             var totalPrice = 0;
