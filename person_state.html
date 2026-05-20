@@ -33,13 +33,15 @@
         .section-title{font-size:18px;font-weight:600;margin-bottom:16px;color:#2d3436}
         .section-title span{color:#999;font-size:14px;font-weight:normal;margin-left:12px}
         
-        /* 两列表格 - 紧凑不换行 */
+        /* 三列表格 - 紧凑不换行 */
         .state-table{width:100%;border-collapse:collapse}
         .state-table th{padding:10px 12px;background:#f8f9fa;font-weight:600;font-size:13px;color:#666;border-bottom:1px solid #eee}
         .state-table th:first-child{text-align:left}
+        .state-table th:nth-child(2){text-align:right}
         .state-table th:last-child{text-align:right}
         .state-table td{padding:10px 12px;font-size:13px;border-bottom:1px solid #f5f5f5}
         .state-table td:first-child{text-align:left;font-weight:500}
+        .state-table td:nth-child(2){text-align:right;font-family:'SF Mono','Consolas',monospace;color:#2979ff}
         .state-table td:last-child{text-align:right;font-family:'SF Mono','Consolas',monospace;font-weight:600;color:#2e7d32}
         .state-table tr:hover{background:#f5f5f5;cursor:pointer}
         
@@ -99,7 +101,7 @@
         var currentOffer = null;
         var currentPerson = null;
         
-        // 缓存: offer -> person -> state -> count
+        // 缓存: offer -> person -> state -> {count, totalPrice}
         var stateCache = {};
         
         function formatNumber(num) {
@@ -131,6 +133,7 @@
                 var offer = row['offer'] || '';
                 var person = row['人员'] || '-';
                 var state = row['州'] || '-';
+                var price = parseFloat(String(row['价格'] || '0').replace(/[$,]/g, '')) || 0;
                 
                 if (!offer) continue;
                 if (person === '-' || person === '') continue;
@@ -138,8 +141,12 @@
                 
                 if (!stateCache[offer]) stateCache[offer] = {};
                 if (!stateCache[offer][person]) stateCache[offer][person] = {};
+                if (!stateCache[offer][person][state]) {
+                    stateCache[offer][person][state] = { count: 0, totalPrice: 0 };
+                }
                 
-                stateCache[offer][person][state] = (stateCache[offer][person][state] || 0) + 1;
+                stateCache[offer][person][state].count++;
+                stateCache[offer][person][state].totalPrice += price;
             }
         }
         
@@ -213,8 +220,14 @@
             
             var rows = [];
             for (var state in states) {
-                rows.push({ state: state, count: states[state] });
+                var data = states[state];
+                rows.push({
+                    state: state,
+                    avg: data.totalPrice / data.count,
+                    count: data.count
+                });
             }
+            // 按操作次数降序排列
             rows.sort(function(a, b) { return b.count - a.count; });
             
             if (rows.length === 0) {
@@ -222,10 +235,17 @@
                 return;
             }
             
-            var total = rows.reduce(function(s, r) { return s + r.count; }, 0);
+            var totalCount = rows.reduce(function(s, r) { return s + r.count; }, 0);
+            var totalPrice = 0;
+            for (var state in states) {
+                totalPrice += states[state].totalPrice;
+            }
+            var totalAvg = totalCount > 0 ? totalPrice / totalCount : 0;
             
             var html = '<table class="state-table">';
-            html += '<thead><tr><th>州</th><th>操作次数</th></tr></thead>';
+            html += '<thead>';
+            html += '<tr><th>州</th><th>均价</th><th>操作</th></tr>';
+            html += '</thead>';
             html += '<tbody>';
             
             for (var i = 0; i < rows.length; i++) {
@@ -233,12 +253,20 @@
                 var safeState = r.state.replace(/'/g, "\\'");
                 html += '<tr onclick="showDetail(\'' + personName.replace(/'/g, "\\'") + '\', \'' + offerName.replace(/'/g, "\\'") + '\', \'' + safeState + '\')">';
                 html += '<td>' + r.state + '</td>';
-                html += '<td>' + formatNumber(r.count) + ' 次</td>';
+                html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;">' + formatMoney(r.avg) + '</td>';
+                html += '<td style="text-align:right;font-family:\'SF Mono\',\'Consolas\',monospace;font-weight:600;">' + formatNumber(r.count) + '</td>';
                 html += '</tr>';
             }
             
-            html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;"><td style="font-weight:600;">📊 合计</td><td style="font-weight:700;color:#1b5e20;">' + formatNumber(total) + ' 次</td></tr>';
-            html += '</tbody></table>';
+            // 合计行
+            html += '<tr style="background:#f8f9fa;border-top:2px solid #eee;">';
+            html += '<td style="font-weight:600;">📊 合计</td>';
+            html += '<td style="text-align:right;font-weight:600;">' + formatMoney(totalAvg) + '</td>';
+            html += '<td style="text-align:right;font-weight:700;color:#1b5e20;">' + formatNumber(totalCount) + '</td>';
+            html += '</tr>';
+            
+            html += '</tbody>';
+            html += '</table>';
             
             document.getElementById('content').innerHTML = html;
         }
@@ -272,7 +300,11 @@
             html += '<table class="detail-table"><thead><tr><th>时间</th><th class="num">金额</th><th>IP</th></tr></thead><tbody>';
             for (var i = 0; i < Math.min(details.length, 100); i++) {
                 var d = details[i];
-                html += '<tr><td>' + (d.time || '-') + '</td><td class="num">' + formatMoney(d.price) + '</td><td>' + (d.ip || '-') + '</td></tr>';
+                html += '<tr>';
+                html += '<td>' + (d.time || '-') + '</td>';
+                html += '<td class="num">' + formatMoney(d.price) + '</td>';
+                html += '<td>' + (d.ip || '-') + '</td>';
+                html += '</tr>';
             }
             if (details.length > 100) html += '<tr><td colspan="3" style="text-align:center">还有 ' + (details.length - 100) + ' 条</td></tr>';
             html += '</tbody></table></div></div>';
