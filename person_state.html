@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>人员-州统计</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;background:#f5f6f8;color:#2d3436}
+        .container{max-width:1400px;margin:0 auto;padding:20px}
+        h1{font-size:20px;margin-bottom:20px;color:#2d3436}
+        .filter-bar{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap;align-items:center}
+        .filter-bar select,.filter-bar input{padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:14px}
+        .filter-bar button{padding:8px 16px;background:#4CAF50;color:white;border:none;border-radius:6px;cursor:pointer}
+        .filter-bar button:hover{background:#45a049}
+        .stat-table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+        .stat-table th{padding:12px 10px;background:#f8f9fa;font-weight:600;font-size:13px;color:#666;border-bottom:1px solid #eee;text-align:center}
+        .stat-table th:first-child{text-align:left;padding-left:15px}
+        .stat-table th:last-child{text-align:right;padding-right:15px}
+        .stat-table td{padding:10px 10px;border-bottom:1px solid #f0f0f0;font-size:13px}
+        .stat-table td:first-child{text-align:left;padding-left:15px;font-weight:500}
+        .stat-table td:last-child{text-align:right;padding-right:15px}
+        .stat-table tr:hover{background:#f5f5f5}
+        .offer-group{margin-bottom:30px;border-radius:12px;overflow:hidden}
+        .offer-title{background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:12px 16px;font-weight:600;font-size:16px}
+        .state-badge{display:inline-block;background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:20px;font-size:12px;margin:2px 4px;white-space:nowrap}
+        .state-badge span{font-weight:bold;margin-left:4px;color:#1b5e20}
+        .person-row{cursor:pointer}
+        .person-row:hover{background:#e3f2fd !important}
+        .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:1000;display:flex;align-items:center;justify-content:center}
+        .modal-content{background:#fff;border-radius:16px;width:90%;max-width:800px;max-height:80%;overflow:auto;padding:20px}
+        .modal-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:15px;border-bottom:1px solid #eee;margin-bottom:20px}
+        .modal-header h3{font-size:18px}
+        .modal-close{background:none;border:none;font-size:24px;cursor:pointer;color:#999}
+        .detail-table{width:100%;border-collapse:collapse}
+        .detail-table th{padding:10px;background:#f8f9fa;text-align:left;font-weight:600}
+        .detail-table td{padding:8px 10px;border-bottom:1px solid #eee}
+        .detail-table td.num{text-align:right}
+        .no-data{text-align:center;color:#999;padding:60px}
+        .loading{text-align:center;padding:60px;color:#999}
+        .footer{text-align:center;color:#ccc;font-size:12px;padding:20px}
+        @media(max-width:768px){
+            .container{padding:12px}
+            .stat-table th,.stat-table td{font-size:11px;padding:8px 5px}
+            .state-badge{font-size:10px;padding:2px 6px}
+            .offer-title{font-size:14px}
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+            <h1>📊 人员-州操作统计</h1>
+            <button onclick="location.reload()" style="padding:6px 12px;background:#2196F3;color:white;border:none;border-radius:6px;cursor:pointer;">🔄 刷新</button>
+        </div>
+        
+        <div class="filter-bar">
+            <select id="offerFilter">
+                <option value="">全部 Offer</option>
+            </select>
+            <select id="personFilter">
+                <option value="">全部人员</option>
+            </select>
+            <button onclick="applyFilter()">筛选</button>
+            <button onclick="resetFilter()">重置</button>
+        </div>
+        
+        <div id="content">
+            <div class="loading">加载中...</div>
+        </div>
+    </div>
+    
+    <div class="footer">人员-州操作统计 · 点击人员行查看详情</div>
+
+    <script>
+        var allData = [];
+        var offerList = [];
+        var personList = [];
+        
+        function formatMoney(val) {
+            if (isNaN(val)) val = 0;
+            return '$' + val.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 });
+        }
+        
+        function loadData() {
+            fetch('data.json?t=' + Date.now())
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    allData = d.data || [];
+                    buildStats();
+                })
+                .catch(function(err) {
+                    console.error('加载失败:', err);
+                    document.getElementById('content').innerHTML = '<div class="no-data">加载数据失败，请确保 data.json 存在</div>';
+                });
+        }
+        
+        function buildStats() {
+            // 按 Offer 分组，每个 Offer 下按人员统计州
+            var offerStats = {};  // {offer: {person: {state: {count, totalPrice}}}}
+            
+            for (var i = 0; i < allData.length; i++) {
+                var row = allData[i];
+                var offer = row['offer'] || '';
+                var person = row['人员'] || '-';
+                var state = row['州'] || '-';
+                var price = parseFloat(String(row['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                
+                if (!offer || person === '-' || person === '') continue;
+                
+                if (!offerStats[offer]) offerStats[offer] = {};
+                if (!offerStats[offer][person]) offerStats[offer][person] = {};
+                
+                if (state !== '-') {
+                    if (!offerStats[offer][person][state]) {
+                        offerStats[offer][person][state] = { count: 0, totalPrice: 0 };
+                    }
+                    offerStats[offer][person][state].count++;
+                    offerStats[offer][person][state].totalPrice += price;
+                }
+            }
+            
+            // 生成 Offer 列表
+            offerList = Object.keys(offerStats).sort();
+            var offerSelect = document.getElementById('offerFilter');
+            offerSelect.innerHTML = '<option value="">全部 Offer</option>';
+            for (var i = 0; i < offerList.length; i++) {
+                offerSelect.innerHTML += '<option value="' + offerList[i].replace(/"/g, '&quot;') + '">' + offerList[i] + '</option>';
+            }
+            
+            // 生成人员列表
+            var allPersons = {};
+            for (var offer in offerStats) {
+                for (var person in offerStats[offer]) {
+                    allPersons[person] = true;
+                }
+            }
+            personList = Object.keys(allPersons).sort();
+            var personSelect = document.getElementById('personFilter');
+            personSelect.innerHTML = '<option value="">全部人员</option>';
+            for (var i = 0; i < personList.length; i++) {
+                personSelect.innerHTML += '<option value="' + personList[i].replace(/"/g, '&quot;') + '">' + personList[i] + '</option>';
+            }
+            
+            // 渲染表格
+            renderStats(offerStats);
+        }
+        
+        function renderStats(offerStats) {
+            var filterOffer = document.getElementById('offerFilter').value;
+            var filterPerson = document.getElementById('personFilter').value;
+            
+            var html = '';
+            var filteredOffers = offerList;
+            if (filterOffer) {
+                filteredOffers = [filterOffer];
+            }
+            
+            for (var oi = 0; oi < filteredOffers.length; oi++) {
+                var offer = filteredOffers[oi];
+                var personsData = offerStats[offer];
+                if (!personsData) continue;
+                
+                // 过滤人员
+                var filteredPersons = Object.keys(personsData);
+                if (filterPerson) {
+                    filteredPersons = filteredPersons.filter(function(p) { return p === filterPerson; });
+                }
+                
+                if (filteredPersons.length === 0) continue;
+                
+                // 排序人员
+                filteredPersons.sort();
+                
+                html += '<div class="offer-group">';
+                html += '<div class="offer-title">📌 ' + offer + '</div>';
+                html += '<table class="stat-table">';
+                html += '<thead>';
+                html += '<tr>';
+                html += '<th style="width:15%">人员</th>';
+                html += '<th style="width:60%">操作的州 (次数)</th>';
+                html += '<th style="width:12%">总金额</th>';
+                html += '<th style="width:13%">操作总数</th>';
+                html += '</tr>';
+                html += '</thead>';
+                html += '<tbody>';
+                
+                for (var pi = 0; pi < filteredPersons.length; pi++) {
+                    var person = filteredPersons[pi];
+                    var statesData = personsData[person];
+                    
+                    // 计算总金额和总操作数
+                    var totalPrice = 0;
+                    var totalOps = 0;
+                    var stateItems = [];
+                    
+                    var stateNames = Object.keys(statesData).sort();
+                    for (var si = 0; si < stateNames.length; si++) {
+                        var state = stateNames[si];
+                        var stat = statesData[state];
+                        totalPrice += stat.totalPrice;
+                        totalOps += stat.count;
+                        stateItems.push('<span class="state-badge">' + state + ' <span>' + stat.count + '</span></span>');
+                    }
+                    
+                    var safePerson = person.replace(/'/g, "\\'");
+                    html += '<tr class="person-row" onclick="showPersonOfferDetail(\'' + safePerson.replace(/"/g, '&quot;') + '\', \'' + offer.replace(/"/g, '&quot;') + '\')">';
+                    html += '<td style="font-weight:600;">' + person + '</td>';
+                    html += '<td>' + (stateItems.length > 0 ? stateItems.join('') : '<span style="color:#ccc;">-</span>') + '</td>';
+                    html += '<td style="text-align:right;">' + formatMoney(totalPrice) + '</td>';
+                    html += '<td style="text-align:right;">' + totalOps + '</td>';
+                    html += '</tr>';
+                }
+                
+                html += '</tbody>';
+                html += '</table>';
+                html += '</div>';
+            }
+            
+            if (html === '') {
+                html = '<div class="no-data">暂无数据</div>';
+            }
+            
+            document.getElementById('content').innerHTML = html;
+        }
+        
+        function showPersonOfferDetail(personName, offerName) {
+            // 收集该人员在该 Offer 下的所有明细
+            var details = [];
+            var totalPrice = 0;
+            var stateDetailMap = {};
+            
+            for (var i = 0; i < allData.length; i++) {
+                var row = allData[i];
+                var offer = row['offer'] || '';
+                var person = row['人员'] || '-';
+                var state = row['州'] || '-';
+                var price = parseFloat(String(row['价格'] || '0').replace(/[$,]/g, '')) || 0;
+                var time = row['时间'] || '';
+                var ip = row['ip'] || '';
+                
+                if (offer === offerName && person === personName) {
+                    details.push({
+                        state: state,
+                        price: price,
+                        time: time,
+                        ip: ip
+                    });
+                    totalPrice += price;
+                    
+                    if (state !== '-') {
+                        if (!stateDetailMap[state]) {
+                            stateDetailMap[state] = { count: 0, totalPrice: 0, items: [] };
+                        }
+                        stateDetailMap[state].count++;
+                        stateDetailMap[state].totalPrice += price;
+                        stateDetailMap[state].items.push({ price: price, time: time, ip: ip });
+                    }
+                }
+            }
+            
+            var html = '<div class="modal-overlay" id="detailModal" onclick="closeModal(event)"><div class="modal-content" onclick="event.stopPropagation()"><div class="modal-header"><h3>📋 ' + personName + ' @ ' + offerName + '</h3><button class="modal-close" onclick="closeModal()">&times;</button></div>';
+            
+            // 汇总统计
+            html += '<div style="margin-bottom:20px;padding:12px;background:#f5f5f5;border-radius:8px;display:flex;gap:20px;">';
+            html += '<div><strong>总金额</strong><br><span style="font-size:20px;color:#2979ff;">' + formatMoney(totalPrice) + '</span></div>';
+            html += '<div><strong>总转化</strong><br><span style="font-size:20px;color:#2e7d32;">' + details.length + '</span></div>';
+            html += '<div><strong>涉及州</strong><br><span style="font-size:20px;color:#e65100;">' + Object.keys(stateDetailMap).length + '</span></div>';
+            html += '</div>';
+            
+            // 州统计表格
+            html += '<h4 style="margin-bottom:10px;">📍 按州统计</h4>';
+            html += '<table class="detail-table"><thead><tr><th>州</th><th class="num">转化数</th><th class="num">总金额</th><th class="num">均价</th></tr></thead><tbody>';
+            
+            var stateNames = Object.keys(stateDetailMap).sort();
+            for (var i = 0; i < stateNames.length; i++) {
+                var state = stateNames[i];
+                var stat = stateDetailMap[state];
+                var avgPrice = stat.count > 0 ? stat.totalPrice / stat.count : 0;
+                html += '<tr>';
+                html += '<td>' + state + '</td>';
+                html += '<td class="num">' + stat.count + '</td>';
+                html += '<td class="num">' + formatMoney(stat.totalPrice) + '</td>';
+                html += '<td class="num">' + formatMoney(avgPrice) + '</td>';
+                html += '</tr>';
+            }
+            
+            if (stateNames.length === 0) {
+                html += '<tr><td colspan="4" style="text-align:center">暂无州数据</td></tr>';
+            }
+            
+            html += '</tbody></table>';
+            
+            // 明细表格（可选，展开）
+            html += '<details style="margin-top:20px;"><summary style="cursor:pointer;padding:8px;background:#f0f0f0;border-radius:6px;">📋 查看明细 (' + details.length + '条)</summary>';
+            html += '<table class="detail-table" style="margin-top:10px;"><thead><tr><th>时间</th><th>州</th><th class="num">金额</th><th>IP</th></tr></thead><tbody>';
+            
+            // 按时间倒序排序
+            details.sort(function(a, b) { return (b.time || '').localeCompare(a.time || ''); });
+            for (var i = 0; i < Math.min(details.length, 100); i++) {
+                var d = details[i];
+                html += '<tr>';
+                html += '<td>' + (d.time || '-') + '</td>';
+                html += '<td>' + (d.state !== '-' ? d.state : '-') + '</td>';
+                html += '<td class="num">' + formatMoney(d.price) + '</td>';
+                html += '<td>' + (d.ip || '-') + '</td>';
+                html += '</tr>';
+            }
+            if (details.length > 100) {
+                html += '<tr><td colspan="4" style="text-align:center">还有 ' + (details.length - 100) + ' 条未显示</td></tr>';
+            }
+            html += '</tbody></table></details>';
+            
+            html += '</div></div>';
+            
+            var existingModal = document.getElementById('detailModal');
+            if (existingModal) existingModal.remove();
+            document.body.insertAdjacentHTML('beforeend', html);
+        }
+        
+        function applyFilter() {
+            buildStats();
+        }
+        
+        function resetFilter() {
+            document.getElementById('offerFilter').value = '';
+            document.getElementById('personFilter').value = '';
+            buildStats();
+        }
+        
+        function closeModal(event) {
+            var modal = document.getElementById('detailModal');
+            if (modal) modal.remove();
+        }
+        
+        // 初始化
+        loadData();
+    </script>
+</body>
+</html>
