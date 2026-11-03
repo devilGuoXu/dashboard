@@ -396,7 +396,16 @@
         var DEFAULT_TARGET = OFFER_TARGETS.default || 1000;
 		
 		// ========== 全局变量：当前时间过滤模式 ==========
-		var currentTrendFilter = 'working';  // 'working' 或 'full'
+		var currentTrendFilter = 'working';
+        // US Eastern work window: DST 9-21, standard time 8-20
+        var WORK_START = 9, WORK_END = 21;
+        try {
+            var _tzParts = new Intl.DateTimeFormat('en-US', {timeZone:'America/New_York', timeZoneName:'shortOffset'}).formatToParts(new Date());
+            var _tzName = '';
+            for (var _i = 0; _i < _tzParts.length; _i++) { if (_tzParts[_i].type === 'timeZoneName') { _tzName = _tzParts[_i].value; break; } }
+            var _m = _tzName.match(/GMT([+-]\d+)/);
+            if (!_m || parseInt(_m[1], 10) !== -4) { WORK_START = 8; WORK_END = 20; }
+        } catch (e) { WORK_START = 8; WORK_END = 20; }  // 'working' 或 'full'
         
         // UI 状态
         var _currentPersonOffer = null;
@@ -830,7 +839,7 @@
 				var parts = label.split(':');
 				var hour = parseInt(parts[0]);
 				// 只保留 09:00 ~ 21:00（包含 21:00 整点，但不包含 21:30，因为半小时跨度为 21:00-21:29）
-				if (hour >= 9 && hour <= 21) {
+				if (hour >= WORK_START && hour <= WORK_END) {
 					filteredLabels.push(label);
 					filteredPrices.push(prices[i]);
 					filteredCounts.push(counts[i]);
@@ -945,14 +954,14 @@
 			}
 			
 			// ========== 构建HTML（包含切换按钮） ==========
-			var filterLabel = currentTrendFilter === 'full' ? '全天(24h)' : '工作时段(9-21)';
+			var filterLabel = currentTrendFilter === 'full' ? '全天(24h)' : '工作时段(' + WORK_START + '-' + WORK_END + ')';
 			var h = '<div class="section-title">' + escapeHtml(offerName) + '<span class="section-title-price">均价 ' + formatMoney(avgPrice) + '</span></div>';
 			
 			// 切换按钮
 			h += '<div class="filter-bar" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; flex-wrap:wrap; gap:8px;">';
 			h += '<div style="font-size:12px; color:#999;">当前: <strong>' + filterLabel + '</strong></div>';
 			h += '<div style="display:flex; gap:8px;">';
-			h += '<button class="trend-time-btn' + (currentTrendFilter === 'working' ? ' active' : '') + '" onclick="switchTrendFilter(\'working\')" style="background:' + (currentTrendFilter === 'working' ? '#4CAF50' : '#f0f0f0') + ';color:' + (currentTrendFilter === 'working' ? '#fff' : '#333') + ';border:none;border-radius:6px;padding:6px 16px;cursor:pointer;font-size:12px;transition:all .2s;">🕘 工作时段 (9-21)</button>';
+			h += '<button class="trend-time-btn' + (currentTrendFilter === 'working' ? ' active' : '') + '" onclick="switchTrendFilter(\'working\')" style="background:' + (currentTrendFilter === 'working' ? '#4CAF50' : '#f0f0f0') + ';color:' + (currentTrendFilter === 'working' ? '#fff' : '#333') + ';border:none;border-radius:6px;padding:6px 16px;cursor:pointer;font-size:12px;transition:all .2s;">🕘 工作时段 (' + WORK_START + '-' + WORK_END + ')</button>';
 			h += '<button class="trend-time-btn' + (currentTrendFilter === 'full' ? ' active' : '') + '" onclick="switchTrendFilter(\'full\')" style="background:' + (currentTrendFilter === 'full' ? '#4CAF50' : '#f0f0f0') + ';color:' + (currentTrendFilter === 'full' ? '#fff' : '#333') + ';border:none;border-radius:6px;padding:6px 16px;cursor:pointer;font-size:12px;transition:all .2s;">🌙 全天 (24h)</button>';
 			h += '</div>';
 			h += '</div>';
